@@ -5,6 +5,7 @@ import { getHomepageSetting, getProducts, getSeoSetting, getSiteSetting, getTest
 import { TestimonialSection } from '@/components/TestimonialSection';
 import { SocialEmbedWidget } from '@/components/SocialEmbedWidget';
 import { NaturalIngredients } from '@/components/NaturalIngredients';
+import { FaqInline } from '@/components/FaqInline';
 import { ArrowRight, Leaf, Certificate, Globe, Truck } from '@phosphor-icons/react/dist/ssr';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -105,63 +106,96 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* WHY JAVA ROYALE */}
-      <section className="bg-earth-50 py-20 lg:py-28">
+      {/* WHY CHOOSE JAVA DRINK */}
+      <section className="bg-gradient-to-b from-white to-earth-50 py-20 lg:py-28 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-14 items-center">
-            <div>
-              <span className="inline-block px-3 py-1 rounded-full bg-brand-yellow/20 text-brand-orange text-xs font-semibold tracking-widest uppercase mb-5">
-                Why Java Royale
-              </span>
-              <h2 className="font-display font-bold text-3xl md:text-4xl text-brand-black leading-tight mb-6">
-                Trusted partner for global<br />
-                <span className="text-brand-orange">F&B importers</span>
-              </h2>
-              <p className="text-gray-500 leading-relaxed mb-8">
-                We combine Indonesia&rsquo;s rich herbal heritage with modern production standards. Every product is crafted with integrity, backed by full certification, and delivered with reliable export support.
+          {/* Header */}
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-brand-yellow/20 text-brand-orange text-xs font-semibold tracking-widest uppercase mb-4">
+              Why Choose
+            </span>
+            <h2 className="font-display font-bold text-4xl md:text-5xl text-brand-black tracking-tight leading-[1.08]">
+              Java Drink?
+            </h2>
+            <p className="text-gray-500 mt-4 text-base leading-relaxed">
+              Every sip is a journey through Indonesia&rsquo;s finest herbs, crafted with tradition and delivered with modern quality assurance.
+            </p>
+          </div>
+
+          {/* Bento grid — asymmetric layout */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
+            {/* Item 1 — spans 2 cols */}
+            <div className="md:col-span-2 bg-earth-900 text-white rounded-3xl p-7 md:p-9 flex flex-col justify-center relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-40 h-40 bg-brand-yellow/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl pointer-events-none" />
+              <span className="font-display font-black text-4xl text-brand-yellow/30 mb-2 leading-none">01</span>
+              <h3 className="font-display font-bold text-xl md:text-2xl text-white mb-2 relative">Authentic Indonesian Jamu Recipe</h3>
+              <p className="text-gray-400 text-sm leading-relaxed max-w-lg relative">
+                Rooted in centuries of Indonesian herbal wisdom. Our recipes are passed down and perfected for the global palate — offering genuine Jamu experience in every bottle.
               </p>
-              <Link
-                href="/about"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-yellow text-brand-black font-semibold text-sm hover:bg-brand-orange transition-colors"
-              >
-                Learn More <ArrowRight size={14} weight="bold" />
-              </Link>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-4">
-              {[
-                {
-                  icon: <Certificate size={22} weight="fill" />,
-                  title: 'Certified Quality',
-                  desc: 'BPOM registered, Halal MUI certified, and compliant with international food safety standards for worry-free import.',
-                },
-                {
-                  icon: <Globe size={22} weight="fill" />,
-                  title: 'Export Ready',
-                  desc: 'Complete export documentation, flexible MOQ, and reliable logistics to 6+ countries across Asia, Middle East, and Europe.',
-                },
-                {
-                  icon: <Leaf size={22} weight="fill" />,
-                  title: 'Clean Label',
-                  desc: 'No MSG, no artificial preservatives, no hydrogenated oils. Our products meet the global clean-label consumer demand.',
-                },
-                {
-                  icon: <Truck size={22} weight="fill" />,
-                  title: 'Bulk & Private Label',
-                  desc: 'From bulk orders to custom OEM/ODM. We partner with you to create the right product for your market.',
-                },
-              ].map((item) => (
-                <div
-                  key={item.title}
-                  className="bg-white rounded-2xl p-5 border border-earth-100 hover:border-brand-yellow/60 transition-colors"
-                >
-                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-brand-yellow/20 text-brand-orange mb-3">
-                    {item.icon}
-                  </span>
-                  <h3 className="font-display font-bold text-brand-black text-base mb-1.5">{item.title}</h3>
-                  <p className="text-gray-500 text-xs leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
+            {/* Item 2 */}
+            <div className="bg-brand-yellow/10 border border-brand-yellow/20 rounded-3xl p-7 md:p-9 flex flex-col justify-center group hover:bg-brand-yellow/20 transition-colors">
+              <span className="font-display font-black text-4xl text-brand-yellow/40 mb-2 leading-none">02</span>
+              <h3 className="font-display font-bold text-lg md:text-xl text-brand-black mb-2">Natural Herbal Ingredients</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">
+                100% natural ingredients sourced directly from Indonesian farmers. No fillers, no shortcuts — just pure herbal goodness.
+              </p>
+            </div>
+
+            {/* Item 3 */}
+            <div className="bg-white border border-earth-100 rounded-3xl p-7 md:p-9 flex flex-col justify-center group hover:border-brand-red/30 hover:shadow-sm transition-all">
+              <span className="font-display font-black text-4xl text-brand-red/20 mb-2 leading-none">03</span>
+              <h3 className="font-display font-bold text-lg md:text-xl text-brand-black mb-2">No Artificial Colors or Preservatives</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">
+                Clean label commitment. What you see is what nature intended — vibrant colours from turmeric, sweetness from palm sugar, freshness from lime.
+              </p>
+            </div>
+
+            {/* Item 4 */}
+            <div className="bg-white border border-earth-100 rounded-3xl p-7 md:p-9 flex flex-col justify-center group hover:border-brand-green/30 hover:shadow-sm transition-all">
+              <span className="font-display font-black text-4xl text-brand-green/20 mb-2 leading-none">04</span>
+              <h3 className="font-display font-bold text-lg md:text-xl text-brand-black mb-2">Refreshing &amp; Easy to Enjoy</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">
+                Ready-to-drink convenience without compromising on authenticity. Perfect for modern consumers seeking a healthy, delicious herbal beverage.
+              </p>
+            </div>
+
+            {/* Item 5 — spans 2 cols */}
+            <div className="md:col-span-2 bg-gradient-to-r from-brand-orange/10 to-brand-yellow/10 border border-brand-yellow/20 rounded-3xl p-7 md:p-9 flex flex-col justify-center relative overflow-hidden group">
+              <div className="absolute bottom-0 left-0 w-32 h-32 bg-brand-orange/20 rounded-full blur-3xl pointer-events-none" />
+              <span className="font-display font-black text-4xl text-brand-orange/30 mb-2 leading-none">05</span>
+              <h3 className="font-display font-bold text-xl md:text-2xl text-brand-black mb-2 relative">Premium Quality Ingredients</h3>
+              <p className="text-gray-500 text-sm leading-relaxed max-w-lg relative">
+                We source only the finest herbs, spices, and sweeteners. Each batch is inspected, tested, and approved before it reaches your market.
+              </p>
+            </div>
+          </div>
+
+          {/* Last row — 3 items */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto mt-4">
+            {/* Item 6 */}
+            <div className="bg-earth-900 text-white rounded-3xl p-7 md:p-9 flex flex-col justify-center relative overflow-hidden group">
+              <div className="absolute bottom-0 right-0 w-32 h-32 bg-brand-yellow/10 rounded-full blur-2xl pointer-events-none" />
+              <span className="font-display font-black text-4xl text-brand-yellow/30 mb-2 leading-none">06</span>
+              <h3 className="font-display font-bold text-lg md:text-xl text-white mb-2 relative">Export-Quality Standards</h3>
+              <p className="text-gray-400 text-sm leading-relaxed relative">
+                BPOM registered, Halal MUI certified, and produced in GMP facilities. Full export documentation and Certificate of Analysis available for every order.
+              </p>
+            </div>
+
+            {/* CTA card — spans 2 cols */}
+            <div className="md:col-span-2 bg-brand-yellow rounded-3xl p-7 md:p-9 flex flex-col md:flex-row items-center justify-between gap-5">
+              <div>
+                <p className="font-display font-bold text-xl md:text-2xl text-brand-black">Ready to taste the difference?</p>
+                <p className="text-brand-black/70 text-sm mt-1">Explore our full range of Jamu herbal drinks.</p>
+              </div>
+              <Link
+                href="/products"
+                className="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brand-black text-white font-semibold text-sm hover:bg-earth-800 transition-colors"
+              >
+                View Products <ArrowRight size={14} weight="bold" />
+              </Link>
             </div>
           </div>
         </div>
@@ -263,6 +297,22 @@ export default async function HomePage() {
 
       {/* NATURAL INGREDIENTS */}
       <NaturalIngredients />
+
+      {/* FAQ */}
+      <section className="bg-earth-50 py-20 lg:py-28">
+        <div className="max-w-3xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-brand-yellow/20 text-brand-orange text-xs font-semibold tracking-widest uppercase mb-4">
+              Tanya Jawab
+            </span>
+            <h2 className="font-display font-bold text-3xl md:text-4xl text-brand-black tracking-tight">
+              Frequently Asked Questions
+            </h2>
+          </div>
+
+          <FaqInline />
+        </div>
+      </section>
 
       {/* TESTIMONIALS */}
       <TestimonialSection testimonials={testimonials} />
