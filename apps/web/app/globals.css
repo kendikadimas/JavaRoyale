@@ -10,35 +10,12 @@
   --color-brand-black: #222222;
   --color-brand-white: #FFFFFF;
 
-  /* Tropical neutral tones — fresher than basic earth */
-  --color-tropical-50: #FDFBF4;
-  --color-tropical-100: #F7F3E0;
-  --color-tropical-200: #EDE5C2;
-  --color-tropical-300: #D5C99A;
-  --color-tropical-800: #3D2C1A;
-  --color-tropical-900: #1E1608;
-
-  /* Fresh green accent for natural/tropical feel */
-  --color-leaf-50: #F0F9F0;
-  --color-leaf-100: #D4EDD4;
-  --color-leaf-200: #A8D8A8;
-  --color-leaf-500: #4CAF50;
-  --color-leaf-700: #2E7D32;
-  --color-leaf-900: #1B5E20;
-
-  /* Tropical gradient tokens */
-  --gradient-sunset: linear-gradient(135deg, #F6D400 0%, #F39C12 50%, #D62828 100%);
-  --gradient-fresh: linear-gradient(135deg, #4CAF50 0%, #F6D400 100%);
-  --gradient-warm: linear-gradient(135deg, #FDFBF4 0%, #F7F3E0 100%);
-
-  /* Organic / tropical border radius */
-  --radius-blob: 30% 70% 70% 30% / 30% 30% 70% 70%;
-  --radius-tropical: 1.5rem;
-
-  /* Warm-tinted shadows for premium feel */
-  --shadow-tropical-sm: 0 2px 8px rgba(243, 156, 18, 0.08);
-  --shadow-tropical-md: 0 8px 32px rgba(243, 156, 18, 0.10);
-  --shadow-tropical-lg: 0 16px 48px rgba(243, 156, 18, 0.12);
+  /* Neutral tones */
+  --color-earth-50: #FDFAF2;
+  --color-earth-100: #F9F3E0;
+  --color-earth-200: #EDE0C4;
+  --color-earth-800: #3D2C1A;
+  --color-earth-900: #1E1608;
 
   /* Fonts */
   --font-display: var(--font-fredoka);
@@ -63,14 +40,6 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display), system-ui, sans-serif;
-  letter-spacing: -0.02em;
-}
-
-/* Tropical leaf accent — used as SVG background decoration */
-.tropical-leaf {
-  position: absolute;
-  pointer-events: none;
-  opacity: 0.06;
 }
 
 /* Prose overrides for article body */
@@ -81,23 +50,11 @@ h1, h2, h3, h4, h5, h6 {
   --tw-prose-bold: #222222;
   --tw-prose-counters: #F39C12;
   --tw-prose-bullets: #F39C12;
-  --tw-prose-hr: #EDE5C2;
+  --tw-prose-hr: #EDE0C4;
   --tw-prose-quotes: #3D2C1A;
   --tw-prose-quote-borders: #F6D400;
   --tw-prose-code: #D62828;
   --tw-prose-pre-bg: #1E1608;
-}
-
-/* Smooth image loading */
-img {
-  transition: opacity 0.3s ease;
-}
-img[loading="lazy"] {
-  opacity: 0;
-}
-img[loading="lazy"].loaded,
-img[loading="lazy"][complete] {
-  opacity: 1;
 }
 
 /* Hide scrollbar for carousels */
