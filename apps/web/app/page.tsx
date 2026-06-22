@@ -6,7 +6,7 @@ import { TestimonialSection } from '@/components/TestimonialSection';
 import { SocialEmbedWidget } from '@/components/SocialEmbedWidget';
 import { NaturalIngredients } from '@/components/NaturalIngredients';
 import { FaqInline } from '@/components/FaqInline';
-import { ArrowRight, Leaf, Certificate, Globe, Truck } from '@phosphor-icons/react/dist/ssr';
+import { ArrowRight, Leaf, Certificate, Globe, Truck, Flask, Star, Sparkle } from '@phosphor-icons/react/dist/ssr';
 
 export async function generateMetadata(): Promise<Metadata> {
   const seo = await getSeoSetting('home');
@@ -107,96 +107,75 @@ export default async function HomePage() {
       </section>
 
       {/* WHY CHOOSE JAVA DRINK */}
-      <section className="bg-gradient-to-b from-white to-earth-50 py-20 lg:py-28 overflow-hidden">
+      <section className="bg-white py-20 lg:py-28">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          {/* Header */}
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-brand-yellow/20 text-brand-orange text-xs font-semibold tracking-widest uppercase mb-4">
-              Why Choose
-            </span>
+          <div className="max-w-2xl mx-auto text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl text-brand-black tracking-tight leading-[1.08]">
-              Java Drink?
+              Why Choose Java Drink?
             </h2>
-            <p className="text-gray-500 mt-4 text-base leading-relaxed">
-              Every sip is a journey through Indonesia&rsquo;s finest herbs, crafted with tradition and delivered with modern quality assurance.
+            <p className="text-gray-500 mt-4 text-base md:text-lg leading-relaxed">
+              Every sip carries Indonesia&rsquo;s finest herbs, crafted with tradition and backed by modern quality standards.
             </p>
           </div>
 
-          {/* Bento grid — asymmetric layout */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto">
-            {/* Item 1 — spans 2 cols */}
-            <div className="md:col-span-2 bg-earth-900 text-white rounded-3xl p-7 md:p-9 flex flex-col justify-center relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-40 h-40 bg-brand-yellow/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-2xl pointer-events-none" />
-              <span className="font-display font-black text-4xl text-brand-yellow/30 mb-2 leading-none">01</span>
-              <h3 className="font-display font-bold text-xl md:text-2xl text-white mb-2 relative">Authentic Indonesian Jamu Recipe</h3>
-              <p className="text-gray-400 text-sm leading-relaxed max-w-lg relative">
-                Rooted in centuries of Indonesian herbal wisdom. Our recipes are passed down and perfected for the global palate — offering genuine Jamu experience in every bottle.
-              </p>
-            </div>
-
-            {/* Item 2 */}
-            <div className="bg-brand-yellow/10 border border-brand-yellow/20 rounded-3xl p-7 md:p-9 flex flex-col justify-center group hover:bg-brand-yellow/20 transition-colors">
-              <span className="font-display font-black text-4xl text-brand-yellow/40 mb-2 leading-none">02</span>
-              <h3 className="font-display font-bold text-lg md:text-xl text-brand-black mb-2">Natural Herbal Ingredients</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">
-                100% natural ingredients sourced directly from Indonesian farmers. No fillers, no shortcuts — just pure herbal goodness.
-              </p>
-            </div>
-
-            {/* Item 3 */}
-            <div className="bg-white border border-earth-100 rounded-3xl p-7 md:p-9 flex flex-col justify-center group hover:border-brand-red/30 hover:shadow-sm transition-all">
-              <span className="font-display font-black text-4xl text-brand-red/20 mb-2 leading-none">03</span>
-              <h3 className="font-display font-bold text-lg md:text-xl text-brand-black mb-2">No Artificial Colors or Preservatives</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">
-                Clean label commitment. What you see is what nature intended — vibrant colours from turmeric, sweetness from palm sugar, freshness from lime.
-              </p>
-            </div>
-
-            {/* Item 4 */}
-            <div className="bg-white border border-earth-100 rounded-3xl p-7 md:p-9 flex flex-col justify-center group hover:border-brand-green/30 hover:shadow-sm transition-all">
-              <span className="font-display font-black text-4xl text-brand-green/20 mb-2 leading-none">04</span>
-              <h3 className="font-display font-bold text-lg md:text-xl text-brand-black mb-2">Refreshing &amp; Easy to Enjoy</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">
-                Ready-to-drink convenience without compromising on authenticity. Perfect for modern consumers seeking a healthy, delicious herbal beverage.
-              </p>
-            </div>
-
-            {/* Item 5 — spans 2 cols */}
-            <div className="md:col-span-2 bg-gradient-to-r from-brand-orange/10 to-brand-yellow/10 border border-brand-yellow/20 rounded-3xl p-7 md:p-9 flex flex-col justify-center relative overflow-hidden group">
-              <div className="absolute bottom-0 left-0 w-32 h-32 bg-brand-orange/20 rounded-full blur-3xl pointer-events-none" />
-              <span className="font-display font-black text-4xl text-brand-orange/30 mb-2 leading-none">05</span>
-              <h3 className="font-display font-bold text-xl md:text-2xl text-brand-black mb-2 relative">Premium Quality Ingredients</h3>
-              <p className="text-gray-500 text-sm leading-relaxed max-w-lg relative">
-                We source only the finest herbs, spices, and sweeteners. Each batch is inspected, tested, and approved before it reaches your market.
-              </p>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
+            {[
+              {
+                title: 'Authentic Indonesian Jamu Recipe',
+                desc: 'Rooted in centuries of Indonesian herbal wisdom. Our recipes are passed down and perfected for the global palate.',
+                icon: <Certificate size={20} weight="fill" />,
+              },
+              {
+                title: 'Natural Herbal Ingredients',
+                desc: '100% natural ingredients sourced directly from Indonesian farmers. No fillers, no shortcuts — just pure herbal goodness.',
+                icon: <Leaf size={20} weight="fill" />,
+              },
+              {
+                title: 'No Artificial Colors or Preservatives',
+                desc: 'Clean label commitment. Colours from turmeric, sweetness from palm sugar, freshness from lime — nothing artificial.',
+                icon: <Flask size={20} weight="fill" />,
+              },
+              {
+                title: 'Refreshing & Easy to Enjoy',
+                desc: 'Ready-to-drink convenience without compromising authenticity. Perfect for modern healthy lifestyles.',
+                icon: <Sparkle size={20} weight="fill" />,
+              },
+              {
+                title: 'Premium Quality Ingredients',
+                desc: 'Only the finest herbs, spices, and sweeteners make the cut. Each batch is inspected, tested, and approved for export.',
+                icon: <Star size={20} weight="fill" />,
+              },
+              {
+                title: 'Export-Quality Standards',
+                desc: 'BPOM registered, Halal MUI certified, and produced in GMP facilities with full documentation for every order.',
+                icon: <Globe size={20} weight="fill" />,
+              },
+            ].map((item, i) => (
+              <div
+                key={item.title}
+                className="group bg-earth-50 rounded-2xl p-6 md:p-7 border border-transparent hover:border-brand-yellow/50 hover:bg-white transition-all duration-300"
+              >
+                <div className="w-11 h-11 rounded-xl bg-brand-yellow/20 flex items-center justify-center mb-4 text-brand-orange shrink-0">
+                  {item.icon}
+                </div>
+                <h3 className="font-display font-bold text-brand-black text-base md:text-lg mb-2 leading-snug">
+                  {item.title}
+                </h3>
+                <p className="text-gray-500 text-sm leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
           </div>
 
-          {/* Last row — 3 items */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-5xl mx-auto mt-4">
-            {/* Item 6 */}
-            <div className="bg-earth-900 text-white rounded-3xl p-7 md:p-9 flex flex-col justify-center relative overflow-hidden group">
-              <div className="absolute bottom-0 right-0 w-32 h-32 bg-brand-yellow/10 rounded-full blur-2xl pointer-events-none" />
-              <span className="font-display font-black text-4xl text-brand-yellow/30 mb-2 leading-none">06</span>
-              <h3 className="font-display font-bold text-lg md:text-xl text-white mb-2 relative">Export-Quality Standards</h3>
-              <p className="text-gray-400 text-sm leading-relaxed relative">
-                BPOM registered, Halal MUI certified, and produced in GMP facilities. Full export documentation and Certificate of Analysis available for every order.
-              </p>
-            </div>
-
-            {/* CTA card — spans 2 cols */}
-            <div className="md:col-span-2 bg-brand-yellow rounded-3xl p-7 md:p-9 flex flex-col md:flex-row items-center justify-between gap-5">
-              <div>
-                <p className="font-display font-bold text-xl md:text-2xl text-brand-black">Ready to taste the difference?</p>
-                <p className="text-brand-black/70 text-sm mt-1">Explore our full range of Jamu herbal drinks.</p>
-              </div>
-              <Link
-                href="/products"
-                className="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brand-black text-white font-semibold text-sm hover:bg-earth-800 transition-colors"
-              >
-                View Products <ArrowRight size={14} weight="bold" />
-              </Link>
-            </div>
+          {/* CTA */}
+          <div className="mt-14 text-center">
+            <Link
+              href="/products"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-brand-yellow text-brand-black font-semibold hover:bg-brand-orange transition-colors"
+            >
+              Explore Our Products <ArrowRight size={16} weight="bold" />
+            </Link>
           </div>
         </div>
       </section>
