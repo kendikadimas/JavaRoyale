@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { SiteSetting } from '@/lib/api';
-import { InstagramLogo, LinkedinLogo, FacebookLogo, YoutubeLogo, WhatsappLogo } from '@phosphor-icons/react/dist/ssr';
+import { InstagramLogo, LinkedinLogo, FacebookLogo, YoutubeLogo, WhatsappLogo, TiktokLogo } from '@phosphor-icons/react/dist/ssr';
 
 interface FooterProps {
   siteSetting: SiteSetting | null;
@@ -22,8 +22,11 @@ export function Footer({ siteSetting }: FooterProps) {
               Java Royale Nusantara
             </span>
           </div>
-          <p className="text-gray-400 text-sm leading-relaxed max-w-sm mb-6">
+          <p className="text-gray-400 text-sm leading-relaxed max-w-sm mb-1">
             Premium Indonesian F&B export producer specialising in traditional herbal drinks (Jamu) and vacuum-fried fruit snacks. BPOM certified, Halal, and export-ready.
+          </p>
+          <p className="text-gray-600 text-xs mb-6">
+            PT. Java Royale Nusantara
           </p>
           {siteSetting?.whatsapp_primary && (
             <a
@@ -89,6 +92,11 @@ export function Footer({ siteSetting }: FooterProps) {
 
           {/* Social */}
           <div className="flex items-center gap-3 mt-6">
+            {social.tiktok && (
+              <a href={social.tiktok} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-yellow transition-colors">
+                <TiktokLogo size={20} />
+              </a>
+            )}
             {social.instagram && (
               <a href={social.instagram} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-brand-yellow transition-colors">
                 <InstagramLogo size={20} />
@@ -115,7 +123,7 @@ export function Footer({ siteSetting }: FooterProps) {
 
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-gray-500 text-xs">&copy; {new Date().getFullYear()} Java Royale Nusantara. All rights reserved.</p>
+          <p className="text-gray-500 text-xs">&copy; {new Date().getFullYear()} PT. Java Royale Nusantara. All rights reserved.</p>
           <p className="text-gray-600 text-xs">Made in Indonesia &middot; BPOM &middot; Halal MUI</p>
         </div>
       </div>
