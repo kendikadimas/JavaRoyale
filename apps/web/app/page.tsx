@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { getHomepageSetting, getProducts, getSeoSetting, getSiteSetting, getTestimonials, getSocialEmbedSettings, imageUrl, assetUrl } from '@/lib/api';
 import { TestimonialSection } from '@/components/TestimonialSection';
 import { SocialEmbedWidget } from '@/components/SocialEmbedWidget';
+import { NaturalIngredients } from '@/components/NaturalIngredients';
 import { ArrowRight, Leaf, Certificate, Globe, Truck } from '@phosphor-icons/react/dist/ssr';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -197,6 +198,9 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* NATURAL INGREDIENTS */}
+      <NaturalIngredients />
 
       {/* TESTIMONIALS */}
       <TestimonialSection testimonials={testimonials} />
