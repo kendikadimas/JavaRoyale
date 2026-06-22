@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getHomepageSetting, getProducts, getSeoSetting, getSiteSetting, imageUrl } from '@/lib/api';
+import { getHomepageSetting, getProducts, getSeoSetting, getSiteSetting, getTestimonials, getSocialEmbedSettings, imageUrl } from '@/lib/api';
+import { TestimonialSection } from '@/components/TestimonialSection';
+import { SocialEmbedWidget } from '@/components/SocialEmbedWidget';
 import { ArrowRight, Leaf, Certificate, Globe, Truck } from '@phosphor-icons/react/dist/ssr';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -13,10 +15,12 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const [hero, productsRes, site] = await Promise.all([
+  const [hero, productsRes, site, testimonials, embeds] = await Promise.all([
     getHomepageSetting().catch(() => null),
     getProducts({ page: 1 }).catch(() => null),
     getSiteSetting().catch(() => null),
+    getTestimonials().catch(() => []),
+    getSocialEmbedSettings().catch(() => []),
   ]);
 
   const featuredIds = hero?.highlighted_product_ids ?? [];
@@ -193,6 +197,12 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* TESTIMONIALS */}
+      <TestimonialSection testimonials={testimonials} />
+
+      {/* SOCIAL EMBEDS */}
+      <SocialEmbedWidget embeds={embeds} />
 
       {/* CTA SECTION */}
       <section className="bg-brand-red py-16 lg:py-20">

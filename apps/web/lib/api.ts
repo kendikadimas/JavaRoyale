@@ -177,6 +177,32 @@ export function submitInquiry(data: {
   });
 }
 
+export interface Testimonial {
+  id: number;
+  author_name: string;
+  company: string | null;
+  quote: string;
+  rating: number | null;
+  photo: string | null;
+  is_published: boolean;
+}
+
+export interface SocialEmbedSetting {
+  id: number;
+  platform: string;
+  embed_code: string | null;
+  link_url: string | null;
+  is_active: boolean;
+}
+
+export function getTestimonials(): Promise<Testimonial[]> {
+  return apiFetch<Testimonial[]>('/testimonials');
+}
+
+export function getSocialEmbedSettings(): Promise<SocialEmbedSetting[]> {
+  return apiFetch<SocialEmbedSetting[]>('/social-embed-settings');
+}
+
 export function imageUrl(path: string | null | undefined): string {
   if (!path) return '';
   if (path.startsWith('http')) return path;
