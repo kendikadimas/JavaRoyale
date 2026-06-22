@@ -24,11 +24,8 @@ class DatabaseSeeder extends Seeder
 
     public function run(): void
     {
-        // Admin user
-        User::factory()->create([
-            'name'  => 'Admin Java Royale',
-            'email' => 'admin@javaroyale.com',
-        ]);
+        // Admin user — credentials from .env
+        $this->call(AdminSeeder::class);
 
         // --- 2 Products with variants and nutrition facts ---
 
@@ -250,10 +247,14 @@ class DatabaseSeeder extends Seeder
         // --- SEO settings ---
 
         $seoPages = [
-            ['page_key' => 'home',     'seo_title' => 'Java Royale Nusantara — Premium Indonesian F&B Export',        'seo_description' => 'Java Royale Nusantara adalah produsen dan eksportir jamu herbal dan vacuum-fried snack premium asal Indonesia. BPOM, Halal, siap ekspor global.'],
-            ['page_key' => 'about',    'seo_title' => 'Tentang Java Royale Nusantara — Produsen Herbal & Snack Ekspor', 'seo_description' => 'Kenali Java Royale Nusantara: visi, misi, dan komitmen kami menghadirkan produk F&B Indonesia berkualitas untuk pasar internasional.'],
-            ['page_key' => 'products', 'seo_title' => 'Katalog Produk Ekspor — Jamu Herbal & Vacuum-Fried Snack',       'seo_description' => 'Jelajahi katalog lengkap produk Java Royale: jamu kunyit, beras kencur, temulawak, dan keripik buah vacuum fried untuk order ekspor.'],
-            ['page_key' => 'contact',  'seo_title' => 'Hubungi Kami — Inquiry Ekspor & Kemitraan Java Royale',          'seo_description' => 'Tertarik menjadi distributor atau melakukan bulk order? Hubungi tim ekspor Java Royale Nusantara sekarang.'],
+            ['page_key' => 'home',                 'seo_title' => 'Java Royale Nusantara — Premium Indonesian F&B Export',               'seo_description' => 'Java Royale Nusantara adalah produsen dan eksportir jamu herbal dan vacuum-fried snack premium asal Indonesia. BPOM, Halal, siap ekspor global.'],
+            ['page_key' => 'about',                'seo_title' => 'Tentang Java Royale Nusantara — Produsen Herbal & Snack Ekspor',        'seo_description' => 'Kenali Java Royale Nusantara: visi, misi, dan komitmen kami menghadirkan produk F&B Indonesia berkualitas untuk pasar internasional.'],
+            ['page_key' => 'products',             'seo_title' => 'Katalog Produk Ekspor — Jamu Herbal & Vacuum-Fried Snack',            'seo_description' => 'Jelajahi katalog lengkap produk Java Royale: jamu kunyit, beras kencur, temulawak, dan keripik buah vacuum fried untuk order ekspor.'],
+            ['page_key' => 'why-choose-us',        'seo_title' => 'Mengapa Memilih Java Royale — Keunggulan Produk F&B Ekspor',          'seo_description' => 'Temukan keunggulan Java Royale: sertifikasi BPOM & Halal, teknologi vacuum frying, dan komitmen kualitas untuk pasar ekspor global.'],
+            ['page_key' => 'market-opportunities', 'seo_title' => 'Peluang Pasar Ekspor — Herbal & Snack Indonesia Global',              'seo_description' => 'Pelajari peluang ekspor produk herbal dan snack Indonesia ke pasar ASEAN, Timur Tengah, Eropa, dan Australia bersama Java Royale.'],
+            ['page_key' => 'blog',                 'seo_title' => 'Blog & Artikel — Java Royale Nusantara',                              'seo_description' => 'Tips kesehatan, insight ekspor, dan berita terbaru dari Java Royale Nusantara — produsen jamu herbal dan vacuum-fried snack.'],
+            ['page_key' => 'faq',                  'seo_title' => 'FAQ — Pertanyaan Umum Seputar Produk & Ekspor Java Royale',            'seo_description' => 'Jawaban untuk pertanyaan umum tentang sertifikasi, MOQ, private label, dan proses ekspor produk Java Royale Nusantara.'],
+            ['page_key' => 'contact',              'seo_title' => 'Hubungi Kami — Inquiry Ekspor & Kemitraan Java Royale',              'seo_description' => 'Tertarik menjadi distributor atau melakukan bulk order? Hubungi tim ekspor Java Royale Nusantara sekarang.'],
         ];
 
         foreach ($seoPages as $seo) {
