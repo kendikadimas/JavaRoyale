@@ -7,6 +7,7 @@ import { SocialEmbedWidget } from '@/components/SocialEmbedWidget';
 import { NaturalIngredients } from '@/components/NaturalIngredients';
 import { FaqInline } from '@/components/FaqInline';
 import { ArrowRight, Leaf, Certificate, Globe, Truck, Flask, Star, Sparkle } from '@phosphor-icons/react/dist/ssr';
+import { LeafDecoTopRight, LeafDecoBottomLeft, LeafDecoBottomRight } from '@/components/TropicalDecorations';
 
 export async function generateMetadata(): Promise<Metadata> {
   const seo = await getSeoSetting('home');
@@ -34,10 +35,14 @@ export default async function HomePage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative min-h-[100dvh] bg-earth-900 flex flex-col justify-center overflow-hidden pt-16">
-        {/* Background accent */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_#F6D400_0%,_transparent_50%)] opacity-10 pointer-events-none" />
+      <section className="relative min-h-[100dvh] bg-gradient-to-br from-earth-900 via-earth-900 to-brand-black flex flex-col justify-center overflow-hidden pt-16">
+        {/* Tropical leaf decorations */}
+        <LeafDecoTopRight className="opacity-[0.07]" />
+        <LeafDecoBottomLeft className="opacity-[0.05]" />
+        {/* Background accent — warm tropical glow */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_#F6D400_0%,_transparent_45%)] opacity-15 pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-red/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-brand-orange/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 grid lg:grid-cols-2 gap-12 items-center">
           <div>
@@ -90,7 +95,7 @@ export default async function HomePage() {
       </section>
 
       {/* TRUST SIGNALS */}
-      <section className="bg-brand-yellow">
+      <section className="bg-gradient-to-r from-brand-yellow via-brand-yellow to-brand-orange/80">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8 grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
             { icon: <Certificate size={24} weight="fill" />, label: 'BPOM Certified' },
@@ -107,7 +112,8 @@ export default async function HomePage() {
       </section>
 
       {/* WHY CHOOSE JAVA DRINK */}
-      <section className="bg-white py-20 lg:py-28">
+      <section className="bg-gradient-to-b from-tropical-50 to-white py-20 lg:py-28 relative overflow-hidden">
+        <LeafDecoBottomRight />
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center mb-16">
             <h2 className="font-display font-bold text-4xl md:text-5xl text-brand-black tracking-tight leading-[1.08]">
@@ -153,7 +159,7 @@ export default async function HomePage() {
             ].map((item, i) => (
               <div
                 key={item.title}
-                className="group bg-earth-50 rounded-2xl p-6 md:p-7 border border-transparent hover:border-brand-yellow/50 hover:bg-white transition-all duration-300"
+                className="group bg-white rounded-2xl p-6 md:p-7 border border-tropical-200/50 shadow-tropical-sm hover:shadow-tropical-md hover:border-brand-yellow/60 transition-all duration-300"
               >
                 <div className="w-11 h-11 rounded-xl bg-brand-yellow/20 flex items-center justify-center mb-4 text-brand-orange shrink-0">
                   {item.icon}
@@ -239,8 +245,10 @@ export default async function HomePage() {
       )}
 
       {/* WHY CHOOSE US STRIP */}
-      <section className="bg-earth-900 text-white py-20 lg:py-28">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <section className="bg-gradient-to-br from-tropical-900 via-earth-900 to-brand-black text-white py-20 lg:py-28 relative overflow-hidden">
+        <LeafDecoTopRight />
+        <LeafDecoBottomLeft />
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="font-display font-bold text-3xl md:text-4xl leading-tight mb-6">
