@@ -112,7 +112,7 @@ export default async function MarketOpportunitiesPage() {
       <section className="py-16 bg-brand-yellow">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
-            <h3 className="font-display font-bold text-2xl text-brand-black">Ready to explore your market opportunity?</h3>
+            <h2 className="font-display font-bold text-2xl text-brand-black">Ready to explore your market opportunity?</h2>
             <p className="text-brand-black/70 mt-1 text-sm">Our export team will connect you with the right products and documentation for your region.</p>
           </div>
           <Link

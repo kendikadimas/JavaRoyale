@@ -17,10 +17,13 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const product = await getProduct(slug).catch(() => null);
-  if (!product) return {};
+  if (!product) return {
+    title: 'Product Not Found — Java Royale Nusantara',
+    description: 'The requested product could not be found.',
+  };
   return {
     title: `${product.name} — Java Royale Nusantara`,
-    description: product.description ?? undefined,
+    description: product.description ?? `Discover ${product.name} from Java Royale Nusantara — premium Indonesian F&B export products.`,
   };
 }
 
@@ -64,7 +67,7 @@ export default async function ProductDetailPage({ params }: Props) {
             <div className="grid grid-cols-4 gap-2">
               {product.images.slice(1, 5).map((img) => (
                 <div key={img.id} className="relative aspect-square rounded-xl overflow-hidden bg-earth-50">
-                  <Image src={imageUrl(img.image_path)} alt={img.alt_text ?? ''} fill className="object-cover" />
+                  <Image src={imageUrl(img.image_path)} alt={img.alt_text ?? `${product.name} photo ${img.order + 1}`} fill className="object-cover" />
                 </div>
               ))}
             </div>
@@ -86,7 +89,7 @@ export default async function ProductDetailPage({ params }: Props) {
           {/* Advantages */}
           {product.advantages && product.advantages.length > 0 && (
             <div className="mb-6">
-              <h3 className="font-display font-semibold text-brand-black mb-3">Key Advantages</h3>
+              <h2 className="font-display font-semibold text-brand-black mb-3">Key Advantages</h2>
               <ul className="space-y-2">
                 {product.advantages.map((adv, i) => (
                   <li key={i} className="flex items-start gap-2.5">

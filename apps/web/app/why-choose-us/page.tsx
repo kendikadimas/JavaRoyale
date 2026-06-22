@@ -125,9 +125,9 @@ export default async function WhyChooseUsPage() {
       {/* CTA */}
       <section className="py-16 bg-brand-yellow">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <h3 className="font-display font-bold text-2xl text-brand-black">
+          <h2 className="font-display font-bold text-2xl text-brand-black">
             Ready to review our product specifications?
-          </h3>
+          </h2>
           <Link
             href="/products"
             className="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brand-black text-white font-semibold hover:bg-earth-800 transition-colors"

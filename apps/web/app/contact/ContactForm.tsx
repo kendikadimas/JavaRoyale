@@ -63,14 +63,15 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5" noValidate>
-      {/* Inquiry type */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">Inquiry Type</label>
-        <div className="flex flex-wrap gap-2">
+      {/* Inquiry type — fieldset+legend for a11y */}
+      <fieldset>
+        <legend className="block text-sm font-medium text-gray-700 mb-2">Inquiry Type</legend>
+        <div className="flex flex-wrap gap-2" role="group">
           {inquiryTypes.map((t) => (
             <button
               key={t.value}
               type="button"
+              aria-pressed={form.type === t.value}
               onClick={() => setForm({ ...form, type: t.value })}
               className={`px-4 py-2 rounded-full text-sm font-medium border transition-all ${
                 form.type === t.value
@@ -82,7 +83,7 @@ export function ContactForm() {
             </button>
           ))}
         </div>
-      </div>
+      </fieldset>
 
       <div className="grid sm:grid-cols-2 gap-5">
         {/* Name */}

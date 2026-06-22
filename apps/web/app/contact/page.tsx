@@ -7,7 +7,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const seo = await getSeoSetting('contact');
   return {
     title: seo?.seo_title ?? 'Contact — Java Royale Nusantara',
-    description: seo?.seo_description ?? undefined,
+    description: seo?.seo_description ?? 'Contact the Java Royale Nusantara export team for bulk orders, distributor partnerships, and product inquiries.',
   };
 }
 

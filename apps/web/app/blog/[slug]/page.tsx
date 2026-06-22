@@ -17,10 +17,13 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const article = await getArticle(slug).catch(() => null);
-  if (!article) return {};
+  if (!article) return {
+    title: 'Article Not Found — Java Royale Nusantara',
+    description: 'The requested article could not be found.',
+  };
   return {
     title: article.seo_title ?? `${article.title} — Java Royale Nusantara`,
-    description: article.seo_description ?? undefined,
+    description: article.seo_description ?? article.body?.replace(/<[^>]*>/g, ' ').trim().slice(0, 155) ?? 'Read the latest insights from Java Royale Nusantara.',
   };
 }
 

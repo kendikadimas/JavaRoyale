@@ -33,7 +33,7 @@ export default async function FaqPage() {
           )}
 
           <div className="mt-16 bg-earth-50 rounded-2xl p-8 text-center">
-            <h3 className="font-display font-bold text-xl text-brand-black mb-2">Still have questions?</h3>
+            <h2 className="font-display font-bold text-xl text-brand-black mb-2">Still have questions?</h2>
             <p className="text-gray-500 text-sm mb-6">Our export team is ready to assist you with any specific enquiries.</p>
             <Link
               href="/contact"
