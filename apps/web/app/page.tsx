@@ -105,6 +105,68 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* WHY JAVA ROYALE */}
+      <section className="bg-earth-50 py-20 lg:py-28">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-14 items-center">
+            <div>
+              <span className="inline-block px-3 py-1 rounded-full bg-brand-yellow/20 text-brand-orange text-xs font-semibold tracking-widest uppercase mb-5">
+                Why Java Royale
+              </span>
+              <h2 className="font-display font-bold text-3xl md:text-4xl text-brand-black leading-tight mb-6">
+                Trusted partner for global<br />
+                <span className="text-brand-orange">F&B importers</span>
+              </h2>
+              <p className="text-gray-500 leading-relaxed mb-8">
+                We combine Indonesia&rsquo;s rich herbal heritage with modern production standards. Every product is crafted with integrity, backed by full certification, and delivered with reliable export support.
+              </p>
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-brand-yellow text-brand-black font-semibold text-sm hover:bg-brand-orange transition-colors"
+              >
+                Learn More <ArrowRight size={14} weight="bold" />
+              </Link>
+            </div>
+
+            <div className="grid sm:grid-cols-2 gap-4">
+              {[
+                {
+                  icon: <Certificate size={22} weight="fill" />,
+                  title: 'Certified Quality',
+                  desc: 'BPOM registered, Halal MUI certified, and compliant with international food safety standards for worry-free import.',
+                },
+                {
+                  icon: <Globe size={22} weight="fill" />,
+                  title: 'Export Ready',
+                  desc: 'Complete export documentation, flexible MOQ, and reliable logistics to 6+ countries across Asia, Middle East, and Europe.',
+                },
+                {
+                  icon: <Leaf size={22} weight="fill" />,
+                  title: 'Clean Label',
+                  desc: 'No MSG, no artificial preservatives, no hydrogenated oils. Our products meet the global clean-label consumer demand.',
+                },
+                {
+                  icon: <Truck size={22} weight="fill" />,
+                  title: 'Bulk & Private Label',
+                  desc: 'From bulk orders to custom OEM/ODM. We partner with you to create the right product for your market.',
+                },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  className="bg-white rounded-2xl p-5 border border-earth-100 hover:border-brand-yellow/60 transition-colors"
+                >
+                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-brand-yellow/20 text-brand-orange mb-3">
+                    {item.icon}
+                  </span>
+                  <h3 className="font-display font-bold text-brand-black text-base mb-1.5">{item.title}</h3>
+                  <p className="text-gray-500 text-xs leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FEATURED PRODUCTS */}
       {featured.length > 0 && (
         <section className="bg-white py-20 lg:py-28">
