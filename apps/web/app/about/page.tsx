@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getSeoSetting } from '@/lib/api';
+import { getSeoSetting, assetUrl } from '@/lib/api';
 import { ArrowRight, Leaf, Users, Factory, Handshake } from '@phosphor-icons/react/dist/ssr';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -34,8 +34,8 @@ export default async function AboutPage() {
             <div className="relative">
               <div className="relative rounded-3xl overflow-hidden aspect-[4/3]">
                 <Image
-                  src="https://picsum.photos/seed/java-heritage-farm/700/525"
-                  alt="Traditional Indonesian spice farm"
+                  src={assetUrl('tropicalasea.jpeg')}
+                  alt="Traditional Indonesian tropical ingredients"
                   fill
                   className="object-cover"
                 />

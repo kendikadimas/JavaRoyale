@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getSeoSetting } from '@/lib/api';
+import { getSeoSetting, assetUrl } from '@/lib/api';
 import { CheckCircle, ArrowRight, Thermometer, Shield, Flask, Medal, Leaf, Globe } from '@phosphor-icons/react/dist/ssr';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -53,8 +53,8 @@ export default async function WhyChooseUsPage() {
             <div className="relative">
               <div className="relative rounded-3xl overflow-hidden aspect-[4/3]">
                 <Image
-                  src="https://picsum.photos/seed/vacuum-frying-machine/700/525"
-                  alt="Vacuum frying technology"
+                  src={assetUrl('fotoproduk.jpeg')}
+                  alt="Java Royale product showcase"
                   fill
                   className="object-cover"
                 />

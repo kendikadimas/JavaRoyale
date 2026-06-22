@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getBuyerCategories, getSeoSetting } from '@/lib/api';
+import { getBuyerCategories, getSeoSetting, assetUrl } from '@/lib/api';
 import { ArrowRight, Globe, TrendUp, ChartBar } from '@phosphor-icons/react/dist/ssr';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -48,9 +48,9 @@ export default async function MarketOpportunitiesPage() {
               </div>
             </div>
             <div className="relative rounded-3xl overflow-hidden aspect-[4/3]">
-              <Image
-                src="https://picsum.photos/seed/global-trade-map/700/525"
-                alt="Global export markets"
+                <Image
+                  src={assetUrl('tropicalsnack.jpeg')}
+                  alt="Premium tropical snack export"
                 fill
                 className="object-cover opacity-60"
               />

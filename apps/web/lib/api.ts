@@ -208,3 +208,8 @@ export function imageUrl(path: string | null | undefined): string {
   if (path.startsWith('http')) return path;
   return `${API_BASE}/storage/${path}`;
 }
+
+/** Returns the full URL for an asset from /api/public/assets. */
+export function assetUrl(filename: string): string {
+  return `${API_BASE}/assets/${filename}`;
+}

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getArticles, getSeoSetting, imageUrl } from '@/lib/api';
+import { getArticles, getSeoSetting, imageUrl, assetUrl } from '@/lib/api';
 import { ArrowRight, CalendarBlank } from '@phosphor-icons/react/dist/ssr';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -48,7 +48,7 @@ export default async function BlogPage() {
                     <Image
                       src={article.featured_image
                         ? imageUrl(article.featured_image)
-                        : `https://picsum.photos/seed/${article.slug}/800/450`}
+                        : assetUrl('pouchjavadrink.jpeg')}
                       alt={article.title}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-500"

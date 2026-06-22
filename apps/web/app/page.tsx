@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getHomepageSetting, getProducts, getSeoSetting, getSiteSetting, getTestimonials, getSocialEmbedSettings, imageUrl } from '@/lib/api';
+import { getHomepageSetting, getProducts, getSeoSetting, getSiteSetting, getTestimonials, getSocialEmbedSettings, imageUrl, assetUrl } from '@/lib/api';
 import { TestimonialSection } from '@/components/TestimonialSection';
 import { SocialEmbedWidget } from '@/components/SocialEmbedWidget';
 import { ArrowRight, Leaf, Certificate, Globe, Truck } from '@phosphor-icons/react/dist/ssr';
@@ -68,8 +68,8 @@ export default async function HomePage() {
           <div className="relative hidden lg:block">
             <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden bg-earth-800">
               <Image
-                src="https://picsum.photos/seed/jamu-tropical-hero/800/600"
-                alt="Java Royale premium herbal products"
+                src={assetUrl('talljavaproduct.jpeg')}
+                alt="Java Royale premium drink products"
                 fill
                 className="object-cover mix-blend-luminosity opacity-70"
                 priority
