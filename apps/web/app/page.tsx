@@ -52,7 +52,7 @@ export default async function HomePage() {
             <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-white leading-[1.05] tracking-tight mb-6">
               {hero?.hero_title ?? 'Premium Indonesian F&B for Global Markets'}
             </h1>
-            <p className="text-gray-300 text-lg leading-relaxed max-w-lg mb-8">
+            <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-lg mb-8">
               {hero?.hero_subtitle ?? 'Artisan Jamu herbal drinks and vacuum-fried tropical snacks. BPOM certified, Halal, ready for worldwide export.'}
             </p>
             <div className="flex flex-wrap gap-3">

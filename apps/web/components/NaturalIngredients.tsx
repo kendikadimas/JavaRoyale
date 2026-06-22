@@ -85,7 +85,7 @@ export function NaturalIngredients() {
           {ingredients.map((item) => (
             <div
               key={item.id}
-              className="snap-start shrink-0 w-[280px] sm:w-[300px] lg:w-[340px] bg-earth-50 rounded-3xl border border-earth-100 flex flex-col overflow-hidden hover:shadow-md transition-shadow"
+              className="snap-start shrink-0 w-[260px] sm:w-[300px] lg:w-[340px] bg-earth-50 rounded-3xl border border-earth-100 flex flex-col overflow-hidden hover:shadow-md transition-shadow"
             >
               <div className="px-6 py-10 text-center flex flex-col items-center">
                 <h3 className="font-display font-bold text-xl md:text-2xl text-brand-black mb-4 tracking-tight">

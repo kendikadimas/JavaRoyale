@@ -45,7 +45,7 @@ export default async function ProductDetailPage({ params }: Props) {
       </div>
 
       {/* Main product section */}
-      <section className="max-w-7xl mx-auto px-6 lg:px-8 py-8 grid lg:grid-cols-2 gap-12 items-start">
+      <section className="max-w-7xl mx-auto px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
         {/* Gallery */}
         <div className="space-y-3">
           <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-earth-50 border border-earth-100">
@@ -64,7 +64,7 @@ export default async function ProductDetailPage({ params }: Props) {
             )}
           </div>
           {product.images.length > 1 && (
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               {product.images.slice(1, 5).map((img) => (
                 <div key={img.id} className="relative aspect-square rounded-xl overflow-hidden bg-earth-50">
                   <Image src={imageUrl(img.image_path)} alt={img.alt_text ?? `${product.name} photo ${img.order + 1}`} fill className="object-cover" />
@@ -124,7 +124,7 @@ export default async function ProductDetailPage({ params }: Props) {
                       <span className="text-sm text-gray-500 bg-earth-50 px-3 py-1 rounded-full">{variant.net_weight}</span>
                     )}
                   </div>
-                  <div className="p-6 grid md:grid-cols-2 gap-8">
+                  <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Ingredients */}
                     {variant.ingredients && variant.ingredients.length > 0 && (
                       <div>
@@ -144,7 +144,7 @@ export default async function ProductDetailPage({ params }: Props) {
                     {variant.nutrition_fact && (
                       <div>
                         <h4 className="font-semibold text-sm text-gray-700 mb-3">Nutrition Facts</h4>
-                        <div className="border border-earth-200 rounded-xl overflow-hidden">
+                        <div className="border border-earth-200 rounded-xl overflow-x-auto">
                           <table className="w-full text-sm">
                             <thead>
                               <tr className="bg-earth-50">

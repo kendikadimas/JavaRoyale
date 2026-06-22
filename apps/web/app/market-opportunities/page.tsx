@@ -33,7 +33,7 @@ export default async function MarketOpportunitiesPage() {
                 Indonesia’s F&amp;B is going global.
                 <span className="text-brand-yellow block mt-1">Be part of it.</span>
               </h1>
-              <p className="text-gray-300 text-lg leading-relaxed mb-8">
+              <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-8">
                 The global herbal beverage market is projected to reach $3.2B by 2028. Indonesian vacuum-fried snacks are among the fastest-growing import categories in premium retail across Asia and Europe.
               </p>
               <div className="flex flex-wrap gap-4">
@@ -71,7 +71,7 @@ export default async function MarketOpportunitiesPage() {
             <h2 className="font-display font-bold text-3xl md:text-4xl text-brand-black mb-12">
               Who we work with
             </h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {categories.map((cat) => (
                 <div key={cat.id} className="bg-earth-50 rounded-2xl p-6 border border-earth-100 hover:border-brand-yellow transition-colors group">
                   <div className="w-12 h-12 rounded-xl bg-brand-yellow/20 flex items-center justify-center mb-4 group-hover:bg-brand-yellow transition-colors">
@@ -89,7 +89,7 @@ export default async function MarketOpportunitiesPage() {
       <section className="py-20 bg-earth-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <h2 className="font-display font-bold text-3xl md:text-4xl text-brand-black mb-12">Key Export Markets</h2>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {markets.map((m) => (
               <div key={m.region} className="bg-white rounded-2xl p-6 border border-earth-100">
                 <div className="flex items-start justify-between mb-3">

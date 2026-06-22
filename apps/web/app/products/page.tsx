@@ -23,7 +23,7 @@ export default async function ProductsPage() {
           <h1 className="font-display font-bold text-4xl md:text-5xl text-brand-black mb-4">
             Our Products
           </h1>
-          <p className="text-gray-500 text-lg max-w-xl">
+          <p className="text-gray-500 text-base md:text-lg max-w-xl">
             Premium Indonesian herbal drinks and vacuum-fried snacks, crafted for global export.
           </p>
         </div>

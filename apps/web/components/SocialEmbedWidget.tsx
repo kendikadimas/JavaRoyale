@@ -48,7 +48,7 @@ function EmbedCard({ embed }: { embed: SocialEmbedSetting }) {
             href={embed.link_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center p-10 text-gray-400 text-sm hover:text-brand-orange transition-colors gap-2"
+            className="flex items-center justify-center p-6 md:p-10 text-gray-400 text-sm hover:text-brand-orange transition-colors gap-2"
           >
             <span>Follow us on {embed.platform}</span>
           </a>

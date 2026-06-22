@@ -20,7 +20,7 @@ export function Header() {
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur-sm border-b border-earth-100">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 min-h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 group">
           <span className="w-8 h-8 rounded-full bg-brand-yellow flex items-center justify-center text-brand-black font-display font-bold text-sm group-hover:bg-brand-orange transition-colors">

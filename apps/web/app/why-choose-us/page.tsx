@@ -39,7 +39,7 @@ export default async function WhyChooseUsPage() {
               Export-grade quality,<br />
               <span className="text-brand-yellow">built into every step</span>
             </h1>
-            <p className="text-gray-300 text-lg leading-relaxed">
+            <p className="text-gray-300 text-base md:text-lg leading-relaxed">
               We don’t add quality at the end — we build it into every step of the process, from ingredient sourcing to final packaging.
             </p>
           </div>
@@ -93,7 +93,7 @@ export default async function WhyChooseUsPage() {
       <section className="py-20 bg-earth-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <h2 className="font-display font-bold text-3xl md:text-4xl text-brand-black mb-12">Quality at every stage</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {standards.map((item) => (
               <div key={item.title} className="bg-white rounded-2xl p-6 border border-earth-100">
                 <span className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-brand-yellow/20 text-brand-orange mb-4">
@@ -111,7 +111,7 @@ export default async function WhyChooseUsPage() {
       <section className="py-20 bg-brand-black text-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <h2 className="font-display font-bold text-3xl md:text-4xl mb-12">Compliance &amp; Certifications</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {certifications.map((cert) => (
               <div key={cert.label} className="border border-brand-yellow/30 rounded-2xl p-6">
                 <p className="font-display font-bold text-xl text-brand-yellow mb-2">{cert.label}</p>

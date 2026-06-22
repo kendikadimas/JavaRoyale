@@ -20,7 +20,7 @@ export default async function FaqPage() {
       <section className="pt-32 pb-12 bg-earth-50">
         <div className="max-w-3xl mx-auto px-6 lg:px-8">
           <h1 className="font-display font-bold text-4xl md:text-5xl text-brand-black mb-4">Frequently Asked Questions</h1>
-          <p className="text-gray-500 text-lg">Common questions about our products, export process, and partnership options.</p>
+          <p className="text-gray-500 text-base md:text-lg">Common questions about our products, export process, and partnership options.</p>
         </div>
       </section>
 

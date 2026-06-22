@@ -18,13 +18,13 @@ export default async function AboutPage() {
       {/* Hero */}
       <section className="pt-32 pb-20 bg-earth-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
             <div>
               <h1 className="font-display font-bold text-4xl md:text-5xl text-brand-black leading-tight mb-6">
                 Rooted in tradition,<br />
                 <span className="text-brand-orange">grown for the world</span>
               </h1>
-              <p className="text-gray-600 text-lg leading-relaxed mb-6">
+              <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-6">
                 Java Royale Nusantara was born from a simple belief: Indonesia’s richest flavours and healing herbs deserve a global stage. We bridge traditional Indonesian food craftsmanship with the standards demanded by international markets.
               </p>
               <p className="text-gray-600 leading-relaxed">
@@ -61,7 +61,7 @@ export default async function AboutPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-8">
             {[
               {
                 icon: <Leaf size={28} weight="fill" className="text-brand-green" />,
@@ -79,7 +79,7 @@ export default async function AboutPage() {
                 body: 'We operate as a brand-owner, distributor, and manufacturing partner all in one — giving buyers the flexibility to go to market their way.',
               },
             ].map((item) => (
-              <div key={item.title} className="bg-earth-50 rounded-2xl p-8">
+              <div key={item.title} className="bg-earth-50 rounded-2xl p-6 md:p-8">
                 <div className="mb-4">{item.icon}</div>
                 <h3 className="font-display font-bold text-xl text-brand-black mb-3">{item.title}</h3>
                 <p className="text-gray-600 text-sm leading-relaxed">{item.body}</p>
@@ -93,7 +93,7 @@ export default async function AboutPage() {
       <section className="py-20 bg-brand-black text-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <h2 className="font-display font-bold text-3xl md:text-4xl mb-12">How We Work</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-6 md:gap-8">
             {[
               {
                 icon: <Leaf size={24} className="text-brand-yellow" />,
@@ -111,7 +111,7 @@ export default async function AboutPage() {
                 desc: 'Brands and retailers can leverage our facility and expertise to produce private-label products — custom formula, custom packaging, custom brand.',
               },
             ].map((item) => (
-              <div key={item.title} className="border border-white/10 rounded-2xl p-8 hover:border-brand-yellow/50 transition-colors">
+              <div key={item.title} className="border border-white/10 rounded-2xl p-6 md:p-8 hover:border-brand-yellow/50 transition-colors">
                 <div className="mb-4">{item.icon}</div>
                 <h3 className="font-display font-bold text-xl mb-3">{item.title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>

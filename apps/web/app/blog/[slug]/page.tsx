@@ -79,7 +79,7 @@ export default async function BlogDetailPage({ params }: Props) {
       {/* Body */}
       <article className="max-w-3xl mx-auto px-6 lg:px-8 pb-24">
         <div
-          className="prose prose-lg max-w-none"
+          className="prose md:prose-lg max-w-none"
           dangerouslySetInnerHTML={{ __html: article.body }}
         />
       </article>

@@ -21,7 +21,7 @@ export default async function BlogPage() {
       <section className="pt-32 pb-12 bg-earth-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <h1 className="font-display font-bold text-4xl md:text-5xl text-brand-black mb-4">Blog &amp; Insights</h1>
-          <p className="text-gray-500 text-lg max-w-xl">
+          <p className="text-gray-500 text-base md:text-lg max-w-xl">
             Export knowledge, health tips, and the latest from Java Royale Nusantara.
           </p>
         </div>

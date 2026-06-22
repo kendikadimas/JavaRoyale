@@ -19,14 +19,14 @@ export default async function ContactPage() {
       <section className="pt-32 pb-12 bg-earth-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <h1 className="font-display font-bold text-4xl md:text-5xl text-brand-black mb-4">Get in Touch</h1>
-          <p className="text-gray-500 text-lg max-w-xl">
+          <p className="text-gray-500 text-base md:text-lg max-w-xl">
             Interested in our products, bulk order pricing, or becoming a distributor? Send us a message and our export team will respond within 1 business day.
           </p>
         </div>
       </section>
 
       <section className="bg-white py-12 pb-24">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-3 gap-12">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
           {/* Contact info */}
           <div className="space-y-6">
             <h2 className="font-display font-bold text-xl text-brand-black">Contact Information</h2>

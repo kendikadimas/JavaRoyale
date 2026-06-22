@@ -38,7 +38,7 @@ export default async function RootLayout({
 
   return (
     <html lang="id" className={`${fredoka.variable} ${nunitoSans.variable}`}>
-      <body className="min-h-screen flex flex-col bg-white">
+      <body className="min-h-[100dvh] flex flex-col bg-white">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer siteSetting={siteSetting} />

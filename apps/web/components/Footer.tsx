@@ -13,7 +13,7 @@ export function Footer({ siteSetting }: FooterProps) {
     <footer className="bg-brand-black text-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         {/* Brand */}
-        <div className="lg:col-span-2">
+        <div className="md:col-span-2 lg:col-span-2">
           <div className="flex items-center gap-2.5 mb-4">
             <span className="w-8 h-8 rounded-full bg-brand-yellow flex items-center justify-center text-brand-black font-bold text-sm">
               JR
