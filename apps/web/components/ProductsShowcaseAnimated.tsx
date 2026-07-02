@@ -92,7 +92,7 @@ export function ProductsShowcaseAnimated({ products }: { products: Product[] }) 
                       : 'The perfect balance of tradition and refreshing taste.'}
                   </p>
                   <Link 
-                    href={`/products/${product.slug}`} 
+                    href="/products" 
                     className={`w-10 h-10 md:w-14 md:h-14 flex items-center justify-center rounded-full transition-all hover:scale-110 shadow-lg ${theme.btn}`}
                   >
                     <ArrowRight size={18} className="md:w-5 md:h-5" weight="bold" />
