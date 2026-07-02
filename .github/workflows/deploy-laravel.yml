@@ -27,38 +27,12 @@ jobs:
           cd apps/api
           composer install --no-dev --optimize-autoloader --no-ansi --no-interaction --no-scripts --prefer-dist
 
-      - name: Sync Intended Folder Structure for cPanel
-        run: |
-          # Create a deployment folder
-          mkdir -p deploy/laravel-api
-          
-          # Copy Laravel backend (excluding public folder to separate it for cPanel safety)
-          rsync -av --exclude='public' apps/api/ deploy/laravel-api/
-          
-          # Create public_html/api folder which will go to the public directory in cPanel
-          mkdir -p deploy/public_html_api
-          cp -r apps/api/public/* deploy/public_html_api/
-          
-          # Adjust index.php paths inside the deployable public folder for cPanel structure
-          sed -i "s|require __DIR__.'/../vendor/autoload.php';|require __DIR__.'/../../laravel-api/vendor/autoload.php';|g" deploy/public_html_api/index.php
-          sed -i "s|\$app = require_once __DIR__.'/../bootstrap/app.php';|\$app = require_once __DIR__.'/../../laravel-api/bootstrap/app.php';|g" deploy/public_html_api/index.php
-
-      - name: FTP Deploy Laravel Core (outside public_html)
+      - name: FTP Deploy Laravel to cPanel
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./deploy/laravel-api/
-          server-dir: /laravel-api/
-          state-name: .ftp-deploy-laravel-state.json
-
-      - name: FTP Deploy Public API Endpoints (inside public_html)
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./deploy/public_html_api/
+          local-dir: ./apps/api/
           server-dir: /public_html/api/
-          state-name: .ftp-deploy-public-state.json
+          state-name: .ftp-deploy-laravel-state.json
