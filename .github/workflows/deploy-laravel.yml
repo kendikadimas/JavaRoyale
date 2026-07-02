@@ -42,12 +42,28 @@ jobs:
           cd apps/api
           composer install --no-dev --optimize-autoloader --no-ansi --no-interaction --no-scripts --prefer-dist
 
-      - name: FTP Deploy Laravel to cPanel
+      - name: Compress and Prepare Package
+        run: |
+          cd apps/api
+          zip -r ../../release.zip . -x "node_modules/*" "storage/logs/*" ".git/*"
+          cd ../..
+          mkdir deploy_pkg
+          mv release.zip deploy_pkg/
+          cp apps/api/extract.php deploy_pkg/
+
+      - name: FTP Upload Package to cPanel
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./apps/api/
+          local-dir: ./deploy_pkg/
           server-dir: /public_html/api/
           state-name: .ftp-deploy-laravel-state.json
+
+      - name: Trigger Remote Unzip and Extract
+        run: |
+          echo "Triggering extraction via HTTP curl request..."
+          curl -sSf "https://javaroyalenusantara.com/api/extract.php?token=a688b139de88fc90ab1288cde813" || \
+          curl -sSf "https://javaorigins.com/api/extract.php?token=a688b139de88fc90ab1288cde813" || \
+          echo "Warning: HTTP trigger failed, please open https://javaroyalenusantara.com/api/extract.php?token=a688b139de88fc90ab1288cde813 in browser to complete."
