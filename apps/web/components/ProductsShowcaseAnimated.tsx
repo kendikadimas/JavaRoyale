@@ -59,10 +59,10 @@ export function ProductsShowcaseAnimated({ products }: { products: Product[] }) 
         </h2>
       </div>
 
-      <div className="flex-1 flex items-center h-full">
+      <div className="flex-1 flex items-start h-full">
         <div 
           ref={scrollContainerRef} 
-          className="flex flex-row flex-nowrap items-center px-6 lg:px-12 gap-6 w-[max-content] h-full"
+          className="flex flex-row flex-nowrap items-start px-6 lg:px-12 gap-6 w-[max-content] h-full pt-2 md:pt-4"
         >
           {products.map((product, i) => {
             const theme = themes[i % themes.length];
