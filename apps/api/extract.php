@@ -8,24 +8,28 @@ if (!isset($_GET['token']) || $_GET['token'] !== EXTRACT_TOKEN) {
     exit;
 }
 
+if (!class_exists('ZipArchive')) {
+    echo "ERROR: ZipArchive class is NOT enabled on this server. Please enable 'zip' extension in cPanel > Select PHP Version > Extensions.";
+    exit;
+}
+
 $zipFile = __DIR__ . '/release.zip';
 
 if (!file_exists($zipFile)) {
-    echo "Error: release.zip not found.";
+    echo "ERROR: release.zip not found in " . __DIR__;
     exit;
 }
 
 $zip = new ZipArchive;
-if ($zip->open($zipFile) === TRUE) {
-    // Extract to the current folder (public_html/api)
-    $zip->extractTo(__DIR__);
-    $zip->close();
-    
-    // Delete the ZIP file after successful extraction
-    unlink($zipFile);
-    
-    echo "SUCCESS: Extraction completed successfully.";
+$res = $zip->open($zipFile);
+if ($res === TRUE) {
+    if ($zip->extractTo(__DIR__)) {
+        $zip->close();
+        unlink($zipFile);
+        echo "SUCCESS: Extraction completed successfully.";
+    } else {
+        echo "ERROR: Failed to extract files. Please check folder permissions.";
+    }
 } else {
-    header('HTTP/1.0 500 Internal Server Error');
-    echo "ERROR: Failed to open release.zip.";
+    echo "ERROR: Failed to open release.zip. ZipArchive Error Code: " . $res;
 }
