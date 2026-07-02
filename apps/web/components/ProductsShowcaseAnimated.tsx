@@ -51,15 +51,15 @@ export function ProductsShowcaseAnimated({ products }: { products: Product[] }) 
   const stripHtml = (html: string) => html.replace(/<[^>]*>?/gm, '');
 
   return (
-    <section ref={sectionRef} className="bg-white overflow-hidden h-screen flex flex-col relative">
-      <div className="absolute top-4 left-4 md:top-8 md:left-6 lg:top-12 lg:left-12 z-20 pointer-events-none">
-        <h2 className="font-display font-bold text-2xl md:text-3xl lg:text-4xl text-brand-black leading-tight drop-shadow-sm lg:drop-shadow-none bg-white/60 lg:bg-transparent px-3 py-2 lg:p-0 rounded-xl backdrop-blur-md lg:backdrop-blur-none">
+    <section ref={sectionRef} className="bg-white overflow-hidden h-screen flex flex-col pt-8 md:pt-12 lg:pt-16 pb-4">
+      <div className="px-6 lg:px-12 z-20 mb-4 md:mb-6">
+        <h2 className="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-brand-black leading-tight">
           Explore Java Origins <br />
-          <span className="font-normal">wellness in every form</span>
+          <span className="font-normal text-gray-500">wellness in every form</span>
         </h2>
       </div>
 
-      <div className="flex-1 flex items-center pt-28 pb-8 md:pt-32 md:pb-12 h-full">
+      <div className="flex-1 flex items-center h-full">
         <div 
           ref={scrollContainerRef} 
           className="flex flex-row flex-nowrap items-center px-6 lg:px-12 gap-6 w-[max-content] h-full"
