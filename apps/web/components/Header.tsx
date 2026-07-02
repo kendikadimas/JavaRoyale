@@ -2,48 +2,64 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { List, X } from '@phosphor-icons/react';
 
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/products', label: 'Products' },
-  { href: '/market-opportunities', label: 'Markets' },
-  { href: '/blog', label: 'Blog' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/', label: 'HOME' },
+  { href: '/about', label: 'ABOUT' },
+  { href: '/products', label: 'PRODUCTS' },
+  { href: '/blog', label: 'BLOG' },
+  { href: '/contact', label: 'CONTACT' },
 ];
 
 export function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const isHomepage = pathname === '/';
+
+  const headerBgClass = isHomepage
+    ? (isScrolled 
+        ? 'bg-earth-900/95 backdrop-blur-md border-b border-earth-800 shadow-lg py-3' 
+        : 'bg-transparent border-b border-transparent py-6')
+    : (isScrolled
+        ? 'bg-earth-900/95 backdrop-blur-md border-b border-earth-800 shadow-lg py-3'
+        : 'bg-earth-900/95 backdrop-blur-md border-b border-earth-800 shadow-lg py-4');
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur-sm border-b border-earth-100">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 min-h-16 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <span className="w-8 h-8 rounded-full bg-brand-yellow flex items-center justify-center text-brand-black font-display font-bold text-sm group-hover:bg-brand-orange transition-colors">
-            JR
-          </span>
-          <span className="font-display font-bold text-brand-black text-sm leading-tight">
-            Java Royale<br />
-            <span className="text-[10px] font-medium text-gray-500 tracking-wide">NUSANTARA</span>
-          </span>
-        </Link>
+    <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${headerBgClass}`}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between">
+        
+        {/* Logo: JAVA ORIGINS */}
+        <div className="flex justify-start">
+          <Link href="/" className="flex flex-col items-start select-none group">
+            <span className="font-display font-black text-white group-hover:text-brand-yellow text-xl md:text-2xl leading-[0.85] tracking-tighter text-left transition-colors">
+              JAVA<br />ORIGINS
+            </span>
+          </Link>
+        </div>
 
-        {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-1">
+        {/* Right Navigation: Menu items (Desktop) */}
+        <nav className="hidden lg:flex items-center gap-8 justify-end">
           {navLinks.map((link) => {
             const active = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                  active
-                    ? 'bg-brand-yellow text-brand-black'
-                    : 'text-gray-600 hover:text-brand-black hover:bg-earth-100'
+                className={`hover:text-brand-yellow text-xs font-bold tracking-[0.2em] transition-colors ${
+                  active ? 'text-brand-yellow' : 'text-white'
                 }`}
               >
                 {link.label}
@@ -52,44 +68,36 @@ export function Header() {
           })}
         </nav>
 
-        {/* CTA + mobile toggle */}
-        <div className="flex items-center gap-3">
-          <Link
-            href="/contact"
-            className="hidden sm:inline-flex items-center px-5 py-2 rounded-full bg-brand-yellow text-brand-black font-semibold text-sm hover:bg-brand-orange transition-colors"
-          >
-            Inquire Now
-          </Link>
+        {/* Mobile Menu Button */}
+        <div className="flex lg:hidden items-center">
           <button
-            className="lg:hidden p-2 text-brand-black"
+            className="text-white p-2 hover:bg-white/10 rounded-full transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
-            {mobileOpen ? <X size={22} /> : <List size={22} />}
+            {mobileOpen ? <X size={24} weight="bold" /> : <List size={24} weight="bold" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile nav */}
+      {/* Mobile Navigation Dropdown */}
       {mobileOpen && (
-        <div className="lg:hidden bg-white border-t border-earth-100 px-6 py-4 space-y-1">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setMobileOpen(false)}
-              className="block px-4 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-earth-100"
-            >
-              {link.label}
-            </Link>
-          ))}
-          <Link
-            href="/contact"
-            onClick={() => setMobileOpen(false)}
-            className="block mt-2 px-4 py-2.5 rounded-xl text-sm font-semibold bg-brand-yellow text-brand-black text-center"
-          >
-            Inquire Now
-          </Link>
+        <div className="lg:hidden bg-earth-900/95 backdrop-blur-lg border-t border-earth-800 px-6 py-6 space-y-4 absolute top-full left-0 right-0 shadow-xl transition-all duration-300">
+          {navLinks.map((link) => {
+            const active = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+            return (
+              <Link
+                key={link.label}
+                href={link.href}
+                onClick={() => setMobileOpen(false)}
+                className={`block hover:text-brand-yellow text-sm font-bold tracking-widest py-2 border-b border-white/5 last:border-0 ${
+                  active ? 'text-brand-yellow' : 'text-white'
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </div>
       )}
     </header>

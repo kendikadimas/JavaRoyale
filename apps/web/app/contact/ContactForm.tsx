@@ -97,7 +97,7 @@ export function ContactForm() {
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
             placeholder="Your full name"
-            className={`w-full border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-yellow ${
+            className={`w-full border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-orange/30 focus:border-brand-orange ${
               errors.name ? 'border-brand-red bg-red-50' : 'border-earth-200 bg-white'
             }`}
           />
@@ -115,7 +115,7 @@ export function ContactForm() {
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
             placeholder="you@company.com"
-            className={`w-full border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-yellow ${
+            className={`w-full border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-orange/30 focus:border-brand-orange ${
               errors.email ? 'border-brand-red bg-red-50' : 'border-earth-200 bg-white'
             }`}
           />
@@ -132,7 +132,7 @@ export function ContactForm() {
           value={form.company}
           onChange={(e) => setForm({ ...form, company: e.target.value })}
           placeholder="Optional"
-          className="w-full border border-earth-200 rounded-xl px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand-yellow"
+          className="w-full border border-earth-200 rounded-xl px-4 py-3 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand-orange/30 focus:border-brand-orange"
         />
       </div>
 
@@ -147,7 +147,7 @@ export function ContactForm() {
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
           placeholder="Tell us about your requirements: product interest, target market, estimated quantity, timeline..."
-          className={`w-full border rounded-xl px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-brand-yellow ${
+          className={`w-full border rounded-xl px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-brand-orange/30 focus:border-brand-orange ${
             errors.message ? 'border-brand-red bg-red-50' : 'border-earth-200 bg-white'
           }`}
         />
@@ -164,9 +164,12 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === 'loading'}
-        className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-brand-yellow text-brand-black font-semibold text-sm hover:bg-brand-orange transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+        className="group/btn w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-brand-yellow text-brand-black font-bold uppercase text-xs tracking-widest hover:bg-brand-orange hover:text-white transition-all duration-300 shadow-lg shadow-brand-yellow/10 hover:shadow-brand-orange/20 hover:scale-[1.02] transform disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        {status === 'loading' ? 'Sending...' : 'Send Message'}
+        <span>{status === 'loading' ? 'Sending...' : 'Send Message'}</span>
+        <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+        </svg>
       </button>
     </form>
   );

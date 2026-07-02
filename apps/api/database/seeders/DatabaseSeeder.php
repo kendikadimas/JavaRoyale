@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
         ProductImage::create([
             'product_id' => $jamu->id,
             'image_path' => 'images/products/jamu-kunyit-asam-1.jpg',
-            'alt_text'   => 'Jamu Kunyit Asam Java Royale Nusantara',
+            'alt_text'   => 'Jamu Kunyit Asam Java Origins',
             'order'      => 0,
         ]);
 
@@ -102,7 +102,7 @@ class DatabaseSeeder extends Seeder
         ProductImage::create([
             'product_id' => $keripik->id,
             'image_path' => 'images/products/keripik-nangka-1.jpg',
-            'alt_text'   => 'Keripik Nangka Vacuum Fried Java Royale',
+            'alt_text'   => 'Keripik Nangka Vacuum Fried Java Origins',
             'order'      => 0,
         ]);
 
@@ -124,49 +124,14 @@ class DatabaseSeeder extends Seeder
             'sodium_mg'          => 120.00,
         ]);
 
-        // --- 3 Articles ---
-
-        Article::create([
-            'title'           => 'Mengenal Teknologi Vacuum Frying dalam Industri Snack Ekspor',
-            'slug'            => 'mengenal-teknologi-vacuum-frying',
-            'category'        => 'export-insights',
-            'body'            => '<p>Vacuum frying adalah teknologi penggorengan yang dilakukan pada tekanan rendah (vakum), sehingga titik didih minyak turun signifikan. Proses ini menghasilkan snack dengan kadar minyak jauh lebih rendah dibanding penggorengan konvensional.</p><p>Dengan suhu proses yang lebih rendah, warna, aroma, dan kandungan nutrisi buah atau sayuran dapat dipertahankan lebih baik. Inilah yang membuat produk vacuum fried semakin diminati di pasar premium global, termasuk Jepang, Korea, dan negara-negara Eropa.</p><p>Java Royale Nusantara menggunakan mesin vacuum frying berstandar food grade dengan kapasitas produksi yang dapat disesuaikan dengan kebutuhan bulk order internasional.</p>',
-            'featured_image'  => null,
-            'seo_title'       => 'Teknologi Vacuum Frying untuk Snack Ekspor Premium',
-            'seo_description' => 'Pelajari bagaimana teknologi vacuum frying menghasilkan snack buah berkualitas premium untuk pasar ekspor global.',
-            'is_published'    => true,
-            'published_at'    => now()->subDays(30),
-        ]);
-
-        Article::create([
-            'title'           => 'Khasiat Kunyit dalam Minuman Herbal Tradisional Indonesia',
-            'slug'            => 'khasiat-kunyit-minuman-herbal',
-            'category'        => 'health-tips',
-            'body'            => '<p>Kunyit (Curcuma longa) telah digunakan dalam pengobatan tradisional Indonesia selama berabad-abad. Kandungan curcumin-nya dikenal memiliki sifat anti-inflamasi dan antioksidan yang kuat.</p><p>Dalam formula Jamu Kunyit Asam Java Royale, kami menggabungkan kunyit pilihan dengan asam jawa dan gula aren untuk menciptakan minuman yang tidak hanya menyehatkan, tetapi juga menyegarkan dan cocok untuk konsumen modern.</p>',
-            'featured_image'  => null,
-            'seo_title'       => 'Manfaat Kunyit untuk Kesehatan — Jamu Herbal Indonesia',
-            'seo_description' => 'Kunyit mengandung curcumin yang kaya antioksidan. Temukan manfaatnya dalam produk jamu herbal Java Royale Nusantara.',
-            'is_published'    => true,
-            'published_at'    => now()->subDays(15),
-        ]);
-
-        Article::create([
-            'title'           => 'Peluang Ekspor Produk Herbal Indonesia ke Pasar ASEAN',
-            'slug'            => 'peluang-ekspor-herbal-indonesia-asean',
-            'category'        => 'export-insights',
-            'body'            => '<p>Pasar herbal dan wellness di kawasan ASEAN terus tumbuh signifikan. Konsumen yang semakin sadar kesehatan mendorong permintaan produk alami, termasuk minuman herbal dan snack buah berkualitas tinggi.</p><p>Indonesia memiliki keunggulan kompetitif besar: kekayaan tanaman herbal endemik, tradisi pengolahan yang panjang, dan biaya produksi yang kompetitif. Java Royale Nusantara siap menjadi mitra ekspor terpercaya untuk buyer di Singapura, Malaysia, Filipina, dan Vietnam.</p>',
-            'featured_image'  => null,
-            'seo_title'       => 'Ekspor Produk Herbal Indonesia ke ASEAN — Peluang dan Prospek',
-            'seo_description' => 'Indonesia memimpin pasar herbal ASEAN. Temukan peluang distribusi dan kemitraan ekspor bersama Java Royale Nusantara.',
-            'is_published'    => false,
-            'published_at'    => null,
-        ]);
+        // --- 3 Articles (English) ---
+        $this->call(ArticleSeeder::class);
 
         // --- 5 FAQ Items ---
 
         $faqs = [
             [
-                'question' => 'Apakah produk Java Royale Nusantara sudah memiliki sertifikasi BPOM dan Halal?',
+                'question' => 'Apakah produk Pure Zealand / Java Origins sudah memiliki sertifikasi BPOM dan Halal?',
                 'answer'   => 'Ya, seluruh produk kami telah terdaftar di BPOM (Badan Pengawas Obat dan Makanan) dan memiliki sertifikasi Halal dari MUI. Dokumen sertifikasi tersedia untuk keperluan importasi.',
                 'order'    => 0,
             ],
@@ -181,7 +146,7 @@ class DatabaseSeeder extends Seeder
                 'order'    => 2,
             ],
             [
-                'question' => 'Ke negara mana saja produk Java Royale Nusantara sudah diekspor?',
+                'question' => 'Ke negara mana saja produk Java Origins sudah diekspor?',
                 'answer'   => 'Produk kami telah dikirim ke Singapura, Malaysia, Uni Emirat Arab, Arab Saudi, Belanda, dan Australia. Kami terbuka untuk pasar baru dan siap membantu proses sertifikasi lokal yang diperlukan.',
                 'order'    => 3,
             ],
@@ -203,11 +168,11 @@ class DatabaseSeeder extends Seeder
             'address'          => 'Jl. Raya Industri No. 12, Kawasan Industri Jababeka, Bekasi, Jawa Barat 17530',
             'whatsapp_primary' => '+62811234567',
             'whatsapp_secondary' => '+62822345678',
-            'email'            => 'export@javaroyale.com',
+            'email'            => 'export@javaorigins.com',
             'operating_hours'  => 'Senin–Jumat 08.00–17.00 WIB',
             'social_links'     => [
-                'instagram' => 'https://instagram.com/javaroyalenusantara',
-                'linkedin'  => 'https://linkedin.com/company/javaroyalenusantara',
+                'instagram' => 'https://instagram.com/javaorigins',
+                'linkedin'  => 'https://linkedin.com/company/javaorigins',
             ],
         ]);
 
@@ -216,7 +181,7 @@ class DatabaseSeeder extends Seeder
         SocialEmbedSetting::create([
             'platform'   => 'instagram',
             'embed_code' => null,
-            'link_url'   => 'https://instagram.com/javaroyalenusantara',
+            'link_url'   => 'https://instagram.com/javaorigins',
             'is_active'  => true,
         ]);
 
@@ -238,7 +203,7 @@ class DatabaseSeeder extends Seeder
         Testimonial::create([
             'author_name'  => 'Ahmad Fauzi',
             'company'      => 'Nusantara Trading Pte Ltd, Singapura',
-            'quote'        => 'Kualitas produk Java Royale konsisten dan dokumentasi ekspor sangat lengkap. Kami sudah bermitra lebih dari 2 tahun dan tidak pernah ada masalah di customs.',
+            'quote'        => 'Kualitas produk Java Origins konsisten dan dokumentasi ekspor sangat lengkap. Kami sudah bermitra lebih dari 2 tahun dan tidak pernah ada masalah di customs.',
             'rating'       => 5,
             'photo'        => null,
             'is_published' => true,
@@ -247,14 +212,14 @@ class DatabaseSeeder extends Seeder
         // --- SEO settings ---
 
         $seoPages = [
-            ['page_key' => 'home',                 'seo_title' => 'Java Royale Nusantara — Premium Indonesian F&B Export',               'seo_description' => 'Java Royale Nusantara adalah produsen dan eksportir jamu herbal dan vacuum-fried snack premium asal Indonesia. BPOM, Halal, siap ekspor global.'],
-            ['page_key' => 'about',                'seo_title' => 'Tentang Java Royale Nusantara — Produsen Herbal & Snack Ekspor',        'seo_description' => 'Kenali Java Royale Nusantara: visi, misi, dan komitmen kami menghadirkan produk F&B Indonesia berkualitas untuk pasar internasional.'],
-            ['page_key' => 'products',             'seo_title' => 'Katalog Produk Ekspor — Jamu Herbal & Vacuum-Fried Snack',            'seo_description' => 'Jelajahi katalog lengkap produk Java Royale: jamu kunyit, beras kencur, temulawak, dan keripik buah vacuum fried untuk order ekspor.'],
-            ['page_key' => 'why-choose-us',        'seo_title' => 'Mengapa Memilih Java Royale — Keunggulan Produk F&B Ekspor',          'seo_description' => 'Temukan keunggulan Java Royale: sertifikasi BPOM & Halal, teknologi vacuum frying, dan komitmen kualitas untuk pasar ekspor global.'],
-            ['page_key' => 'market-opportunities', 'seo_title' => 'Peluang Pasar Ekspor — Herbal & Snack Indonesia Global',              'seo_description' => 'Pelajari peluang ekspor produk herbal dan snack Indonesia ke pasar ASEAN, Timur Tengah, Eropa, dan Australia bersama Java Royale.'],
-            ['page_key' => 'blog',                 'seo_title' => 'Blog & Artikel — Java Royale Nusantara',                              'seo_description' => 'Tips kesehatan, insight ekspor, dan berita terbaru dari Java Royale Nusantara — produsen jamu herbal dan vacuum-fried snack.'],
-            ['page_key' => 'faq',                  'seo_title' => 'FAQ — Pertanyaan Umum Seputar Produk & Ekspor Java Royale',            'seo_description' => 'Jawaban untuk pertanyaan umum tentang sertifikasi, MOQ, private label, dan proses ekspor produk Java Royale Nusantara.'],
-            ['page_key' => 'contact',              'seo_title' => 'Hubungi Kami — Inquiry Ekspor & Kemitraan Java Royale',              'seo_description' => 'Tertarik menjadi distributor atau melakukan bulk order? Hubungi tim ekspor Java Royale Nusantara sekarang.'],
+            ['page_key' => 'home',                 'seo_title' => 'Java Origins — Premium Indonesian F&B Export',               'seo_description' => 'Java Origins adalah produsen dan eksportir jamu herbal dan vacuum-fried snack premium asal Indonesia. BPOM, Halal, siap ekspor global.'],
+            ['page_key' => 'about',                'seo_title' => 'Tentang Java Origins — Produsen Herbal & Snack Ekspor',        'seo_description' => 'Kenali Pure Zealand: visi, misi, dan komitmen kami menghadirkan produk F&B Indonesia berkualitas untuk pasar internasional.'],
+            ['page_key' => 'products',             'seo_title' => 'Katalog Produk Ekspor — Jamu Herbal & Vacuum-Fried Snack',            'seo_description' => 'Jelajahi katalog lengkap produk Java Origins: jamu kunyit, beras kencur, temulawak, dan keripik buah vacuum fried untuk order ekspor.'],
+            ['page_key' => 'why-choose-us',        'seo_title' => 'Mengapa Memilih Java Origins — Keunggulan Produk F&B Ekspor',          'seo_description' => 'Temukan keunggulan Java Origins: sertifikasi BPOM & Halal, teknologi vacuum frying, dan komitmen kualitas untuk pasar ekspor global.'],
+            ['page_key' => 'market-opportunities', 'seo_title' => 'Peluang Pasar Ekspor — Herbal & Snack Indonesia Global',              'seo_description' => 'Pelajari peluang ekspor produk herbal dan snack Indonesia ke pasar ASEAN, Timur Tengah, Eropa, dan Australia bersama Java Origins.'],
+            ['page_key' => 'blog',                 'seo_title' => 'Blog & Artikel — Java Origins',                              'seo_description' => 'Tips kesehatan, insight ekspor, dan berita terbaru dari Java Origins — produsen jamu herbal dan vacuum-fried snack.'],
+            ['page_key' => 'faq',                  'seo_title' => 'FAQ — Pertanyaan Umum Seputar Produk & Ekspor Java Origins',            'seo_description' => 'Jawaban untuk pertanyaan umum tentang sertifikasi, MOQ, private label, dan proses ekspor produk Java Origins.'],
+            ['page_key' => 'contact',              'seo_title' => 'Hubungi Kami — Inquiry Ekspor & Kemitraan Java Origins',              'seo_description' => 'Tertarik menjadi distributor atau melakukan bulk order? Hubungi tim ekspor Java Origins sekarang.'],
         ];
 
         foreach ($seoPages as $seo) {

@@ -205,7 +205,7 @@ export function getSocialEmbedSettings(): Promise<SocialEmbedSetting[]> {
 
 export function imageUrl(path: string | null | undefined): string {
   if (!path) return '';
-  if (path.startsWith('http')) return path;
+  if (path.startsWith('http') || path.startsWith('/')) return path;
   return `${API_BASE}/storage/${path}`;
 }
 

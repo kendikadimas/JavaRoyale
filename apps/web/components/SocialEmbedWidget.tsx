@@ -90,26 +90,32 @@ export function SocialEmbedWidget({ embeds }: Props) {
   if (active.length === 0) return null;
 
   return (
-    <section className="bg-white py-16 lg:py-20">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="mb-10">
-          <h2 className="font-display font-bold text-2xl md:text-3xl text-brand-black">
-            Follow our journey
+    <section className="bg-earth-50 py-24 lg:py-32 relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-96 h-96 bg-brand-orange/5 blur-[100px] rounded-full pointer-events-none" />
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-16">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-brand-yellow/20 text-brand-orange text-sm font-bold tracking-widest uppercase mb-4">
+            Connect With Us
+          </span>
+          <h2 className="font-display font-black text-4xl md:text-5xl text-brand-black tracking-tight mb-4">
+            Follow Our Journey
           </h2>
-          <p className="text-gray-500 mt-1.5 text-sm">
-            Stay updated with our latest products and news.
+          <p className="text-gray-500 text-lg md:text-xl max-w-xl mx-auto">
+            Stay updated with our latest products, wellness tips, and behind-the-scenes moments.
           </p>
         </div>
 
-        <div className={`grid gap-6 ${
+        <div className={`grid gap-8 ${
           active.length === 1
-            ? 'grid-cols-1 max-w-lg'
+            ? 'grid-cols-1 max-w-xl mx-auto'
             : active.length === 2
-            ? 'grid-cols-1 md:grid-cols-2'
+            ? 'grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto'
             : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
         }`}>
           {active.map((embed) => (
-            <EmbedCard key={embed.id} embed={embed} />
+            <div key={embed.id} className="hover:-translate-y-1 transition-transform duration-300 shadow-sm hover:shadow-xl rounded-2xl bg-white overflow-hidden">
+              <EmbedCard embed={embed} />
+            </div>
           ))}
         </div>
       </div>

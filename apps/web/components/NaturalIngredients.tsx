@@ -1,118 +1,100 @@
 'use client';
 
-import { useRef } from 'react';
-import { CaretLeft, CaretRight } from '@phosphor-icons/react';
+import Image from 'next/image';
 
 const ingredients = [
   {
-    id: 'turmeric',
-    name: 'TURMERIC',
-    desc: 'A golden root that weaves wellness into your life. It effectively helps reduce inflammation, strengthens the immune system, and is naturally rich in beneficial antioxidants.',
+    id: 'ginger',
+    name: 'Ginger',
+    percentage: '20-30%',
+    image: '/new/gingerr.jpg',
   },
   {
-    id: 'ginger',
-    name: 'GINGER',
-    desc: 'Nature\'s way to soothe discomfort and bring balance. It gently warms the body, relieves nausea, aids in healthy digestion, and helps boost overall immunity.',
+    id: 'tumeric',
+    name: 'Tumeric',
+    percentage: '10-20%',
+    image: '/new/tumeric.webp',
   },
   {
     id: 'lemongrass',
-    name: 'LEMONGRASS',
-    desc: 'Your daily calm in a chaotic world. Its fresh aroma effectively soothes the body, helps relieve bloating and discomfort, and supports deep relaxation.',
+    name: 'Lemongrass',
+    percentage: '8-17%',
+    image: '/new/lemongrass.jpg',
   },
   {
     id: 'lime',
-    name: 'LIME',
-    desc: 'Zesty and alive with vibrant energy. It is packed with vitamin C and antioxidants, which helps boost freshness and revitalizes while supporting healthy skin and immunity.',
+    name: 'Lime',
+    percentage: '8%',
+    image: '/new/limee.jpg',
   },
   {
     id: 'palm-sugar',
-    name: 'PALM SUGAR',
-    desc: 'A pure natural sweetener packed with essential minerals. It is a source that provides quick energy to the body and is gentler on digestion compared to refined sugar.',
+    name: 'Palm Sugar',
+    percentage: '20%',
+    image: '/new/palmsugar.jpg',
   },
   {
     id: 'honey',
-    name: 'HONEY',
-    desc: 'The sweet essence of nature. It gently soothes the throat and effectively relieves coughs, provides a natural source of energy, and helps boost immunity.',
+    name: 'Honey',
+    percentage: '2%',
+    image: '/new/honeyyy.jpg',
   },
 ];
 
 export function NaturalIngredients() {
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (!scrollRef.current) return;
-    const cardW = 320;
-    const gap = 24;
-    scrollRef.current.scrollBy({
-      left: direction === 'left' ? -cardW - gap : cardW + gap,
-      behavior: 'smooth',
-    });
-  };
-
   return (
-    <section className="py-20 lg:py-28 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 mb-12 text-center">
-        <h2 className="font-display font-bold text-4xl md:text-5xl text-brand-black tracking-tight">
-          NATURAL INGREDIENTS
-        </h2>
-        <p className="text-gray-500 text-base md:text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
-          Herbal Goodness, Healthy Life. Each bottle is filled with nature&rsquo;s finest gifts for your wellness.
-        </p>
-      </div>
+    <section className="py-20 lg:py-32 bg-earth-900 relative overflow-hidden">
+      {/* Premium Dark Gradients & Glows */}
+      <div className="absolute inset-0 bg-gradient-to-b from-earth-900 via-earth-800 to-earth-900" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-brand-yellow/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-yellow/5 blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <button
-          onClick={() => scroll('left')}
-          className="absolute left-2 lg:left-0 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white shadow-md border border-earth-100 flex items-center justify-center text-gray-500 hover:text-brand-orange hover:border-brand-yellow transition-all"
-          aria-label="Scroll left"
-        >
-          <CaretLeft size={18} weight="bold" />
-        </button>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-12 gap-16 lg:gap-12 items-center">
+          
+          {/* Left Column: Titles */}
+          <div className="lg:col-span-5 flex flex-col justify-center text-center lg:text-left">
+            <span className="inline-block px-4 py-1.5 rounded-full border border-brand-yellow/30 bg-brand-yellow/10 text-brand-yellow text-sm font-bold tracking-widest uppercase mb-6 mx-auto lg:mx-0 w-max">
+              The Essence
+            </span>
+            <h2 className="font-display font-black text-5xl md:text-6xl lg:text-[5rem] tracking-tighter leading-[1.05] mb-6 drop-shadow-2xl">
+              <span className="text-white block mb-1">Ingredients</span>
+              <span className="text-brand-yellow block">Java Drink</span>
+            </h2>
+            <p className="text-gray-300 text-lg md:text-xl leading-relaxed max-w-sm mx-auto lg:mx-0 font-medium">
+              Some of the natural, functional ingredients used in every bottle of Java Drink.
+            </p>
+          </div>
 
-        <button
-          onClick={() => scroll('right')}
-          className="absolute right-2 lg:right-0 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white shadow-md border border-earth-100 flex items-center justify-center text-gray-500 hover:text-brand-orange hover:border-brand-yellow transition-all"
-          aria-label="Scroll right"
-        >
-          <CaretRight size={18} weight="bold" />
-        </button>
-
-        <div
-          ref={scrollRef}
-          className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 -mx-6 px-6"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
-          {ingredients.map((item) => (
-            <div
-              key={item.id}
-              className="snap-start shrink-0 w-[260px] sm:w-[300px] lg:w-[340px] bg-earth-50 rounded-3xl border border-earth-100 flex flex-col overflow-hidden hover:shadow-md transition-shadow"
-            >
-              <div className="px-6 py-10 text-center flex flex-col items-center">
-                <h3 className="font-display font-bold text-xl md:text-2xl text-brand-black mb-4 tracking-tight">
-                  {item.name}
-                </h3>
-                <p className="text-gray-500 text-sm leading-relaxed max-w-[28ch]">
-                  {item.desc}
-                </p>
-              </div>
+          {/* Right Column: Ingredients Grid */}
+          <div className="lg:col-span-7">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+              {ingredients.map((item) => (
+                <div key={item.id} className="group flex flex-col items-center bg-earth-800/50 backdrop-blur-sm p-4 rounded-[2rem] shadow-xl border border-earth-700 hover:border-brand-yellow/50 hover:bg-earth-800 hover:-translate-y-1 transition-all duration-300">
+                  {/* Image Box */}
+                  <div className="w-full aspect-square rounded-[1.5rem] overflow-hidden mb-5 relative bg-earth-900 group-hover:scale-[1.02] transition-transform duration-500 ring-1 ring-earth-700">
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 50vw, 33vw"
+                    />
+                  </div>
+                  {/* Label */}
+                  <div className="flex flex-col items-center gap-2 w-full">
+                    <h3 className="font-display text-white text-lg md:text-xl font-bold tracking-wide">
+                      {item.name}
+                    </h3>
+                    <span className="inline-block bg-brand-yellow text-earth-900 px-3 py-1 rounded-full text-xs font-black tracking-wider uppercase">
+                      {item.percentage}
+                    </span>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-
-        <div className="flex items-center justify-center gap-2 mt-8">
-          {ingredients.map((item, i) => (
-            <button
-              key={item.id}
-              onClick={() => {
-                if (!scrollRef.current) return;
-                const cardW = 304;
-                const gap = 24;
-                scrollRef.current.scrollTo({ left: i * (cardW + gap), behavior: 'smooth' });
-              }}
-              className="w-2.5 h-2.5 rounded-full bg-earth-200 hover:bg-brand-yellow transition-colors"
-              aria-label={`Go to ${item.name}`}
-            />
-          ))}
+          </div>
+          
         </div>
       </div>
     </section>

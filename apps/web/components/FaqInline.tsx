@@ -5,32 +5,24 @@ import { Plus, Minus } from '@phosphor-icons/react';
 
 const faqs = [
   {
-    q: 'What is Vacuum Frying?',
-    a: 'Vacuum frying is a low-temperature frying technology that helps preserve the natural nutrients, color, and flavor of fruits and vegetables while reducing oil absorption.',
+    q: 'WHAT IS JAVA DRINK?',
+    a: 'Java Drink is a natural herbal beverage made from carefully selected Indonesian herbs, crafted to bring warmth, comfort, and goodness to your daily routine.',
   },
   {
-    q: 'Does the product contain preservatives?',
-    a: 'No. Tropical Vege-Fruit Snack contains no preservatives.',
+    q: 'WHAT ARE THE HEALTH BENEFITS OF JAVA DRINK?',
+    a: 'Our herbal blend is designed to support healthy digestion, boost immunity, and provide natural antioxidants to keep you energized and refreshed throughout the day.',
   },
   {
-    q: 'Does it contain artificial coloring?',
-    a: 'No. The product contains no artificial coloring.',
+    q: 'WHERE CAN I BUY JAVA DRINK?',
+    a: 'Java Drink is available for bulk export worldwide. Please contact our export team through the Contact page to discuss distribution opportunities in your region.',
   },
   {
-    q: 'Is it suitable for children?',
-    a: 'Yes. It is suitable for both children and adults.',
+    q: 'CAN I DRINK JAVA DRINK EVERY DAY?',
+    a: 'Yes! Java Drink is made from 100% natural ingredients without artificial preservatives, making it a perfect, healthy addition to your daily wellness routine.',
   },
   {
-    q: 'Is the product Halal?',
-    a: 'Yes. It is certified Halal by Halal Indonesia.',
-  },
-  {
-    q: 'Is it available for export?',
-    a: 'Yes. Export-ready packaging is available for international shipping.',
-  },
-  {
-    q: 'Can I purchase in bulk?',
-    a: 'Yes. Bulk orders are welcome for importers, distributors, wholesalers, and resellers.',
+    q: 'WHAT DOES JAVA DRINK TASTE LIKE?',
+    a: 'It offers a refreshing balance of traditional herbal warmth from ginger and turmeric, naturally sweetened with palm sugar, and brightened with a hint of citrusy lime.',
   },
 ];
 
@@ -42,43 +34,31 @@ export function FaqInline() {
   };
 
   return (
-    <div className="space-y-3">
+    <div className="border-t border-brand-yellow/60">
       {faqs.map((faq, i) => {
         const isOpen = openId === i;
         return (
           <div
             key={i}
-            className={`rounded-2xl border transition-all ${
-              isOpen
-                ? 'bg-white border-brand-yellow shadow-sm'
-                : 'bg-white/70 border-earth-100 hover:bg-white hover:border-earth-200'
-            }`}
+            className="border-b border-brand-yellow/60"
           >
             <button
               onClick={() => toggle(i)}
-              className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
-              aria-expanded={isOpen}
-              aria-controls={`faq-answer-${i}`}
+              className="w-full text-left py-6 flex items-center justify-between gap-4 focus:outline-none group"
             >
-              <span className={`font-display font-semibold text-sm md:text-base leading-snug transition-colors ${
-                isOpen ? 'text-brand-orange' : 'text-brand-black'
-              }`}>
+              <h3 className="font-display font-bold text-lg md:text-xl text-brand-black uppercase pr-8 group-hover:text-brand-orange transition-colors">
                 {faq.q}
-              </span>
-              <span className={`shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-colors ${
-                isOpen ? 'bg-brand-yellow text-brand-black' : 'bg-earth-100 text-gray-500'
-              }`}>
-                {isOpen ? <Minus size={14} weight="bold" /> : <Plus size={14} weight="bold" />}
-              </span>
+              </h3>
+              <div className="shrink-0 text-brand-black group-hover:text-brand-orange transition-colors">
+                {isOpen ? <Minus size={24} weight="bold" /> : <Plus size={24} weight="bold" />}
+              </div>
             </button>
             <div
-              id={`faq-answer-${i}`}
-              role="region"
               className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                isOpen ? 'max-h-96 opacity-100 pb-6' : 'max-h-0 opacity-0'
               }`}
             >
-              <p className="px-6 pb-6 text-gray-500 text-sm leading-relaxed">
+              <p className="text-gray-600 text-base md:text-lg leading-relaxed max-w-3xl">
                 {faq.a}
               </p>
             </div>

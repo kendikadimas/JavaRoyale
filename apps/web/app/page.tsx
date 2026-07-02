@@ -2,16 +2,18 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getHomepageSetting, getProducts, getSeoSetting, getSiteSetting, getTestimonials, getSocialEmbedSettings, imageUrl, assetUrl } from '@/lib/api';
-import { TestimonialSection } from '@/components/TestimonialSection';
-import { SocialEmbedWidget } from '@/components/SocialEmbedWidget';
 import { NaturalIngredients } from '@/components/NaturalIngredients';
 import { FaqInline } from '@/components/FaqInline';
+import { HeroAnimated } from '@/components/HeroAnimated';
+import { Marquee } from '@/components/Marquee';
+import { ProductsShowcaseAnimated } from '@/components/ProductsShowcaseAnimated';
+import { WhatIsJavaDrink } from '@/components/WhatIsJavaDrink';
 import { ArrowRight, Leaf, Certificate, Globe, Truck, Flask, Star, Sparkle } from '@phosphor-icons/react/dist/ssr';
 
 export async function generateMetadata(): Promise<Metadata> {
   const seo = await getSeoSetting('home');
   return {
-    title: seo?.seo_title ?? 'Java Royale Nusantara — Premium Indonesian F&B Export',
+    title: seo?.seo_title ?? 'Java Origins — Premium Indonesian F&B Export',
     description: seo?.seo_description ?? undefined,
   };
 }
@@ -31,289 +33,113 @@ export default async function HomePage() {
     ? allProducts.filter((p) => featuredIds.includes(p.id))
     : allProducts.slice(0, 3);
 
+  const javaDrinkVariants = [
+    {
+      id: 101,
+      name: 'JavaDrink Canned',
+      slug: 'java-drink-canned',
+      category: 'ready-to-drink',
+      description: 'It\'s like happy hour in a can. Refreshing and fresh, perfect for a late day on the patio or a hot day by the pool.',
+      images: [{ image_path: '/new/canjavadrink.png' }]
+    },
+    {
+      id: 102,
+      name: 'JavaDrink Pouch',
+      slug: 'java-drink-pouch',
+      category: 'travel-size',
+      description: 'Convenient pouch packaging for your on-the-go lifestyle. Enjoy the authentic taste of Indonesian herbal heritage anywhere.',
+      images: [{ image_path: '/new/pouchjava.png' }]
+    },
+    {
+      id: 103,
+      name: 'JavaDrink Powder',
+      slug: 'java-drink-powder',
+      category: 'powder-blend',
+      description: 'Our signature herbal blend in a premium bottle. Perfect for brewing at home and sharing with family.',
+      images: [{ image_path: '/new/botoldrink.png' }]
+    },
+    {
+      id: 104,
+      name: 'JavaDrink Powder Mini',
+      slug: 'java-drink-powder-mini',
+      category: 'powder-blend',
+      description: 'Compact and cute. The same authentic recipe in a smaller bottle, ideal for gifting or personal daily use.',
+      images: [{ image_path: '/new/botolkecil.png' }]
+    }
+  ];
+
   return (
     <>
-      {/* HERO */}
-      <section className="relative min-h-[100dvh] bg-earth-900 flex flex-col justify-center overflow-hidden pt-16">
-        {/* Background accent */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_#F6D400_0%,_transparent_50%)] opacity-10 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-red/10 rounded-full blur-3xl pointer-events-none" />
+      <HeroAnimated />
+      <Marquee />
 
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20 grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <span className="inline-block px-3 py-1 rounded-full bg-brand-yellow/20 text-brand-yellow text-xs font-semibold tracking-widest uppercase mb-6">
-              Indonesia &rarr; Global
-            </span>
-            <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl text-white leading-[1.05] tracking-tight mb-6">
-              {hero?.hero_title ?? 'Premium Indonesian F&B for Global Markets'}
-            </h1>
-            <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-lg mb-8">
-              {hero?.hero_subtitle ?? 'Artisan Jamu herbal drinks and vacuum-fried tropical snacks. BPOM certified, Halal, ready for worldwide export.'}
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href="/products"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-brand-yellow text-brand-black font-semibold hover:bg-brand-orange transition-colors"
-              >
-                {hero?.cta_text ?? 'Explore Products'} <ArrowRight size={16} weight="bold" />
-              </Link>
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/20 text-white hover:bg-white/10 transition-colors"
-              >
-                Get in Touch
-              </Link>
-            </div>
-          </div>
+      <ProductsShowcaseAnimated products={javaDrinkVariants as any} />
 
-          {/* Hero visual */}
-          <div className="relative hidden lg:block">
-            <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden bg-earth-800">
-              <Image
-                src={assetUrl('talljavaproduct.jpeg')}
-                alt="Java Royale premium drink products"
-                fill
-                className="object-cover mix-blend-luminosity opacity-70"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-earth-900/80 to-transparent" />
-              {/* Floating badge */}
-              <div className="absolute bottom-6 left-6 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-4 py-3">
-                <p className="text-white/60 text-xs">Exported to</p>
-                <p className="text-white font-semibold text-sm">UAE &bull; Singapore &bull; Netherlands &bull; Australia</p>
-              </div>
-            </div>
-            {/* Decorative dot */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 rounded-full border-2 border-brand-yellow/30" />
-          </div>
-        </div>
-      </section>
+      <WhatIsJavaDrink />
 
-      {/* TRUST SIGNALS */}
-      <section className="bg-brand-yellow">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8 grid grid-cols-2 md:grid-cols-4 gap-6">
-          {[
-            { icon: <Certificate size={24} weight="fill" />, label: 'BPOM Certified' },
-            { icon: <Leaf size={24} weight="fill" />, label: 'Halal MUI' },
-            { icon: <Globe size={24} weight="fill" />, label: 'Export Ready' },
-            { icon: <Truck size={24} weight="fill" />, label: 'Global Shipping' },
-          ].map((item) => (
-            <div key={item.label} className="flex items-center gap-3">
-              <span className="text-brand-black">{item.icon}</span>
-              <span className="font-display font-semibold text-brand-black text-sm">{item.label}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* WHY CHOOSE JAVA DRINK */}
-      <section className="bg-white py-20 lg:py-28">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="max-w-2xl mx-auto text-center mb-16">
-            <h2 className="font-display font-bold text-4xl md:text-5xl text-brand-black tracking-tight leading-[1.08]">
-              Why Choose Java Drink?
-            </h2>
-            <p className="text-gray-500 mt-4 text-base md:text-lg leading-relaxed">
-              Every sip carries Indonesia&rsquo;s finest herbs, crafted with tradition and backed by modern quality standards.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
-            {[
-              {
-                title: 'Authentic Indonesian Jamu Recipe',
-                desc: 'Rooted in centuries of Indonesian herbal wisdom. Our recipes are passed down and perfected for the global palate.',
-                icon: <Certificate size={20} weight="fill" />,
-              },
-              {
-                title: 'Natural Herbal Ingredients',
-                desc: '100% natural ingredients sourced directly from Indonesian farmers. No fillers, no shortcuts — just pure herbal goodness.',
-                icon: <Leaf size={20} weight="fill" />,
-              },
-              {
-                title: 'No Artificial Colors or Preservatives',
-                desc: 'Clean label commitment. Colours from turmeric, sweetness from palm sugar, freshness from lime — nothing artificial.',
-                icon: <Flask size={20} weight="fill" />,
-              },
-              {
-                title: 'Refreshing & Easy to Enjoy',
-                desc: 'Ready-to-drink convenience without compromising authenticity. Perfect for modern healthy lifestyles.',
-                icon: <Sparkle size={20} weight="fill" />,
-              },
-              {
-                title: 'Premium Quality Ingredients',
-                desc: 'Only the finest herbs, spices, and sweeteners make the cut. Each batch is inspected, tested, and approved for export.',
-                icon: <Star size={20} weight="fill" />,
-              },
-              {
-                title: 'Export-Quality Standards',
-                desc: 'BPOM registered, Halal MUI certified, and produced in GMP facilities with full documentation for every order.',
-                icon: <Globe size={20} weight="fill" />,
-              },
-            ].map((item, i) => (
-              <div
-                key={item.title}
-                className="group bg-earth-50 rounded-2xl p-6 md:p-7 border border-transparent hover:border-brand-yellow/50 hover:bg-white transition-all duration-300"
-              >
-                <div className="w-11 h-11 rounded-xl bg-brand-yellow/20 flex items-center justify-center mb-4 text-brand-orange shrink-0">
-                  {item.icon}
-                </div>
-                <h3 className="font-display font-bold text-brand-black text-base md:text-lg mb-2 leading-snug">
-                  {item.title}
-                </h3>
-                <p className="text-gray-500 text-sm leading-relaxed">
-                  {item.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          {/* CTA */}
-          <div className="mt-14 text-center">
-            <Link
-              href="/products"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-brand-yellow text-brand-black font-semibold hover:bg-brand-orange transition-colors"
-            >
-              Explore Our Products <ArrowRight size={16} weight="bold" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* FEATURED PRODUCTS */}
-      {featured.length > 0 && (
-        <section className="bg-white py-20 lg:py-28">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="flex items-end justify-between mb-12">
-              <div>
-                <h2 className="font-display font-bold text-3xl md:text-4xl text-brand-black">
-                  Our Products
-                </h2>
-                <p className="text-gray-500 mt-2">Handcrafted with the finest Indonesian ingredients</p>
-              </div>
-              <Link href="/products" className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold text-brand-orange hover:text-brand-red transition-colors">
-                View all <ArrowRight size={14} weight="bold" />
-              </Link>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {featured.slice(0, 3).map((product, i) => (
-                <Link
-                  key={product.id}
-                  href={`/products/${product.slug}`}
-                  className={`group relative overflow-hidden rounded-2xl ${
-                    i === 0 ? 'md:row-span-1' : ''
-                  } bg-earth-50 border border-earth-100 hover:border-brand-yellow transition-all hover:shadow-lg`}
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    {product.images[0] ? (
-                      <Image
-                        src={imageUrl(product.images[0].image_path)}
-                        alt={product.images[0].alt_text ?? product.name}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    ) : (
-                      <div className="w-full h-full bg-earth-200 flex items-center justify-center">
-                        <Leaf size={48} className="text-earth-400" />
-                      </div>
-                    )}
-                    <div className="absolute top-3 left-3">
-                      <span className="px-2.5 py-1 rounded-full bg-brand-yellow text-brand-black text-xs font-semibold capitalize">
-                        {product.category.replace(/-/g, ' ')}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="p-5">
-                    <h3 className="font-display font-bold text-brand-black text-lg mb-1 group-hover:text-brand-orange transition-colors">{product.name}</h3>
-                    <p className="text-gray-500 text-sm line-clamp-2">{product.description}</p>
-                    <div className="flex items-center gap-1.5 mt-4 text-brand-orange text-sm font-semibold">
-                      View details <ArrowRight size={14} weight="bold" />
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* WHY CHOOSE US STRIP */}
-      <section className="bg-earth-900 text-white py-20 lg:py-28">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="font-display font-bold text-3xl md:text-4xl leading-tight mb-6">
-                From the heart of Indonesia<br />
-                <span className="text-brand-yellow">to your market</span>
-              </h2>
-              <p className="text-gray-300 leading-relaxed mb-8">
-                We combine generations of traditional Indonesian herbal knowledge with modern food technology and rigorous export compliance — so your customers receive authentic, safe, and premium products.
-              </p>
-              <Link
-                href="/why-choose-us"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-brand-yellow text-brand-yellow font-semibold hover:bg-brand-yellow hover:text-brand-black transition-all"
-              >
-                Our Standards <ArrowRight size={16} weight="bold" />
-              </Link>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { num: '100%', label: 'Halal Certified', color: 'bg-brand-green/20 text-brand-green' },
-                { num: 'BPOM', label: 'Registered Products', color: 'bg-brand-yellow/20 text-brand-yellow' },
-                { num: '6+', label: 'Export Destinations', color: 'bg-brand-orange/20 text-brand-orange' },
-                { num: '12mo', label: 'Shelf Life Guarantee', color: 'bg-brand-red/20 text-brand-red' },
-              ].map((stat) => (
-                <div key={stat.label} className="bg-white/5 border border-white/10 rounded-2xl p-6">
-                  <p className={`font-display font-bold text-3xl mb-1 ${stat.color}`}>{stat.num}</p>
-                  <p className="text-gray-400 text-sm">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* NATURAL INGREDIENTS */}
       <NaturalIngredients />
 
       {/* FAQ */}
-      <section className="bg-earth-50 py-20 lg:py-28">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-brand-yellow/20 text-brand-orange text-xs font-semibold tracking-widest uppercase mb-4">
-              Tanya Jawab
-            </span>
-            <h2 className="font-display font-bold text-3xl md:text-4xl text-brand-black tracking-tight">
-              Frequently Asked Questions
+      <section className="bg-white py-20 lg:py-28">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="font-display font-bold text-3xl md:text-4xl text-brand-black uppercase tracking-tight mb-4">
+              Frequently Asked Question
             </h2>
+           
           </div>
 
           <FaqInline />
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
-      <TestimonialSection testimonials={testimonials} />
+      {/* CTA SECTION - Card Layout */}
+      <section className="bg-earth-900 py-20 lg:py-32 px-6 lg:px-8 relative overflow-hidden">
+        {/* Subtle background glows to tie in with the rest of the dark sections */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-brand-yellow/5 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-yellow/5 blur-[120px] rounded-full pointer-events-none" />
 
-      {/* SOCIAL EMBEDS */}
-      <SocialEmbedWidget embeds={embeds} />
+        <div className="max-w-7xl mx-auto bg-gradient-to-br from-brand-yellow via-brand-yellow to-yellow-500 rounded-[2.5rem] md:rounded-[3.5rem] p-4 flex flex-col lg:flex-row shadow-2xl relative z-10">
+          
+          {/* Left Side: Product Image Display */}
+          <div className="w-full lg:w-1/2 relative h-[350px] md:h-[500px] lg:h-auto rounded-[2rem] md:rounded-[2.8rem] overflow-hidden bg-earth-900 flex items-center justify-center p-8 md:p-12 shadow-inner">
+            {/* Subtle glow behind the bottle */}
+            <div className="absolute w-[80%] h-[80%] rounded-full bg-brand-yellow/10 blur-[80px]" />
+            <div className="relative w-full h-full min-h-[300px]">
+              <Image
+                src="/new/botoldrink.png"
+                alt="Java Origins Premium Herbal Drink"
+                fill
+                className="object-contain hover:scale-105 transition-transform duration-700"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            </div>
+          </div>
 
-      {/* CTA SECTION */}
-      <section className="bg-brand-red py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          <h2 className="font-display font-bold text-3xl md:text-4xl text-white mb-4">
-            Ready to bring Java Royale to your market?
-          </h2>
-          <p className="text-red-100 mb-8 max-w-xl mx-auto">
-            Talk to our export team about MOQ, certifications, private label, and shipping logistics.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-brand-red font-bold hover:bg-brand-yellow hover:text-brand-black transition-all"
-          >
-            Start a Conversation <ArrowRight size={16} weight="bold" />
-          </Link>
+          {/* Right Side: Partnership Content */}
+          <div className="w-full lg:w-1/2 p-8 md:p-12 lg:p-16 flex flex-col justify-center">
+            <div className="flex-grow flex flex-col justify-center">
+              <span className="inline-block px-3 py-1.5 rounded-full border border-earth-900/20 bg-earth-900/10 text-earth-900 text-xs font-black tracking-widest uppercase mb-6 w-max">
+                Partnership
+              </span>
+              <h2 className="font-display font-black text-4xl md:text-5xl lg:text-[3.8rem] text-earth-900 uppercase tracking-tighter leading-[1] mb-6">
+                Interested in selling Java Origins?
+              </h2>
+              <p className="text-earth-900/80 text-lg md:text-xl font-medium leading-relaxed mb-10 max-w-xl">
+                Let&apos;s bring Java Origins to your community! With growing global demand for authentic, healthy herbal beverages, it&apos;s the perfect premium addition to your store or menu. Request a sample today!
+              </p>
+            </div>
+            
+            <Link
+              href="/contact"
+              className="w-full block text-center py-5 md:py-6 rounded-2xl md:rounded-[1.5rem] bg-earth-900 text-brand-yellow font-bold text-xl hover:bg-white hover:text-earth-900 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+            >
+              Contact Us
+            </Link>
+          </div>
+
         </div>
       </section>
     </>

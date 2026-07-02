@@ -7,7 +7,7 @@ import { CheckCircle, ArrowRight, Thermometer, Shield, Flask, Medal, Leaf, Globe
 export async function generateMetadata(): Promise<Metadata> {
   const seo = await getSeoSetting('why-choose-us');
   return {
-    title: seo?.seo_title ?? 'Why Choose Us — Java Royale Nusantara',
+    title: seo?.seo_title ?? 'Why Choose Us — Java Origins',
     description: seo?.seo_description ?? undefined,
   };
 }
@@ -20,12 +20,11 @@ const certifications = [
 ];
 
 const standards = [
-  { icon: <Thermometer size={22} weight="fill" />, title: 'Vacuum Frying Technology', desc: 'Low-temperature vacuum process preserves natural colour, aroma, and nutrients while producing snacks with significantly lower oil content than conventional frying.' },
-  { icon: <Shield size={22} weight="fill" />, title: 'Cold-Chain Ingredient Sourcing', desc: 'Fresh ingredients sourced from certified farmers are processed within 24 hours of harvest to lock in freshness and phytonutrients.' },
-  { icon: <Flask size={22} weight="fill" />, title: 'In-House Lab Testing', desc: 'Every batch undergoes microbiological, chemical, and sensory testing before packaging. No batch leaves our facility without a quality certificate.' },
-  { icon: <Globe size={22} weight="fill" />, title: 'Export Documentation', desc: 'We provide full export support: Certificate of Analysis, Phytosanitary Certificate, COO, Halal certificate, and custom documentation on request.' },
-  { icon: <Medal size={22} weight="fill" />, title: '12-Month Shelf Life', desc: 'Innovative nitrogen-flush packaging extends shelf life to 12 months without preservatives, ideal for international logistics timelines.' },
-  { icon: <Leaf size={22} weight="fill" />, title: 'No Artificial Additives', desc: 'Zero MSG, zero artificial colour, zero artificial preservatives. Our products appeal to the global clean-label consumer trend.' },
+  { icon: <Leaf size={22} weight="fill" />, title: '100% Natural Ingredients', desc: 'Made from premium quality herbs.' },
+  { icon: <Thermometer size={22} weight="fill" />, title: 'Warm & Soothing', desc: 'Helps to warm your body and relax your mind.' },
+  { icon: <Shield size={22} weight="fill" />, title: 'Support Your Immunity', desc: 'Traditionally used to help maintain body’s natural defense.' },
+  { icon: <Flask size={22} weight="fill" />, title: 'No Artificial Additives', desc: 'No Preservatives, artificial colors or artificial flavors.' },
+  { icon: <Medal size={22} weight="fill" />, title: 'Good for daily Wellness', desc: 'Enjoy a healthy and balanced lifestyle every day.' },
 ];
 
 export default async function WhyChooseUsPage() {
@@ -54,7 +53,7 @@ export default async function WhyChooseUsPage() {
               <div className="relative rounded-3xl overflow-hidden aspect-[4/3]">
                 <Image
                   src={assetUrl('fotoproduk.jpeg')}
-                  alt="Java Royale product showcase"
+                  alt="Java Origins product showcase"
                   fill
                   className="object-cover"
                 />
@@ -92,7 +91,7 @@ export default async function WhyChooseUsPage() {
       {/* Standards grid */}
       <section className="py-20 bg-earth-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <h2 className="font-display font-bold text-3xl md:text-4xl text-brand-black mb-12">Quality at every stage</h2>
+          <h2 className="font-display font-bold text-3xl md:text-4xl text-brand-black mb-12">Why Choose Java Origins?</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {standards.map((item) => (
               <div key={item.title} className="bg-white rounded-2xl p-6 border border-earth-100">
