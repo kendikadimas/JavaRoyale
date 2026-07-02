@@ -8,7 +8,8 @@ export class ApiError extends Error {
 }
 
 async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
-  const url = `${API_BASE}/api${path}`;
+  const base = API_BASE.endsWith('/api') ? API_BASE : `${API_BASE}/api`;
+  const url = `${base}${path}`;
   const res = await fetch(url, {
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
     ...options,
