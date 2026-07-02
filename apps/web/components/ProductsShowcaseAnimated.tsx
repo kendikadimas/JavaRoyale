@@ -51,7 +51,7 @@ export function ProductsShowcaseAnimated({ products }: { products: Product[] }) 
   const stripHtml = (html: string) => html.replace(/<[^>]*>?/gm, '');
 
   return (
-    <section ref={sectionRef} className="bg-white overflow-hidden h-screen flex flex-col pt-8 md:pt-12 lg:pt-16 pb-4">
+    <section ref={sectionRef} className="bg-white overflow-hidden h-[85vh] md:h-[88vh] lg:h-[90vh] flex flex-col pt-16 md:pt-20 lg:pt-24 pb-4">
       <div className="px-6 lg:px-12 z-20 mb-4 md:mb-6">
         <h2 className="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-brand-black leading-tight">
           Explore Java Origins <br />
