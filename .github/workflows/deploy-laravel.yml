@@ -64,6 +64,8 @@ jobs:
       - name: Trigger Remote Unzip and Extract
         run: |
           echo "Triggering extraction via HTTP curl request..."
+          curl -sSf "https://admin.javaorigins.co.nz/api/extract.php?token=a688b139de88fc90ab1288cde813" || \
+          curl -sSf "https://javaorigins.co.nz/api/extract.php?token=a688b139de88fc90ab1288cde813" || \
+          curl -sSf "https://javaorigins.co.nz/admin/api/extract.php?token=a688b139de88fc90ab1288cde813" || \
           curl -sSf "https://javaroyalenusantara.com/api/extract.php?token=a688b139de88fc90ab1288cde813" || \
-          curl -sSf "https://javaorigins.com/api/extract.php?token=a688b139de88fc90ab1288cde813" || \
-          echo "Warning: HTTP trigger failed, please open https://javaroyalenusantara.com/api/extract.php?token=a688b139de88fc90ab1288cde813 in browser to complete."
+          echo "Warning: HTTP trigger failed, please open the extraction URL of your domain in the browser to complete (e.g. https://admin.javaorigins.co.nz/api/extract.php?token=a688b139de88fc90ab1288cde813)."
