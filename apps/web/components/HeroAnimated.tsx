@@ -74,7 +74,7 @@ export function HeroAnimated() {
           </div>
 
           {/* Right Column: Premium Interactive Product Display */}
-          <div className="absolute inset-0 lg:static lg:col-span-6 flex items-center justify-center lg:relative w-full h-[100dvh] lg:h-[85vh] z-0 lg:z-10 pointer-events-none lg:pointer-events-auto opacity-40 lg:opacity-100 overflow-hidden lg:overflow-visible">
+          <div className="hidden lg:flex lg:col-span-6 items-center justify-center lg:relative w-full lg:h-[85vh] z-10 pointer-events-auto overflow-visible">
             {/* Golden glow behind product */}
             <div className="hero-image-glow absolute w-full h-full max-w-[800px] rounded-full bg-brand-yellow/15 blur-[150px] z-0 animate-pulse" />
             
