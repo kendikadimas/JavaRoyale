@@ -115,8 +115,25 @@ const existingContent = document.getElementById('body-input').value;
 if (existingContent) quill.root.innerHTML = existingContent;
 
 // Sync to textarea on form submit
-document.querySelector('form').addEventListener('submit', function() {
-    document.getElementById('body-input').value = quill.root.innerHTML;
-});
+const form = document.querySelector('form');
+if (!form) {
+    console.error('[Article Form] Form element not found!');
+} else {
+    console.log('[Article Form] Form found, attaching submit listener');
+    form.addEventListener('submit', function(e) {
+        console.log('[Article Form] Form submitted');
+        const bodyContent = quill.root.innerHTML;
+        console.log('[Article Form] Quill content length:', bodyContent.length);
+        document.getElementById('body-input').value = bodyContent;
+        console.log('[Article Form] Body input updated');
+        
+        // Add visual feedback
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Menyimpan...';
+        }
+    });
+}
 </script>
 @endpush
