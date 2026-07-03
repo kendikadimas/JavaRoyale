@@ -48,7 +48,7 @@
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 relative z-10 px-4">
             <div class="mb-8 text-center">
                 <span class="text-xs font-bold tracking-[0.3em] text-brand-orange uppercase block mb-1">
-                    Java Royale Nusantara
+                    Pure Zealand
                 </span>
                 <h1 class="font-display font-black text-2xl text-brand-black uppercase tracking-wider">
                     ADMIN LOGIN

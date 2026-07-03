@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Admin') &mdash; Java Royale Admin</title>
+    <title>@yield('title', 'Admin') &mdash; Java Origins Admin</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -162,7 +162,7 @@
     {{-- Sidebar --}}
     <aside class="w-64 bg-earth-900 border-r border-white/5 text-white flex flex-col flex-shrink-0">
         <div class="px-6 py-5 border-b border-white/5">
-            <p class="text-xs font-black uppercase tracking-[0.25em] text-brand-yellow">Java Royale</p>
+            <p class="text-xs font-black uppercase tracking-[0.25em] text-brand-yellow">Java Origins</p>
             <p class="text-[9px] font-black uppercase tracking-widest text-gray-400 mt-0.5">Admin Panel</p>
         </div>
 
