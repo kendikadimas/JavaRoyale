@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // 1. ingredients di products sudah ada (partial run sebelumnya)
-        // Tambah hanya jika belum ada
+        // 1. Add ingredients to products if not exists
         if (!Schema::hasColumn('products', 'ingredients')) {
             Schema::table('products', function (Blueprint $table) {
                 $table->json('ingredients')->nullable()->after('advantages');
             });
         }
 
-        // 2. nutrition_facts sudah punya product_id (partial run sebelumnya)
-        // Hapus product_variant_id jika masih ada
+        // 2. Add nutrition_fact to products (one-to-one relation)
+        // Drop old product_variant_id if exists, add product_id
         if (Schema::hasColumn('nutrition_facts', 'product_variant_id')) {
             Schema::table('nutrition_facts', function (Blueprint $table) {
                 $table->dropForeign(['product_variant_id']);
@@ -29,30 +28,14 @@ return new class extends Migration
             });
         }
 
-        // Pastikan product_id sudah punya FK & unique (mungkin belum karena error)
-        if (Schema::hasColumn('nutrition_facts', 'product_id')) {
-            // Hapus orphan rows
-            DB::table('nutrition_facts')->whereNotIn('product_id', DB::table('products')->pluck('id'))->delete();
-            DB::table('nutrition_facts')->whereNull('product_id')->delete();
-
-            // Coba enforce FK jika belum ada
-            try {
-                Schema::table('nutrition_facts', function (Blueprint $table) {
-                    $table->foreign('product_id')->references('id')->on('products')->cascadeOnDelete();
-                });
-            } catch (\Exception $e) {
-                // FK sudah ada, skip
-            }
-            try {
-                Schema::table('nutrition_facts', function (Blueprint $table) {
-                    $table->unique('product_id');
-                });
-            } catch (\Exception $e) {
-                // Unique sudah ada, skip
-            }
+        // Add product_id if not exists
+        if (!Schema::hasColumn('nutrition_facts', 'product_id')) {
+            Schema::table('nutrition_facts', function (Blueprint $table) {
+                $table->foreignId('product_id')->after('id')->unique()->constrained()->cascadeOnDelete();
+            });
         }
 
-        // 3. Hapus ingredients dari product_variants jika masih ada
+        // 3. Drop ingredients from product_variants if exists
         if (Schema::hasColumn('product_variants', 'ingredients')) {
             Schema::table('product_variants', function (Blueprint $table) {
                 $table->dropColumn('ingredients');
