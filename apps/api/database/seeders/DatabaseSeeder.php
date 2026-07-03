@@ -33,7 +33,6 @@ class DatabaseSeeder extends Seeder
         $canned = Product::create([
             'name'        => 'JavaDrink Canned',
             'slug'        => 'java-drink-canned',
-            'category'    => 'ready-to-drink',
             'description' => 'A refreshing, ready-to-drink canned format that brings the goodness of traditional Javanese jamu into your modern, fast-paced life. Crafted from raw, organic turmeric and tamarind, lightly carbonated for a crisp, energizing finish.',
             'advantages'  => [
                 'Curcumin from organic turmeric',
@@ -78,7 +77,6 @@ class DatabaseSeeder extends Seeder
         $powder = Product::create([
             'name'        => 'JavaDrink Powder',
             'slug'        => 'java-drink-powder',
-            'category'    => 'powder-blend',
             'description' => 'Our signature traditional herbal blend in a soluble powder format, packaged in a premium reusable glass bottle. Made using advanced extraction techniques that preserve essential nutrients, offering a warm and comforting brew for your daily wellness.',
             'advantages'  => [
                 'Soluble premium powder',
@@ -139,7 +137,6 @@ class DatabaseSeeder extends Seeder
         $pouch = Product::create([
             'name'        => 'JavaDrink Pouch',
             'slug'        => 'java-drink-pouch',
-            'category'    => 'travel-size',
             'description' => 'Designed for your travel and on-the-go lifestyle. This resealable stand-up pouch contains convenient single-serve sachets of our premium soluble herbal powders, letting you enjoy authentic Indonesian wellness anywhere in the world.',
             'advantages'  => [
                 'Travel pack convenience',
