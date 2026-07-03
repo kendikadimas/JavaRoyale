@@ -153,7 +153,7 @@ export function ProductDetailView({ product }: Props) {
   const [nutritionOpen, setNutritionOpen] = useState(true);
 
   const activeVariant = product.variants[activeVariantIndex] || product.variants[0];
-  const isSnack = product.category.toLowerCase().includes('snack') || product.category.toLowerCase().includes('fruit') || product.slug.includes('nangka');
+  const isSnack = product.slug.includes('nangka') || product.slug.includes('snack') || product.slug.includes('fruit');
   
   const mainImage = product.images[0];
   const defaultImagePath = mainImage ? imageUrl(mainImage.image_path) : '';
@@ -230,7 +230,7 @@ export function ProductDetailView({ product }: Props) {
         <div className="lg:col-span-6 space-y-8">
           <div>
             <span className="inline-block px-3 py-1 rounded-full bg-brand-yellow/20 text-brand-orange text-[10px] font-bold tracking-widest uppercase mb-4 border border-brand-yellow/40">
-              {product.category.replace(/-/g, ' ')}
+              Java Origins Product
             </span>
             <h1 className="font-display font-black text-3xl md:text-5xl text-brand-black leading-tight uppercase tracking-tight mb-4">
               {product.name}
