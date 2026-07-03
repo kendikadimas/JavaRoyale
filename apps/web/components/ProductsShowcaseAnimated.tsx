@@ -78,21 +78,29 @@ export function ProductsShowcaseAnimated({ products }: { products: Product[] }) 
                 className={`w-[85vw] md:w-[70vw] lg:w-[60vw] xl:w-[50vw] h-[52vh] md:h-[55vh] ${theme.bg} rounded-[2rem] md:rounded-[3rem] p-5 md:p-10 relative flex flex-col shrink-0 overflow-hidden shadow-sm`}
               >
                 {/* Header (Top Left) */}
-                <div className="relative z-30 max-w-[90%] md:max-w-[80%] mb-2 md:mb-0">
+                <div className="relative z-30 max-w-[90%] md:max-w-[80%]">
                   <h3 className={`font-display font-black text-3xl md:text-5xl lg:text-6xl tracking-tighter ${theme.text}`}>
                     {displayTitle}
                   </h3>
                 </div>
 
                 {/* Bottom Section (Description + Button on Right) */}
-                <div className="relative z-20 flex flex-col items-end text-right w-full mt-auto">
-                  <p className={`font-display font-medium text-[10px] md:text-base leading-tight md:leading-snug ${theme.text} drop-shadow-sm w-[65%] md:w-1/2 mb-3 md:mb-6 ${theme.bg}/70 md:bg-transparent p-2 md:p-0 rounded-lg backdrop-blur-md md:backdrop-blur-none line-clamp-3 md:line-clamp-4`}>
-                    {product.description 
-                      ? stripHtml(product.description) 
-                      : 'The perfect balance of tradition and refreshing taste.'}
-                  </p>
+                <div className="absolute bottom-5 right-5 md:bottom-10 md:right-10 z-20 flex flex-col items-end text-right max-w-[65%] md:max-w-[50%]">
+                  <div className="relative">
+                    <p className={`font-display font-medium text-[10px] md:text-base leading-tight md:leading-snug ${theme.text} drop-shadow-sm mb-2 md:mb-4 ${theme.bg}/70 md:bg-transparent p-2 md:p-0 rounded-lg backdrop-blur-md md:backdrop-blur-none line-clamp-3 md:line-clamp-4`}>
+                      {product.description 
+                        ? stripHtml(product.description) 
+                        : 'The perfect balance of tradition and refreshing taste.'}
+                    </p>
+                    <Link 
+                      href={`/products/${product.slug}`}
+                      className={`text-[9px] md:text-xs font-bold ${theme.text} hover:underline inline-block mb-3 md:mb-5 opacity-70 hover:opacity-100 transition-opacity`}
+                    >
+                      Read more →
+                    </Link>
+                  </div>
                   <Link 
-                    href="/products" 
+                    href={`/products/${product.slug}`}
                     className={`w-10 h-10 md:w-14 md:h-14 flex items-center justify-center rounded-full transition-all hover:scale-110 shadow-lg ${theme.btn}`}
                   >
                     <ArrowRight size={18} className="md:w-5 md:h-5" weight="bold" />
@@ -100,7 +108,7 @@ export function ProductsShowcaseAnimated({ products }: { products: Product[] }) 
                 </div>
 
                 {/* Image (Bottom Left, Absolute) */}
-                <div className={`absolute -bottom-6 -left-10 md:-left-4 h-[60%] md:h-[85%] z-10 pointer-events-none ${
+                <div className={`absolute -bottom-6 -left-10 md:-left-4 h-[55%] md:h-[85%] z-10 pointer-events-none ${
                   product.slug === 'java-drink-powder-mini'
                     ? 'w-[72%] md:w-[58%]'
                     : 'w-[55%] md:w-[55%]'
