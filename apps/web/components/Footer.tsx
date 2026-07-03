@@ -9,13 +9,12 @@ interface FooterProps {
 export function Footer({ siteSetting }: FooterProps) {
   // Safe default fallback settings to prevent empty sections or deadlinks
   const defaultSetting = {
-    address: 'Jl. Raya Industri No. 12, Kawasan Industri Jababeka, Bekasi, Jawa Barat 17530',
-    email: 'export@javaroyale.com',
-    whatsapp_primary: '+62811234567',
+    address: 'Lobby Diamond A2, Apartemen Gateway Pater',
+    email: 'javaroyalenusantara@gmail.com',
+    whatsapp_primary: '+6282130613460',
     social_links: {
-      instagram: 'https://instagram.com/javaroyalenusantara',
-      linkedin: 'https://linkedin.com/company/javaroyalenusantara',
-      tiktok: 'https://tiktok.com/@javaroyalenusantara',
+      instagram: 'https://instagram.com/javadrinkofficialid',
+      tiktok: 'https://tiktok.com/@javaroyaleproduct',
     }
   };
 

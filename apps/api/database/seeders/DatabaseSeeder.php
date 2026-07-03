@@ -221,14 +221,14 @@ class DatabaseSeeder extends Seeder
 
         HomepageSetting::current();
         SiteSetting::firstOrCreate([], [
-            'address'          => 'Jl. Raya Industri No. 12, Kawasan Industri Jababeka, Bekasi, Jawa Barat 17530',
-            'whatsapp_primary' => '+62811234567',
-            'whatsapp_secondary' => '+62822345678',
-            'email'            => 'export@javaorigins.com',
+            'address'          => 'Lobby Diamond A2, Apartemen Gateway Pater',
+            'whatsapp_primary' => '+6282130613460',
+            'whatsapp_secondary' => '+64224318099',
+            'email'            => 'javaroyalenusantara@gmail.com',
             'operating_hours'  => 'Senin–Jumat 08.00–17.00 WIB',
             'social_links'     => [
-                'instagram' => 'https://instagram.com/javaorigins',
-                'linkedin'  => 'https://linkedin.com/company/javaorigins',
+                'instagram' => 'https://instagram.com/javadrinkofficialid',
+                'tiktok'    => 'https://tiktok.com/@javaroyaleproduct',
             ],
         ]);
 
@@ -237,7 +237,7 @@ class DatabaseSeeder extends Seeder
         SocialEmbedSetting::create([
             'platform'   => 'instagram',
             'embed_code' => null,
-            'link_url'   => 'https://instagram.com/javaorigins',
+            'link_url'   => 'https://instagram.com/javadrinkofficialid',
             'is_active'  => true,
         ]);
 
