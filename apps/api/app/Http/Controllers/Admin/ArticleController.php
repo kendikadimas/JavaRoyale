@@ -27,7 +27,7 @@ class ArticleController extends Controller
             'slug'            => 'nullable|string|max:255|unique:articles,slug',
             'category'        => 'required|string|max:100',
             'body'            => 'required|string',
-            'featured_image'  => 'nullable|image|max:2048',
+            'featured_image'  => 'nullable|image|max:5120',
             'is_published'    => 'boolean',
             'published_at'    => 'nullable|date',
         ]);
@@ -60,7 +60,7 @@ class ArticleController extends Controller
             'slug'            => 'nullable|string|max:255|unique:articles,slug,' . $article->id,
             'category'        => 'required|string|max:100',
             'body'            => 'required|string',
-            'featured_image'  => 'nullable|image|max:2048',
+            'featured_image'  => 'nullable|image|max:5120',
             'is_published'    => 'boolean',
             'published_at'    => 'nullable|date',
         ]);

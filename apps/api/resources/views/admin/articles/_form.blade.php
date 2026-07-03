@@ -66,6 +66,7 @@
             @endif
             <input type="file" name="featured_image" accept="image/*"
                 class="w-full text-sm text-gray-500 file:mr-3 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-xs file:font-medium file:bg-amber-50 file:text-amber-700 hover:file:bg-amber-100">
+            <p class="text-xs text-gray-400 mt-1">Maks. 5MB. Format: JPG, PNG, WebP.</p>
             @error('featured_image')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
         </div>
 
@@ -114,18 +115,31 @@ const quill = new Quill('#editor', {
 const existingContent = document.getElementById('body-input').value;
 if (existingContent) quill.root.innerHTML = existingContent;
 
-// Sync to textarea on form submit
+// Sync to textarea in realtime (on every text change)
+quill.on('text-change', function() {
+    document.getElementById('body-input').value = quill.root.innerHTML;
+});
+
+// Also sync on form submit as backup
 const form = document.querySelector('form');
 if (!form) {
     console.error('[Article Form] Form element not found!');
 } else {
     console.log('[Article Form] Form found, attaching submit listener');
     form.addEventListener('submit', function(e) {
-        console.log('[Article Form] Form submitted');
+        console.log('[Article Form] Form submitting');
         const bodyContent = quill.root.innerHTML;
         console.log('[Article Form] Quill content length:', bodyContent.length);
         document.getElementById('body-input').value = bodyContent;
-        console.log('[Article Form] Body input updated');
+        console.log('[Article Form] Body input synced:', document.getElementById('body-input').value.length);
+        
+        // Validate body is not empty
+        if (!bodyContent || bodyContent.trim() === '' || bodyContent === '<p><br></p>') {
+            e.preventDefault();
+            alert('Konten artikel wajib diisi!');
+            console.error('[Article Form] Body is empty, preventing submit');
+            return false;
+        }
         
         // Add visual feedback
         const submitBtn = form.querySelector('button[type="submit"]');
