@@ -85,8 +85,8 @@ export function ProductsShowcaseAnimated({ products }: { products: Product[] }) 
                 </div>
 
                 {/* Bottom Section (Description + Button on Right) */}
-                <div className="relative z-20 flex flex-col items-end text-right w-full mt-auto">
-                  <p className={`font-display font-medium text-xs md:text-lg leading-relaxed ${theme.text} drop-shadow-sm w-[60%] md:w-1/2 mb-4 md:mb-8 ${theme.bg}/40 md:bg-transparent p-2 md:p-0 rounded-lg backdrop-blur-md md:backdrop-blur-none line-clamp-3`}>
+                <div className="relative z-20 flex flex-col items-end text-right w-full mt-auto mb-2 md:mb-0">
+                  <p className={`font-display font-medium text-[10px] md:text-lg leading-tight md:leading-relaxed ${theme.text} drop-shadow-sm w-[65%] md:w-1/2 mb-3 md:mb-8 ${theme.bg}/60 md:bg-transparent p-2 md:p-0 rounded-lg backdrop-blur-md md:backdrop-blur-none line-clamp-2 md:line-clamp-3`}>
                     {product.description 
                       ? stripHtml(product.description) 
                       : 'The perfect balance of tradition and refreshing taste.'}
