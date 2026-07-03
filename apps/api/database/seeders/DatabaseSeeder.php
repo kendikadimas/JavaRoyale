@@ -39,6 +39,7 @@ class DatabaseSeeder extends Seeder
                 'Crisp carbonated finish',
                 'Ready to drink anywhere',
             ],
+            'ingredients' => ['Turmeric (Curcuma longa)', 'Tamarind', 'Palm Sugar', 'Water', 'Carbonation'],
             'is_active'   => true,
         ]);
 
@@ -59,7 +60,6 @@ class DatabaseSeeder extends Seeder
         $cannedVariant = ProductVariant::create([
             'product_id'       => $canned->id,
             'variant_name'     => 'Can 250ml',
-            'ingredients'      => ['Turmeric (Curcuma longa)', 'Tamarind', 'Palm Sugar', 'Water', 'Carbonation'],
             'net_weight'       => '250 ml',
             'compliance_notes' => 'GMP Compliant. Halal Certified. Suitable for export globally.',
         ]);
@@ -83,6 +83,7 @@ class DatabaseSeeder extends Seeder
                 'Rich nutrition retention',
                 'Comforting warm brew',
             ],
+            'ingredients' => ['Turmeric Extract', 'Tamarind Extract', 'Palm Sugar'],
             'is_active'   => true,
         ]);
 
@@ -103,7 +104,6 @@ class DatabaseSeeder extends Seeder
         $powderVariant1 = ProductVariant::create([
             'product_id'       => $powder->id,
             'variant_name'     => 'Powder',
-            'ingredients'      => ['Turmeric Extract', 'Tamarind Extract', 'Palm Sugar'],
             'net_weight'       => '450 g',
             'compliance_notes' => 'GMP Compliant. Halal Certified.',
         ]);
@@ -120,15 +120,13 @@ class DatabaseSeeder extends Seeder
         $powderVariant2 = ProductVariant::create([
             'product_id'       => $powder->id,
             'variant_name'     => 'Bulk',
-            'ingredients'      => ['Turmeric Extract', 'Tamarind Extract', 'Palm Sugar'],
             'net_weight'       => '1 kg',
             'compliance_notes' => 'GMP Compliant. Halal Certified.',
         ]);
 
         $powderVariant3 = ProductVariant::create([
             'product_id'       => $powder->id,
-            'variant_name'     => 'Powder Mini', // This is the Powder Mini variant!
-            'ingredients'      => ['Turmeric Extract', 'Tamarind Extract', 'Palm Sugar'],
+            'variant_name'     => 'Powder Mini',
             'net_weight'       => '200 g',
             'compliance_notes' => 'GMP Compliant. Halal Certified.',
         ]);
@@ -143,6 +141,7 @@ class DatabaseSeeder extends Seeder
                 'Resealable stand-up pouch',
                 'Authentic Javanese wellness',
             ],
+            'ingredients' => ['Turmeric Extract', 'Tamarind Extract', 'Palm Sugar'],
             'is_active'   => true,
         ]);
 
@@ -163,7 +162,6 @@ class DatabaseSeeder extends Seeder
         $pouchVariant1 = ProductVariant::create([
             'product_id'       => $pouch->id,
             'variant_name'     => 'Pouch 200g',
-            'ingredients'      => ['Turmeric Extract', 'Tamarind Extract', 'Palm Sugar'],
             'net_weight'       => '200 g',
             'compliance_notes' => 'GMP Compliant. Halal Certified.',
         ]);
@@ -171,7 +169,6 @@ class DatabaseSeeder extends Seeder
         $pouchVariant2 = ProductVariant::create([
             'product_id'       => $pouch->id,
             'variant_name'     => 'Pouch 100g',
-            'ingredients'      => ['Turmeric Extract', 'Tamarind Extract', 'Palm Sugar'],
             'net_weight'       => '100 g',
             'compliance_notes' => 'GMP Compliant. Halal Certified.',
         ]);
@@ -179,7 +176,6 @@ class DatabaseSeeder extends Seeder
         $pouchVariant3 = ProductVariant::create([
             'product_id'       => $pouch->id,
             'variant_name'     => 'Pouch 20g',
-            'ingredients'      => ['Turmeric Extract', 'Tamarind Extract', 'Palm Sugar'],
             'net_weight'       => '20 g',
             'compliance_notes' => 'GMP Compliant. Halal Certified.',
         ]);
