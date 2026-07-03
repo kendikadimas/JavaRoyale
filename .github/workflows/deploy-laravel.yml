@@ -58,14 +58,11 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./deploy_pkg/
-          server-dir: /public_html/api/
+          server-dir: /public_html/
           state-name: .ftp-deploy-laravel-state.json
 
       - name: Trigger Remote Unzip and Extract
         run: |
           echo "Triggering extraction via HTTP curl request..."
-          curl -sSf "https://admin.javaorigins.co.nz/api/extract.php?token=a688b139de88fc90ab1288cde813" || \
-          curl -sSf "https://javaorigins.co.nz/api/extract.php?token=a688b139de88fc90ab1288cde813" || \
-          curl -sSf "https://javaorigins.co.nz/admin/api/extract.php?token=a688b139de88fc90ab1288cde813" || \
-          curl -sSf "https://javaroyalenusantara.com/api/extract.php?token=a688b139de88fc90ab1288cde813" || \
-          echo "Warning: HTTP trigger failed, please open the extraction URL of your domain in the browser to complete (e.g. https://admin.javaorigins.co.nz/api/extract.php?token=a688b139de88fc90ab1288cde813)."
+          curl -sSf "https://admin.javaorigins.co.nz/extract.php?token=a688b139de88fc90ab1288cde813" || \
+          echo "Warning: HTTP trigger failed, please open https://admin.javaorigins.co.nz/extract.php?token=a688b139de88fc90ab1288cde813 in browser to complete deployment."
