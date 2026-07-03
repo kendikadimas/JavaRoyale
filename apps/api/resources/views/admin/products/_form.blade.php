@@ -24,19 +24,6 @@
             </div>
 
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-1">Kategori <span class="text-red-500">*</span></label>
-                <input type="text" name="category" value="{{ old('category', $product->category ?? '') }}"
-                    list="category-suggestions"
-                    class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400"
-                    required>
-                <datalist id="category-suggestions">
-                    <option value="jamu">
-                    <option value="vacuum-fried-snack">
-                </datalist>
-                @error('category')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
-            </div>
-
-            <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-700 mb-1">Deskripsi</label>
                 <textarea name="description" rows="4"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400">{{ old('description', $product->description ?? '') }}</textarea>
@@ -57,36 +44,71 @@
             </div>
         </div>
 
-        {{-- Variants --}}
+        {{-- Ingredients --}}
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="font-semibold text-gray-700">Varian & Nutrition Facts</h3>
+            <h3 class="font-semibold text-gray-700 mb-3">Ingredients</h3>
+            <p class="text-xs text-gray-400 mb-3">Satu bahan per baris. Akan ditampilkan sebagai checklist di frontend.</p>
+            @php $existingIngredients = old('_ingredients_raw', implode("\n", $product->ingredients ?? [])); @endphp
+            <textarea id="ingredients-raw" name="_ingredients_raw" rows="6"
+                onchange="syncProductIngredients(this)" oninput="syncProductIngredients(this)"
+                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 font-mono"
+                placeholder="Kunyit&#10;Asam Jawa&#10;Gula Aren&#10;Jahe">{{ $existingIngredients }}</textarea>
+            <div id="ingredients-hidden">
+                @foreach(($product->ingredients ?? []) as $ing)
+                <input type="hidden" name="ingredients[]" value="{{ $ing }}" class="ing-product-input">
+                @endforeach
+            </div>
+        </div>
+
+        {{-- Nutrition Facts --}}
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+            <h3 class="font-semibold text-gray-700 mb-3">Nutrition Facts <span class="text-xs font-normal text-gray-400">(per sajian)</span></h3>
+            @php
+                $nutrition = old('nutrition', $isEdit && $product->nutritionFact ? [
+                    'energy_kcal' => $product->nutritionFact->energy_kcal,
+                    'protein_g'   => $product->nutritionFact->protein_g,
+                    'fat_g'       => $product->nutritionFact->fat_g,
+                    'carbs_g'     => $product->nutritionFact->carbs_g,
+                    'sugar_g'     => $product->nutritionFact->sugar_g,
+                    'sodium_mg'   => $product->nutritionFact->sodium_mg,
+                ] : []);
+            @endphp
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                @foreach(['energy_kcal'=>'Energi (kcal)','protein_g'=>'Protein (g)','fat_g'=>'Lemak (g)','carbs_g'=>'Karbohidrat (g)','sugar_g'=>'Gula (g)','sodium_mg'=>'Natrium (mg)'] as $field => $label)
+                <div>
+                    <label class="block text-xs text-gray-500 mb-1">{{ $label }}</label>
+                    <input type="number" step="0.01" min="0" name="nutrition[{{ $field }}]"
+                        value="{{ $nutrition[$field] ?? '' }}"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400">
+                </div>
+                @endforeach
+            </div>
+        </div>
+
+        {{-- Variants (opsional) --}}
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+            <div class="flex items-center justify-between mb-2">
+                <h3 class="font-semibold text-gray-700">Varian <span class="text-xs font-normal text-gray-400">(opsional)</span></h3>
                 <button type="button" onclick="addVariant()" class="text-xs bg-blue-50 text-blue-600 border border-blue-200 px-3 py-1.5 rounded-lg hover:bg-blue-100">+ Tambah Varian</button>
             </div>
+            <p class="text-xs text-gray-400 mb-4">Isi jika produk punya beberapa varian ukuran/rasa. Kosongkan jika tidak ada.</p>
 
             <div id="variants-container" class="space-y-4">
                 @php
+                    $variantObjects = $isEdit ? $product->variants->keyBy('id') : collect();
                     $variants = old('variants', $isEdit
                         ? $product->variants->map(fn($v) => [
-                            'id' => $v->id,
-                            'variant_name' => $v->variant_name,
-                            'ingredients' => $v->ingredients ?? [],
-                            'net_weight' => $v->net_weight,
+                            'id'               => $v->id,
+                            'variant_name'     => $v->variant_name,
+                            'net_weight'       => $v->net_weight,
                             'compliance_notes' => $v->compliance_notes,
-                            'nutrition' => $v->nutritionFact ? [
-                                'energy_kcal' => $v->nutritionFact->energy_kcal,
-                                'protein_g' => $v->nutritionFact->protein_g,
-                                'fat_g' => $v->nutritionFact->fat_g,
-                                'carbs_g' => $v->nutritionFact->carbs_g,
-                                'sugar_g' => $v->nutritionFact->sugar_g,
-                                'sodium_mg' => $v->nutritionFact->sodium_mg,
-                            ] : [],
                         ])->toArray()
-                        : [['id'=>'','variant_name'=>'','ingredients'=>[],'net_weight'=>'','compliance_notes'=>'','nutrition'=>[]]]
+                        : []
                     );
                 @endphp
 
                 @foreach($variants as $vi => $variant)
+                @php $variantObj = !empty($variant['id']) ? $variantObjects->get($variant['id']) : null; @endphp
                 <div class="variant-block border border-gray-200 rounded-lg p-4" data-index="{{ $vi }}">
                     <div class="flex items-center justify-between mb-3">
                         <p class="text-sm font-medium text-gray-600">Varian #<span class="variant-num">{{ $vi + 1 }}</span></p>
@@ -97,6 +119,7 @@
                         <div>
                             <label class="text-xs text-gray-500">Nama Varian *</label>
                             <input type="text" name="variants[{{ $vi }}][variant_name]" value="{{ $variant['variant_name'] ?? '' }}"
+                                placeholder="mis. 100g, 200g, Original, Pedas"
                                 class="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm mt-1 focus:outline-none focus:ring-2 focus:ring-amber-400" required>
                         </div>
                         <div>
@@ -107,47 +130,58 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="text-xs text-gray-500">Ingredients (satu per baris)</label>
-                        <textarea name="_ingredients_raw_{{ $vi }}" rows="2" onchange="syncIngredients(this, {{ $vi }})"
-                            class="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm mt-1 focus:outline-none focus:ring-2 focus:ring-amber-400"
-                            placeholder="Kunyit&#10;Asam Jawa&#10;Gula Aren">{{ implode("\n", $variant['ingredients'] ?? []) }}</textarea>
-                        @foreach(($variant['ingredients'] ?? []) as $ii => $ing)
-                        <input type="hidden" name="variants[{{ $vi }}][ingredients][]" value="{{ $ing }}" class="ing-input-{{ $vi }}">
-                        @endforeach
-                    </div>
-                    <div class="mb-3">
                         <label class="text-xs text-gray-500">Catatan Compliance</label>
                         <textarea name="variants[{{ $vi }}][compliance_notes]" rows="2"
+                            placeholder="mis. Halal MUI, BPOM RI..."
                             class="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm mt-1 focus:outline-none focus:ring-2 focus:ring-amber-400">{{ $variant['compliance_notes'] ?? '' }}</textarea>
                     </div>
-                    {{-- Nutrition --}}
+
+                    {{-- Variant Images (opsional) --}}
                     <div class="border-t border-gray-100 pt-3">
-                        <p class="text-xs font-medium text-gray-500 mb-2">Nutrition Facts (per sajian)</p>
-                        <div class="grid grid-cols-3 gap-2">
-                            @foreach(['energy_kcal'=>'Energi (kcal)','protein_g'=>'Protein (g)','fat_g'=>'Lemak (g)','carbs_g'=>'Karbohidrat (g)','sugar_g'=>'Gula (g)','sodium_mg'=>'Natrium (mg)'] as $field => $label)
-                            <div>
-                                <label class="text-xs text-gray-400">{{ $label }}</label>
-                                <input type="number" step="0.01" name="variants[{{ $vi }}][nutrition][{{ $field }}]" value="{{ $variant['nutrition'][$field] ?? '' }}"
-                                    class="w-full border border-gray-200 rounded px-2 py-1 text-sm mt-0.5 focus:outline-none focus:ring-1 focus:ring-amber-400">
+                        <p class="text-xs font-medium text-gray-500 mb-2">Gambar Varian <span class="font-normal text-gray-400">(opsional)</span></p>
+                        @if($isEdit && $variantObj && $variantObj->images->count())
+                        <div class="grid grid-cols-3 gap-2 mb-2">
+                            @foreach($variantObj->images as $img)
+                            <div class="relative">
+                                <img src="{{ Storage::url($img->image_path) }}" alt="{{ $img->alt_text }}" class="w-full h-20 object-cover rounded-lg">
+                                <label class="absolute top-1 right-1 cursor-pointer">
+                                    <input type="checkbox" name="variants[{{ $vi }}][delete_images][]" value="{{ $img->id }}" class="sr-only peer">
+                                    <span class="bg-white/80 peer-checked:bg-red-500 peer-checked:text-white text-gray-600 text-xs px-1.5 py-0.5 rounded shadow">Hapus</span>
+                                </label>
                             </div>
                             @endforeach
                         </div>
+                        @endif
+                        <label class="block">
+                            <span class="text-xs text-gray-400 block mb-1">Upload gambar varian baru</span>
+                            <input type="file" name="variants[{{ $vi }}][images][]" multiple accept="image/*"
+                                class="w-full text-sm text-gray-500 file:mr-3 file:py-1 file:px-2 file:rounded file:border-0 file:text-xs file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                        </label>
                     </div>
                 </div>
                 @endforeach
+
+                @if(count($variants) === 0)
+                <p class="text-xs text-gray-400 text-center py-4 border border-dashed border-gray-200 rounded-lg">Belum ada varian. Klik "+ Tambah Varian" jika dibutuhkan.</p>
+                @endif
             </div>
         </div>
     </div>
 
-    {{-- Right: Images + Status --}}
+    {{-- Right: Images + Status + Submit --}}
     <div class="space-y-6">
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-            <h3 class="font-semibold text-gray-700 mb-4">Status</h3>
-            <label class="flex items-center gap-2 cursor-pointer">
+            <h3 class="font-semibold text-gray-700 mb-4">Status & Urutan</h3>
+            <label class="flex items-center gap-2 cursor-pointer mb-4">
                 <input type="checkbox" name="is_active" value="1" class="w-4 h-4 rounded text-amber-500"
                     {{ old('is_active', $product->is_active ?? true) ? 'checked' : '' }}>
                 <span class="text-sm text-gray-700">Produk aktif</span>
             </label>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Urutan tampil <span class="text-gray-400 font-normal">(angka kecil = tampil duluan)</span></label>
+                <input type="number" name="sort_order" min="0" value="{{ old('sort_order', $product->sort_order ?? 0) }}"
+                    class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400">
+            </div>
         </div>
 
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
@@ -156,7 +190,7 @@
             @if($isEdit && $product->images->count())
             <div class="grid grid-cols-2 gap-2 mb-4">
                 @foreach($product->images as $img)
-                <div class="relative group">
+                <div class="relative">
                     <img src="{{ Storage::url($img->image_path) }}" alt="{{ $img->alt_text }}" class="w-full h-24 object-cover rounded-lg">
                     <label class="absolute top-1 right-1 cursor-pointer">
                         <input type="checkbox" name="delete_images[]" value="{{ $img->id }}" class="sr-only peer">
@@ -197,6 +231,25 @@ document.getElementById('product-slug')?.addEventListener('input', function() {
     this.dataset.manual = this.value ? '1' : '';
 });
 
+// Sync product-level ingredients
+function syncProductIngredients(textarea) {
+    document.querySelectorAll('.ing-product-input').forEach(el => el.remove());
+    const container = document.getElementById('ingredients-hidden');
+    const lines = textarea.value.split('\n').filter(l => l.trim());
+    lines.forEach(line => {
+        const inp = document.createElement('input');
+        inp.type = 'hidden';
+        inp.name = 'ingredients[]';
+        inp.value = line.trim();
+        inp.className = 'ing-product-input';
+        container.appendChild(inp);
+    });
+}
+
+// Init sync on page load
+const ingRaw = document.getElementById('ingredients-raw');
+if (ingRaw && ingRaw.value) syncProductIngredients(ingRaw);
+
 let variantCount = {{ count($variants ?? []) }};
 
 function addAdvantage() {
@@ -211,9 +264,10 @@ function addAdvantage() {
 
 function addVariant() {
     const idx = variantCount++;
-    const fields = ['energy_kcal','protein_g','fat_g','carbs_g','sugar_g','sodium_mg'];
-    const labels = {'energy_kcal':'Energi (kcal)','protein_g':'Protein (g)','fat_g':'Lemak (g)','carbs_g':'Karbohidrat (g)','sugar_g':'Gula (g)','sodium_mg':'Natrium (mg)'};
-    const nutHtml = fields.map(f => `<div><label class="text-xs text-gray-400">${labels[f]}</label><input type="number" step="0.01" name="variants[${idx}][nutrition][${f}]" class="w-full border border-gray-200 rounded px-2 py-1 text-sm mt-0.5 focus:outline-none focus:ring-1 focus:ring-amber-400"></div>`).join('');
+    // Hapus placeholder "belum ada varian" jika ada
+    const placeholder = document.querySelector('#variants-container .border-dashed');
+    if (placeholder) placeholder.remove();
+
     const html = `
     <div class="variant-block border border-gray-200 rounded-lg p-4" data-index="${idx}">
         <div class="flex items-center justify-between mb-3">
@@ -223,43 +277,34 @@ function addVariant() {
         <input type="hidden" name="variants[${idx}][id]" value="">
         <div class="grid grid-cols-2 gap-3 mb-3">
             <div><label class="text-xs text-gray-500">Nama Varian *</label>
-            <input type="text" name="variants[${idx}][variant_name]" class="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm mt-1 focus:outline-none focus:ring-2 focus:ring-amber-400" required></div>
+            <input type="text" name="variants[${idx}][variant_name]" placeholder="mis. 100g, Original"
+                class="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm mt-1 focus:outline-none focus:ring-2 focus:ring-amber-400" required></div>
             <div><label class="text-xs text-gray-500">Berat Bersih</label>
-            <input type="text" name="variants[${idx}][net_weight]" placeholder="mis. 100 g" class="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm mt-1 focus:outline-none focus:ring-2 focus:ring-amber-400"></div>
+            <input type="text" name="variants[${idx}][net_weight]" placeholder="mis. 100 g"
+                class="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm mt-1 focus:outline-none focus:ring-2 focus:ring-amber-400"></div>
         </div>
-        <div class="mb-3"><label class="text-xs text-gray-500">Ingredients</label>
-        <textarea name="_ingredients_raw_${idx}" rows="2" onchange="syncIngredients(this, ${idx})" class="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm mt-1 focus:outline-none focus:ring-2 focus:ring-amber-400" placeholder="Kunyit&#10;Asam Jawa"></textarea></div>
         <div class="mb-3"><label class="text-xs text-gray-500">Catatan Compliance</label>
-        <textarea name="variants[${idx}][compliance_notes]" rows="2" class="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm mt-1 focus:outline-none focus:ring-2 focus:ring-amber-400"></textarea></div>
-        <div class="border-t border-gray-100 pt-3"><p class="text-xs font-medium text-gray-500 mb-2">Nutrition Facts</p>
-        <div class="grid grid-cols-3 gap-2">${nutHtml}</div></div>
+        <textarea name="variants[${idx}][compliance_notes]" rows="2" placeholder="mis. Halal MUI, BPOM RI..."
+            class="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm mt-1 focus:outline-none focus:ring-2 focus:ring-amber-400"></textarea></div>
+        <div class="border-t border-gray-100 pt-3">
+            <p class="text-xs font-medium text-gray-500 mb-2">Gambar Varian <span class="font-normal text-gray-400">(opsional)</span></p>
+            <label class="block">
+                <span class="text-xs text-gray-400 block mb-1">Upload gambar varian</span>
+                <input type="file" name="variants[${idx}][images][]" multiple accept="image/*"
+                    class="w-full text-sm text-gray-500 file:mr-3 file:py-1 file:px-2 file:rounded file:border-0 file:text-xs file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+            </label>
+        </div>
     </div>`;
     document.getElementById('variants-container').insertAdjacentHTML('beforeend', html);
 }
 
 function removeVariant(btn) {
     btn.closest('.variant-block').remove();
+    // Tampilkan placeholder jika kosong
+    const container = document.getElementById('variants-container');
+    if (container.querySelectorAll('.variant-block').length === 0) {
+        container.innerHTML = '<p class="text-xs text-gray-400 text-center py-4 border border-dashed border-gray-200 rounded-lg">Belum ada varian. Klik "+ Tambah Varian" jika dibutuhkan.</p>';
+    }
 }
-
-function syncIngredients(textarea, idx) {
-    // Remove old hidden inputs
-    document.querySelectorAll(`.ing-input-${idx}`).forEach(el => el.remove());
-    const lines = textarea.value.split('\n').filter(l => l.trim());
-    const container = textarea.closest('.variant-block');
-    lines.forEach(line => {
-        const inp = document.createElement('input');
-        inp.type = 'hidden';
-        inp.name = `variants[${idx}][ingredients][]`;
-        inp.value = line.trim();
-        inp.className = `ing-input-${idx}`;
-        container.appendChild(inp);
-    });
-}
-
-// Init sync for existing variants on page load
-document.querySelectorAll('[name^="_ingredients_raw_"]').forEach(ta => {
-    const idx = ta.name.replace('_ingredients_raw_', '');
-    syncIngredients(ta, idx);
-});
 </script>
 @endpush

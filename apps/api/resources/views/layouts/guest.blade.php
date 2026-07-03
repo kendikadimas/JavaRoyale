@@ -41,9 +41,9 @@
         </style>
     </head>
     <body class="font-sans text-brand-black antialiased bg-earth-50 relative overflow-hidden">
-        {/* Decorative backdrop blurs */}
-        <div class="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-brand-yellow/10 blur-[120px]" />
-        <div class="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-brand-yellow/5 blur-[150px] pointer-events-none" />
+        {{-- Decorative backdrop blurs --}}
+        <div class="absolute -top-40 -left-40 w-96 h-96 rounded-full bg-brand-yellow/10 blur-[120px]"></div>
+        <div class="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-brand-yellow/5 blur-[150px] pointer-events-none"></div>
 
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 relative z-10 px-4">
             <div class="mb-8 text-center">

@@ -12,6 +12,7 @@ async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
   const url = `${base}${path}`;
   const res = await fetch(url, {
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    cache: 'no-store',
     ...options,
   });
 
@@ -62,19 +63,20 @@ export interface NutritionFact {
 export interface ProductVariant {
   id: number;
   variant_name: string;
-  ingredients: string[] | null;
   net_weight: string | null;
   compliance_notes: string | null;
-  nutrition_fact: NutritionFact | null;
+  images: ProductImage[];
 }
 
 export interface Product {
   id: number;
   name: string;
   slug: string;
-  category: string;
+  sort_order: number;
   description: string | null;
   advantages: string[] | null;
+  ingredients: string[] | null;
+  nutrition_fact: NutritionFact | null;
   is_active: boolean;
   images: ProductImage[];
   variants: ProductVariant[];
@@ -132,9 +134,8 @@ export function getHomepageSetting(): Promise<HomepageSetting> {
   return apiFetch<HomepageSetting>('/homepage-setting');
 }
 
-export function getProducts(params?: { category?: string; page?: number }): Promise<PaginatedResponse<Product>> {
+export function getProducts(params?: { page?: number }): Promise<PaginatedResponse<Product>> {
   const q = new URLSearchParams();
-  if (params?.category) q.set('category', params.category);
   if (params?.page) q.set('page', String(params.page));
   return apiFetch<PaginatedResponse<Product>>(`/products${q.toString() ? '?' + q : ''}`);
 }
@@ -205,8 +206,14 @@ export function getSocialEmbedSettings(): Promise<SocialEmbedSetting[]> {
 }
 
 export function imageUrl(path: string | null | undefined): string {
-  if (!path) return '';
-  if (path.startsWith('http') || path.startsWith('/')) return path;
+  if (!path) return '/placeholder-product.png';
+  if (path.startsWith('http')) return path;
+  // path relatif yang dimulai '/' — bisa asset statis Next.js (/new/...) atau Laravel public (/assets/..., /storage/...)
+  // Kalau dimulai /new/ = asset statis Next.js, kembalikan apa adanya
+  if (path.startsWith('/new/') || path.startsWith('/fotoproduk')) return path;
+  // Kalau dimulai '/' lainnya = Laravel public path, tambah base URL
+  if (path.startsWith('/')) return `${API_BASE}${path}`;
+  // Tanpa slash = file upload di storage
   return `${API_BASE}/storage/${path}`;
 }
 

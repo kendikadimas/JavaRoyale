@@ -11,20 +11,17 @@ class ProductController extends Controller
 {
     public function index(Request $request): JsonResponse
     {
-        $query = Product::with(['images', 'variants'])
+        $query = Product::with(['images', 'variants.images'])
             ->where('is_active', true)
-            ->latest();
-
-        if ($request->filled('category')) {
-            $query->where('category', $request->category);
-        }
+            ->orderBy('sort_order')
+            ->orderBy('created_at');
 
         return response()->json($query->paginate(12));
     }
 
     public function show(string $slug): JsonResponse
     {
-        $product = Product::with(['images', 'variants.nutritionFact'])
+        $product = Product::with(['images', 'nutritionFact', 'variants.images'])
             ->where('slug', $slug)
             ->where('is_active', true)
             ->firstOrFail();

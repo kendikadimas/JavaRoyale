@@ -28,8 +28,6 @@ class ArticleController extends Controller
             'category'        => 'required|string|max:100',
             'body'            => 'required|string',
             'featured_image'  => 'nullable|image|max:2048',
-            'seo_title'       => 'nullable|string|max:255',
-            'seo_description' => 'nullable|string|max:300',
             'is_published'    => 'boolean',
             'published_at'    => 'nullable|date',
         ]);
@@ -63,8 +61,6 @@ class ArticleController extends Controller
             'category'        => 'required|string|max:100',
             'body'            => 'required|string',
             'featured_image'  => 'nullable|image|max:2048',
-            'seo_title'       => 'nullable|string|max:255',
-            'seo_description' => 'nullable|string|max:300',
             'is_published'    => 'boolean',
             'published_at'    => 'nullable|date',
         ]);

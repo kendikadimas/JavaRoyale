@@ -13,18 +13,25 @@ class Product extends Model
     protected $fillable = [
         'name',
         'slug',
-        'category',
         'description',
         'advantages',
+        'ingredients',
         'is_active',
+        'sort_order',
     ];
 
     protected $casts = [
-        'advantages' => 'array',
-        'is_active'  => 'boolean',
+        'advantages'  => 'array',
+        'ingredients' => 'array',
+        'is_active'   => 'boolean',
     ];
 
     public function images(): HasMany
+    {
+        return $this->hasMany(ProductImage::class)->whereNull('product_variant_id')->orderBy('order');
+    }
+
+    public function allImages(): HasMany
     {
         return $this->hasMany(ProductImage::class)->orderBy('order');
     }
@@ -32,5 +39,10 @@ class Product extends Model
     public function variants(): HasMany
     {
         return $this->hasMany(ProductVariant::class);
+    }
+
+    public function nutritionFact(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(NutritionFact::class);
     }
 }

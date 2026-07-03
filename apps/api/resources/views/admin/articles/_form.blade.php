@@ -41,20 +41,6 @@
                 @error('body')<p class="text-red-500 text-xs mt-1">{{ $message }}</p>@enderror
             </div>
         </div>
-
-        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-            <h3 class="font-semibold text-gray-700 mb-4">SEO</h3>
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700 mb-1">SEO Title</label>
-                <input type="text" name="seo_title" value="{{ old('seo_title', $article->seo_title ?? '') }}"
-                    class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400" maxlength="255">
-            </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">SEO Description</label>
-                <textarea name="seo_description" rows="2" maxlength="300"
-                    class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400">{{ old('seo_description', $article->seo_description ?? '') }}</textarea>
-            </div>
-        </div>
     </div>
 
     <div class="space-y-6">

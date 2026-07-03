@@ -11,7 +11,7 @@ class NutritionFact extends Model
     use HasFactory;
 
     protected $fillable = [
-        'product_variant_id',
+        'product_id',
         'energy_kcal',
         'protein_g',
         'fat_g',
@@ -29,8 +29,8 @@ class NutritionFact extends Model
         'sodium_mg'   => 'decimal:2',
     ];
 
-    public function variant(): BelongsTo
+    public function product(): BelongsTo
     {
-        return $this->belongsTo(ProductVariant::class, 'product_variant_id');
+        return $this->belongsTo(Product::class);
     }
 }

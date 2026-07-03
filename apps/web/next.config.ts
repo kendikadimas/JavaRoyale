@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
     root: path.resolve(__dirname, "../..")
   },
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         // Laravel public assets + storage (local dev)

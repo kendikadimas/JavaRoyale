@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class ProductVariant extends Model
@@ -14,22 +15,19 @@ class ProductVariant extends Model
     protected $fillable = [
         'product_id',
         'variant_name',
-        'ingredients',
         'net_weight',
         'compliance_notes',
     ];
 
-    protected $casts = [
-        'ingredients' => 'array',
-    ];
+    protected $casts = [];
 
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
     }
 
-    public function nutritionFact(): HasOne
+    public function images(): HasMany
     {
-        return $this->hasOne(NutritionFact::class);
+        return $this->hasMany(ProductImage::class)->orderBy('order');
     }
 }

@@ -10,7 +10,8 @@ class SiteSettingController extends Controller
     public function edit()
     {
         $setting = SiteSetting::current();
-        return view('admin.site-setting.edit', compact('setting'));
+        $socials  = $setting->social_links ?? [];
+        return view('admin.site-setting.edit', compact('setting', 'socials'));
     }
 
     public function update(Request $request)

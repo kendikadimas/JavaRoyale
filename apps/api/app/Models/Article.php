@@ -15,8 +15,6 @@ class Article extends Model
         'category',
         'body',
         'featured_image',
-        'seo_title',
-        'seo_description',
         'is_published',
         'published_at',
     ];

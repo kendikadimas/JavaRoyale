@@ -27,53 +27,25 @@ export default async function HomePage() {
     getSocialEmbedSettings().catch(() => []),
   ]);
 
-  const featuredIds = hero?.highlighted_product_ids ?? [];
+  const featuredIds = (hero?.highlighted_product_ids ?? []).map(Number);
   const allProducts = productsRes?.data ?? [];
-  const featured = featuredIds.length > 0
+  let featured = featuredIds.length > 0
     ? allProducts.filter((p) => featuredIds.includes(p.id))
     : allProducts.slice(0, 3);
 
-  const javaDrinkVariants = [
-    {
-      id: 101,
-      name: 'JavaDrink Canned',
-      slug: 'java-drink-canned',
-      category: 'ready-to-drink',
-      description: 'It\'s like happy hour in a can. Refreshing and fresh, perfect for a late day on the patio or a hot day by the pool.',
-      images: [{ image_path: '/new/canjavadrink.png' }]
-    },
-    {
-      id: 102,
-      name: 'JavaDrink Pouch',
-      slug: 'java-drink-pouch',
-      category: 'travel-size',
-      description: 'Convenient pouch packaging for your on-the-go lifestyle. Enjoy the authentic taste of Indonesian herbal heritage anywhere.',
-      images: [{ image_path: '/new/pouchjava.png' }]
-    },
-    {
-      id: 103,
-      name: 'JavaDrink Powder',
-      slug: 'java-drink-powder',
-      category: 'powder-blend',
-      description: 'Our signature herbal blend in a premium bottle. Perfect for brewing at home and sharing with family.',
-      images: [{ image_path: '/new/botoldrink.png' }]
-    },
-    {
-      id: 104,
-      name: 'JavaDrink Powder Mini',
-      slug: 'java-drink-powder-mini',
-      category: 'powder-blend',
-      description: 'Compact and cute. The same authentic recipe in a smaller bottle, ideal for gifting or personal daily use.',
-      images: [{ image_path: '/new/botolkecil.png' }]
-    }
-  ];
+  // Kalau featured kurang dari 3, tambah produk lain untuk melengkapi
+  if (featured.length < 3) {
+    const featuredSet = new Set(featured.map((p) => p.id));
+    const extras = allProducts.filter((p) => !featuredSet.has(p.id));
+    featured = [...featured, ...extras].slice(0, 3);
+  }
 
   return (
     <>
       <HeroAnimated />
       <Marquee />
 
-      <ProductsShowcaseAnimated products={javaDrinkVariants as any} />
+      <ProductsShowcaseAnimated products={featured} />
 
       <WhatIsJavaDrink />
 

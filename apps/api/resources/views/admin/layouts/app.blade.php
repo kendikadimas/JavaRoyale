@@ -177,36 +177,16 @@
 
             {{-- Produk --}}
             <div class="pt-3">
-                <p class="px-3 pb-1 text-xs font-semibold uppercase tracking-wider text-gray-500">Produk</p>
+                <p class="px-3 pb-1 text-xs font-semibold uppercase tracking-wider text-gray-500">Konten</p>
                 <a href="{{ route('admin.products.index') }}"
                    class="flex items-center gap-3 px-3 py-2 rounded-xl {{ request()->routeIs('admin.products.*') ? 'bg-brand-yellow/10 text-brand-yellow font-bold' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
                     Produk
                 </a>
-            </div>
-
-            {{-- Konten --}}
-            <div class="pt-3">
-                <p class="px-3 pb-1 text-xs font-semibold uppercase tracking-wider text-gray-500">Konten</p>
                 <a href="{{ route('admin.articles.index') }}"
                    class="flex items-center gap-3 px-3 py-2 rounded-xl {{ request()->routeIs('admin.articles.*') ? 'bg-brand-yellow/10 text-brand-yellow font-bold' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                     Artikel
-                </a>
-                <a href="{{ route('admin.faq-items.index') }}"
-                   class="flex items-center gap-3 px-3 py-2 rounded-xl {{ request()->routeIs('admin.faq-items.*') ? 'bg-brand-yellow/10 text-brand-yellow font-bold' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    FAQ
-                </a>
-                <a href="{{ route('admin.testimonials.index') }}"
-                   class="flex items-center gap-3 px-3 py-2 rounded-xl {{ request()->routeIs('admin.testimonials.*') ? 'bg-brand-yellow/10 text-brand-yellow font-bold' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
-                    Testimonial
-                </a>
-                <a href="{{ route('admin.buyer-categories.index') }}"
-                   class="flex items-center gap-3 px-3 py-2 rounded-xl {{ request()->routeIs('admin.buyer-categories.*') ? 'bg-brand-yellow/10 text-brand-yellow font-bold' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                    Buyer Categories
                 </a>
             </div>
 
@@ -220,37 +200,26 @@
                 </a>
             </div>
 
-            {{-- Pengaturan Situs --}}
-            <div class="pt-3">
-                <p class="px-3 pb-1 text-xs font-semibold uppercase tracking-wider text-gray-500">Pengaturan Situs</p>
-                <a href="{{ route('admin.homepage-setting.edit') }}"
-                   class="flex items-center gap-3 px-3 py-2 rounded-xl {{ request()->routeIs('admin.homepage-setting.*') ? 'bg-brand-yellow/10 text-brand-yellow font-bold' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
-                    Homepage
-                </a>
-                <a href="{{ route('admin.site-setting.edit') }}"
-                   class="flex items-center gap-3 px-3 py-2 rounded-xl {{ request()->routeIs('admin.site-setting.*') ? 'bg-brand-yellow/10 text-brand-yellow font-bold' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                    Site Settings
-                </a>
-                <a href="{{ route('admin.social-embed-settings.index') }}"
-                   class="flex items-center gap-3 px-3 py-2 rounded-xl {{ request()->routeIs('admin.social-embed-settings.*') ? 'bg-brand-yellow/10 text-brand-yellow font-bold' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
-                    Social Embed
-                </a>
-                <a href="{{ route('admin.seo-settings.index') }}"
-                   class="flex items-center gap-3 px-3 py-2 rounded-xl {{ request()->routeIs('admin.seo-settings.*') ? 'bg-brand-yellow/10 text-brand-yellow font-bold' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-                    SEO Settings
-                </a>
-            </div>
         </nav>
 
-        <div class="px-4 py-4 border-t border-white/5">
-            <p class="text-xs text-gray-400 mb-2 font-semibold">{{ Auth::user()->name }}</p>
-            <form method="POST" action="{{ route('logout') }}">
+        <div class="px-4 py-4 border-t border-white/5 space-y-2">
+            <a href="{{ route('admin.profile.edit') }}"
+               class="flex items-center gap-2 p-2 rounded-lg hover:bg-white/5 transition">
+                <div class="w-8 h-8 rounded-full bg-brand-yellow/20 flex items-center justify-center text-brand-yellow text-xs font-black">
+                    {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
+                </div>
+                <div class="min-w-0 flex-1">
+                    <p class="text-xs text-white font-semibold truncate">{{ Auth::user()->name }}</p>
+                    <p class="text-[10px] text-gray-500 truncate">{{ Auth::user()->email }}</p>
+                </div>
+            </a>
+            <form method="POST" action="{{ route('logout') }}" class="w-full">
                 @csrf
-                <button type="submit" class="text-xs text-gray-400 hover:text-white transition">Logout &rarr;</button>
+                <button type="submit"
+                    class="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-lg bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 text-xs font-semibold transition-all duration-150">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+                    Logout
+                </button>
             </form>
         </div>
     </aside>

@@ -27,101 +27,164 @@ class DatabaseSeeder extends Seeder
         // Admin user — credentials from .env
         $this->call(AdminSeeder::class);
 
-        // --- 2 Products with variants and nutrition facts ---
+        // --- 3 Products with variants and nutrition facts ---
 
-        $jamu = Product::create([
-            'name'        => 'Jamu Kunyit Asam',
-            'slug'        => 'jamu-kunyit-asam',
-            'category'    => 'jamu',
-            'description' => 'Minuman herbal tradisional berbahan kunyit dan asam jawa. Diproduksi dengan standar BPOM dan halal, cocok untuk pasar ekspor Asia Tenggara dan Timur Tengah.',
+        // Product 1: JavaDrink Canned
+        $canned = Product::create([
+            'name'        => 'JavaDrink Canned',
+            'slug'        => 'java-drink-canned',
+            'category'    => 'ready-to-drink',
+            'description' => 'A refreshing, ready-to-drink canned format that brings the goodness of traditional Javanese jamu into your modern, fast-paced life. Crafted from raw, organic turmeric and tamarind, lightly carbonated for a crisp, energizing finish.',
             'advantages'  => [
-                'Mengandung curcumin alami dari kunyit pilihan',
-                'Bebas pengawet buatan, siap ekspor',
-                'Tersedia dalam kemasan sachet, botol, dan bulk',
+                'Curcumin from organic turmeric',
+                'Crisp carbonated finish',
+                'Ready to drink anywhere',
             ],
             'is_active'   => true,
         ]);
 
         ProductImage::create([
-            'product_id' => $jamu->id,
-            'image_path' => 'images/products/jamu-kunyit-asam-1.jpg',
-            'alt_text'   => 'Jamu Kunyit Asam Java Origins',
+            'product_id' => $canned->id,
+            'image_path' => '/new/canjavadrink.png',
+            'alt_text'   => 'JavaDrink Canned',
             'order'      => 0,
         ]);
 
-        $jamuVariantSachet = ProductVariant::create([
-            'product_id'       => $jamu->id,
-            'variant_name'     => 'Sachet 15g',
-            'ingredients'      => ['Kunyit (Curcuma longa)', 'Asam Jawa', 'Gula Aren', 'Garam'],
-            'net_weight'       => '15 g',
-            'compliance_notes' => 'BPOM RI MD 123456789012. Halal MUI. Suitable for export to ASEAN, Middle East.',
+        ProductImage::create([
+            'product_id' => $canned->id,
+            'image_path' => '/new/detailjavacanned.png',
+            'alt_text'   => 'JavaDrink Canned Detail',
+            'order'      => 1,
         ]);
 
-        NutritionFact::create([
-            'product_variant_id' => $jamuVariantSachet->id,
-            'energy_kcal'        => 45.00,
-            'protein_g'          => 0.50,
-            'fat_g'              => 0.10,
-            'carbs_g'            => 10.80,
-            'sugar_g'            => 9.50,
-            'sodium_mg'          => 35.00,
-        ]);
-
-        $jamuVariantBottle = ProductVariant::create([
-            'product_id'       => $jamu->id,
-            'variant_name'     => 'Botol 250ml',
-            'ingredients'      => ['Kunyit (Curcuma longa)', 'Asam Jawa', 'Gula Aren', 'Garam', 'Air'],
+        $cannedVariant = ProductVariant::create([
+            'product_id'       => $canned->id,
+            'variant_name'     => 'Can 250ml',
+            'ingredients'      => ['Turmeric (Curcuma longa)', 'Tamarind', 'Palm Sugar', 'Water', 'Carbonation'],
             'net_weight'       => '250 ml',
-            'compliance_notes' => 'BPOM RI MD 123456789013. Halal MUI.',
+            'compliance_notes' => 'GMP Compliant. Halal Certified. Suitable for export globally.',
         ]);
 
         NutritionFact::create([
-            'product_variant_id' => $jamuVariantBottle->id,
+            'product_variant_id' => $cannedVariant->id,
             'energy_kcal'        => 75.00,
             'protein_g'          => 0.80,
             'fat_g'              => 0.20,
             'carbs_g'            => 18.00,
-            'sugar_g'            => 16.00,
             'sodium_mg'          => 58.00,
         ]);
 
-        // Product 2
-        $keripik = Product::create([
-            'name'        => 'Keripik Nangka Vacuum Fried',
-            'slug'        => 'keripik-nangka-vacuum-fried',
-            'category'    => 'vacuum-fried-snack',
-            'description' => 'Snack nangka renyah diproses dengan teknologi vacuum frying. Mempertahankan warna, aroma, dan nutrisi alami buah. Bebas MSG, rendah minyak, cocok untuk pasar premium global.',
+        // Product 2: JavaDrink Powder
+        $powder = Product::create([
+            'name'        => 'JavaDrink Powder',
+            'slug'        => 'java-drink-powder',
+            'category'    => 'powder-blend',
+            'description' => 'Our signature traditional herbal blend in a soluble powder format, packaged in a premium reusable glass bottle. Made using advanced extraction techniques that preserve essential nutrients, offering a warm and comforting brew for your daily wellness.',
             'advantages'  => [
-                'Diproses dengan vacuum frying — kandungan minyak jauh lebih rendah dari keripik konvensional',
-                'Tidak ada MSG atau pewarna buatan',
-                'Tekstur renyah tahan lama dengan shelf life 12 bulan',
+                'Soluble premium powder',
+                'Rich nutrition retention',
+                'Comforting warm brew',
             ],
             'is_active'   => true,
         ]);
 
         ProductImage::create([
-            'product_id' => $keripik->id,
-            'image_path' => 'images/products/keripik-nangka-1.jpg',
-            'alt_text'   => 'Keripik Nangka Vacuum Fried Java Origins',
+            'product_id' => $powder->id,
+            'image_path' => '/new/botoldrink.png',
+            'alt_text'   => 'JavaDrink Powder Premium Bottle',
             'order'      => 0,
         ]);
 
-        $keripikVariant = ProductVariant::create([
-            'product_id'       => $keripik->id,
-            'variant_name'     => 'Retail 100g',
-            'ingredients'      => ['Nangka (Artocarpus heterophyllus)', 'Minyak Sawit Non-GMO', 'Garam'],
-            'net_weight'       => '100 g',
-            'compliance_notes' => 'BPOM RI MD 234567890123. Halal MUI. SNI 01-4031-1996.',
+        ProductImage::create([
+            'product_id' => $powder->id,
+            'image_path' => '/new/botolkecil.png',
+            'alt_text'   => 'JavaDrink Powder Detail',
+            'order'      => 1,
+        ]);
+
+        $powderVariant1 = ProductVariant::create([
+            'product_id'       => $powder->id,
+            'variant_name'     => 'Powder',
+            'ingredients'      => ['Turmeric Extract', 'Tamarind Extract', 'Palm Sugar'],
+            'net_weight'       => '450 g',
+            'compliance_notes' => 'GMP Compliant. Halal Certified.',
         ]);
 
         NutritionFact::create([
-            'product_variant_id' => $keripikVariant->id,
-            'energy_kcal'        => 380.00,
-            'protein_g'          => 2.50,
-            'fat_g'              => 18.00,
-            'carbs_g'            => 52.00,
-            'sugar_g'            => 38.00,
-            'sodium_mg'          => 120.00,
+            'product_variant_id' => $powderVariant1->id,
+            'energy_kcal'        => 45.00,
+            'protein_g'          => 0.50,
+            'fat_g'              => 0.10,
+            'carbs_g'            => 10.80,
+            'sodium_mg'          => 35.00,
+        ]);
+
+        $powderVariant2 = ProductVariant::create([
+            'product_id'       => $powder->id,
+            'variant_name'     => 'Bulk',
+            'ingredients'      => ['Turmeric Extract', 'Tamarind Extract', 'Palm Sugar'],
+            'net_weight'       => '1 kg',
+            'compliance_notes' => 'GMP Compliant. Halal Certified.',
+        ]);
+
+        $powderVariant3 = ProductVariant::create([
+            'product_id'       => $powder->id,
+            'variant_name'     => 'Powder Mini', // This is the Powder Mini variant!
+            'ingredients'      => ['Turmeric Extract', 'Tamarind Extract', 'Palm Sugar'],
+            'net_weight'       => '200 g',
+            'compliance_notes' => 'GMP Compliant. Halal Certified.',
+        ]);
+
+        // Product 3: JavaDrink Pouch
+        $pouch = Product::create([
+            'name'        => 'JavaDrink Pouch',
+            'slug'        => 'java-drink-pouch',
+            'category'    => 'travel-size',
+            'description' => 'Designed for your travel and on-the-go lifestyle. This resealable stand-up pouch contains convenient single-serve sachets of our premium soluble herbal powders, letting you enjoy authentic Indonesian wellness anywhere in the world.',
+            'advantages'  => [
+                'Travel pack convenience',
+                'Resealable stand-up pouch',
+                'Authentic Javanese wellness',
+            ],
+            'is_active'   => true,
+        ]);
+
+        ProductImage::create([
+            'product_id' => $pouch->id,
+            'image_path' => '/new/pouchjava.png',
+            'alt_text'   => 'JavaDrink Pouch Pack',
+            'order'      => 0,
+        ]);
+
+        ProductImage::create([
+            'product_id' => $pouch->id,
+            'image_path' => '/fotoproduk.jpeg',
+            'alt_text'   => 'JavaDrink Pouch Layout',
+            'order'      => 1,
+        ]);
+
+        $pouchVariant1 = ProductVariant::create([
+            'product_id'       => $pouch->id,
+            'variant_name'     => 'Pouch 200g',
+            'ingredients'      => ['Turmeric Extract', 'Tamarind Extract', 'Palm Sugar'],
+            'net_weight'       => '200 g',
+            'compliance_notes' => 'GMP Compliant. Halal Certified.',
+        ]);
+
+        $pouchVariant2 = ProductVariant::create([
+            'product_id'       => $pouch->id,
+            'variant_name'     => 'Pouch 100g',
+            'ingredients'      => ['Turmeric Extract', 'Tamarind Extract', 'Palm Sugar'],
+            'net_weight'       => '100 g',
+            'compliance_notes' => 'GMP Compliant. Halal Certified.',
+        ]);
+
+        $pouchVariant3 = ProductVariant::create([
+            'product_id'       => $pouch->id,
+            'variant_name'     => 'Pouch 20g',
+            'ingredients'      => ['Turmeric Extract', 'Tamarind Extract', 'Palm Sugar'],
+            'net_weight'       => '20 g',
+            'compliance_notes' => 'GMP Compliant. Halal Certified.',
         ]);
 
         // --- 3 Articles (English) ---
