@@ -65,12 +65,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         NutritionFact::create([
-            'product_variant_id' => $cannedVariant->id,
-            'energy_kcal'        => 75.00,
-            'protein_g'          => 0.80,
-            'fat_g'              => 0.20,
-            'carbs_g'            => 18.00,
-            'sodium_mg'          => 58.00,
+            'product_id'  => $canned->id,
+            'energy_kcal' => 75.00,
+            'protein_g'   => 0.80,
+            'fat_g'       => 0.20,
+            'carbs_g'     => 18.00,
+            'sodium_mg'   => 58.00,
         ]);
 
         // Product 2: JavaDrink Powder
@@ -109,12 +109,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         NutritionFact::create([
-            'product_variant_id' => $powderVariant1->id,
-            'energy_kcal'        => 45.00,
-            'protein_g'          => 0.50,
-            'fat_g'              => 0.10,
-            'carbs_g'            => 10.80,
-            'sodium_mg'          => 35.00,
+            'product_id'  => $powder->id,
+            'energy_kcal' => 45.00,
+            'protein_g'   => 0.50,
+            'fat_g'       => 0.10,
+            'carbs_g'     => 10.80,
+            'sodium_mg'   => 35.00,
         ]);
 
         $powderVariant2 = ProductVariant::create([
