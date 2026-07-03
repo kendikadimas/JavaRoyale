@@ -22,40 +22,17 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
-        // Debug: log semua info request
-        \Log::info('Article store - request data', [
-            'has_file' => $request->hasFile('featured_image'),
-            'all_files' => array_keys($request->allFiles()),
-            'content_type' => $request->header('Content-Type'),
-            'post_max_size' => ini_get('post_max_size'),
-            'upload_max_filesize' => ini_get('upload_max_filesize'),
-            'body_length' => strlen($request->input('body', '')),
-        ]);
-
-        if ($request->hasFile('featured_image')) {
-            $file = $request->file('featured_image');
-            \Log::info('Article store - file info', [
-                'original_name' => $file->getClientOriginalName(),
-                'size' => $file->getSize(),
-                'mime' => $file->getMimeType(),
-                'error' => $file->getError(),
-                'error_message' => $file->getErrorMessage(),
-                'is_valid' => $file->isValid(),
-            ]);
-        } else {
-            \Log::warning('Article store - no file uploaded', [
-                'php_files' => $_FILES,
-            ]);
-        }
-
         $data = $request->validate([
             'title'           => 'required|string|max:255',
             'slug'            => 'nullable|string|max:255|unique:articles,slug',
             'category'        => 'required|string|max:100',
             'body'            => 'required|string',
-            'featured_image'  => 'nullable|image|max:5120',
+            'featured_image'  => 'nullable|image|max:10240',
             'is_published'    => 'boolean',
             'published_at'    => 'nullable|date',
+        ], [
+            'featured_image.max' => 'Ukuran gambar maksimal 10MB.',
+            'featured_image.image' => 'File harus berupa gambar (jpg, jpeg, png, gif, svg, webp).',
         ]);
 
         $data['slug']         = $data['slug'] ?: Str::slug($data['title']);
@@ -86,9 +63,12 @@ class ArticleController extends Controller
             'slug'            => 'nullable|string|max:255|unique:articles,slug,' . $article->id,
             'category'        => 'required|string|max:100',
             'body'            => 'required|string',
-            'featured_image'  => 'nullable|image|max:5120',
+            'featured_image'  => 'nullable|image|max:10240',
             'is_published'    => 'boolean',
             'published_at'    => 'nullable|date',
+        ], [
+            'featured_image.max' => 'Ukuran gambar maksimal 10MB.',
+            'featured_image.image' => 'File harus berupa gambar (jpg, jpeg, png, gif, svg, webp).',
         ]);
 
         $data['slug']         = $data['slug'] ?: Str::slug($data['title']);
