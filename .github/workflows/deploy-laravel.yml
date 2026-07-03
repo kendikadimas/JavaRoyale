@@ -45,7 +45,16 @@ jobs:
       - name: Compress and Prepare Package
         run: |
           cd apps/api
-          zip -r ../../release.zip . -x "node_modules/*" "storage/logs/*" ".git/*"
+          zip -r ../../release.zip . \
+            -x "node_modules/*" \
+            -x "storage/logs/*" \
+            -x "storage/app/public/*" \
+            -x "storage/framework/cache/*" \
+            -x "storage/framework/sessions/*" \
+            -x "storage/framework/views/*" \
+            -x ".git/*" \
+            -x ".env" \
+            -x "extract.php"
           cd ../..
           mkdir deploy_pkg
           mv release.zip deploy_pkg/
