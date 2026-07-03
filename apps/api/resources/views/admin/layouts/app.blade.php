@@ -158,34 +158,43 @@
 </head>
 <body class="bg-earth-50 text-brand-black antialiased">
 
+{{-- Mobile overlay --}}
+<div id="sidebar-overlay" class="fixed inset-0 bg-black/60 z-20 hidden lg:hidden" onclick="closeSidebar()"></div>
+
 <div class="flex h-screen overflow-hidden">
+
     {{-- Sidebar --}}
-    <aside class="w-64 bg-earth-900 border-r border-white/5 text-white flex flex-col flex-shrink-0">
-        <div class="px-6 py-5 border-b border-white/5">
-            <p class="text-xs font-black uppercase tracking-[0.25em] text-brand-yellow">Java Origins</p>
-            <p class="text-[9px] font-black uppercase tracking-widest text-gray-400 mt-0.5">Admin Panel</p>
+    <aside id="sidebar" class="fixed lg:static inset-y-0 left-0 z-30 w-72 lg:w-64 bg-earth-900 border-r border-white/5 text-white flex flex-col flex-shrink-0 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+        <div class="px-6 py-5 border-b border-white/5 flex items-center justify-between">
+            <div>
+                <p class="text-xs font-black uppercase tracking-[0.25em] text-brand-yellow">Java Origins</p>
+                <p class="text-[9px] font-black uppercase tracking-widest text-gray-400 mt-0.5">Admin Panel</p>
+            </div>
+            {{-- Close button mobile --}}
+            <button onclick="closeSidebar()" class="lg:hidden p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
         </div>
 
         <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1 text-sm">
-
             {{-- Dashboard --}}
-            <a href="{{ route('admin.dashboard') }}"
-               class="flex items-center gap-3 px-3 py-2 rounded-xl {{ request()->routeIs('admin.dashboard') ? 'bg-brand-yellow/10 text-brand-yellow font-bold' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            <a href="{{ route('admin.dashboard') }}" onclick="closeSidebar()"
+               class="flex items-center gap-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('admin.dashboard') ? 'bg-brand-yellow/10 text-brand-yellow font-bold' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">
+                <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
                 Dashboard
             </a>
 
-            {{-- Produk --}}
+            {{-- Konten --}}
             <div class="pt-3">
                 <p class="px-3 pb-1 text-xs font-semibold uppercase tracking-wider text-gray-500">Konten</p>
-                <a href="{{ route('admin.products.index') }}"
-                   class="flex items-center gap-3 px-3 py-2 rounded-xl {{ request()->routeIs('admin.products.*') ? 'bg-brand-yellow/10 text-brand-yellow font-bold' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                <a href="{{ route('admin.products.index') }}" onclick="closeSidebar()"
+                   class="flex items-center gap-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('admin.products.*') ? 'bg-brand-yellow/10 text-brand-yellow font-bold' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">
+                    <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
                     Produk
                 </a>
-                <a href="{{ route('admin.articles.index') }}"
-                   class="flex items-center gap-3 px-3 py-2 rounded-xl {{ request()->routeIs('admin.articles.*') ? 'bg-brand-yellow/10 text-brand-yellow font-bold' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                <a href="{{ route('admin.articles.index') }}" onclick="closeSidebar()"
+                   class="flex items-center gap-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('admin.articles.*') ? 'bg-brand-yellow/10 text-brand-yellow font-bold' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">
+                    <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                     Artikel
                 </a>
             </div>
@@ -193,19 +202,18 @@
             {{-- Lead --}}
             <div class="pt-3">
                 <p class="px-3 pb-1 text-xs font-semibold uppercase tracking-wider text-gray-500">Lead</p>
-                <a href="{{ route('admin.inquiries.index') }}"
-                   class="flex items-center gap-3 px-3 py-2 rounded-xl {{ request()->routeIs('admin.inquiries.*') ? 'bg-brand-yellow/10 text-brand-yellow font-bold' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                <a href="{{ route('admin.inquiries.index') }}" onclick="closeSidebar()"
+                   class="flex items-center gap-3 px-3 py-2.5 rounded-xl {{ request()->routeIs('admin.inquiries.*') ? 'bg-brand-yellow/10 text-brand-yellow font-bold' : 'text-gray-300 hover:bg-white/5 hover:text-white' }}">
+                    <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
                     Inquiry
                 </a>
             </div>
-
         </nav>
 
         <div class="px-4 py-4 border-t border-white/5 space-y-2">
             <a href="{{ route('admin.profile.edit') }}"
                class="flex items-center gap-2 p-2 rounded-lg hover:bg-white/5 transition">
-                <div class="w-8 h-8 rounded-full bg-brand-yellow/20 flex items-center justify-center text-brand-yellow text-xs font-black">
+                <div class="w-8 h-8 rounded-full bg-brand-yellow/20 flex items-center justify-center text-brand-yellow text-xs font-black flex-shrink-0">
                     {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                 </div>
                 <div class="min-w-0 flex-1">
@@ -225,35 +233,54 @@
     </aside>
 
     {{-- Main content --}}
-    <div class="flex-1 overflow-y-auto">
+    <div class="flex-1 overflow-y-auto min-w-0">
         {{-- Top bar --}}
-        <header class="bg-white border-b border-earth-100 px-8 py-4 flex items-center justify-between">
-            <h1 class="text-lg font-black text-brand-black tracking-tight uppercase">@yield('page-title', 'Dashboard')</h1>
-            <div class="flex items-center gap-4">
+        <header class="bg-white border-b border-earth-100 px-4 sm:px-8 py-4 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3 min-w-0">
+                {{-- Hamburger button mobile --}}
+                <button onclick="openSidebar()" class="lg:hidden p-2 rounded-xl text-earth-800 hover:bg-earth-100 transition flex-shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+                <h1 class="text-base sm:text-lg font-black text-brand-black tracking-tight uppercase truncate">@yield('page-title', 'Dashboard')</h1>
+            </div>
+            <div class="flex items-center gap-2 sm:gap-4 flex-shrink-0">
                 @yield('header-actions')
             </div>
         </header>
 
         {{-- Flash messages --}}
         @if(session('success'))
-        <div class="mx-8 mt-4 px-4 py-3 bg-brand-green/10 border border-brand-green/20 text-brand-green rounded-xl text-sm flex items-center gap-2">
-            <svg class="w-4 h-4 text-brand-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+        <div class="mx-4 sm:mx-8 mt-4 px-4 py-3 bg-brand-green/10 border border-brand-green/20 text-brand-green rounded-xl text-sm flex items-center gap-2">
+            <svg class="w-4 h-4 flex-shrink-0 text-brand-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
             {{ session('success') }}
         </div>
         @endif
         @if(session('error'))
-        <div class="mx-8 mt-4 px-4 py-3 bg-brand-red/10 border border-brand-red/20 text-brand-red rounded-xl text-sm flex items-center gap-2">
-            <svg class="w-4 h-4 text-brand-red" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+        <div class="mx-4 sm:mx-8 mt-4 px-4 py-3 bg-brand-red/10 border border-brand-red/20 text-brand-red rounded-xl text-sm flex items-center gap-2">
+            <svg class="w-4 h-4 flex-shrink-0 text-brand-red" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
             {{ session('error') }}
         </div>
         @endif
 
         {{-- Page content --}}
-        <main class="px-8 py-6">
+        <main class="px-4 sm:px-8 py-6">
             @yield('content')
         </main>
     </div>
 </div>
+
+<script>
+    function openSidebar() {
+        document.getElementById('sidebar').classList.remove('-translate-x-full');
+        document.getElementById('sidebar-overlay').classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+    }
+    function closeSidebar() {
+        document.getElementById('sidebar').classList.add('-translate-x-full');
+        document.getElementById('sidebar-overlay').classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+    }
+</script>
 
 @stack('scripts')
 </body>
