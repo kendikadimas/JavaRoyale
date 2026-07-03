@@ -6,7 +6,8 @@
 @endsection
 @section('content')
 <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
-    <table class="w-full text-sm">
+    <div class="overflow-x-auto">
+    <table class="w-full text-sm min-w-[560px]">
         <thead class="bg-gray-50 border-b border-gray-100">
             <tr>
                 <th class="text-left px-6 py-3 font-medium text-gray-500">Penulis</th>
@@ -43,5 +44,6 @@
             @endforelse
         </tbody>
     </table>
+    </div>
 </div>
 @endsection

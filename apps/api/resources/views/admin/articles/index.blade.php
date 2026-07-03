@@ -10,7 +10,8 @@
 @endsection
 @section('content')
 <div class="bg-white rounded-2xl shadow-sm border border-earth-200 overflow-hidden">
-    <table class="w-full text-sm">
+    <div class="overflow-x-auto">
+    <table class="w-full text-sm min-w-[600px]">
         <thead>
             <tr>
                 <th class="text-left px-6 py-4 font-bold text-brand-yellow uppercase tracking-wider text-xs bg-earth-900">Judul</th>
@@ -70,6 +71,7 @@
             @endforelse
         </tbody>
     </table>
+    </div>
     @if($articles->hasPages())
     <div class="px-6 py-4 border-t border-earth-100 bg-earth-50/30">{{ $articles->links() }}</div>
     @endif
