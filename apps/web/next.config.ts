@@ -10,14 +10,17 @@ const nextConfig: NextConfig = {
     unoptimized: true,
     remotePatterns: [
       {
-        // Laravel public assets + storage (local dev)
         protocol: 'http',
         hostname: 'localhost',
         port: '8000',
         pathname: '/**',
       },
       {
-        // Production domain
+        protocol: 'https',
+        hostname: 'admin.javaorigins.co.nz',
+        pathname: '/**',
+      },
+      {
         protocol: 'https',
         hostname: '*.javaroyalenusantara.com',
         pathname: '/**',
