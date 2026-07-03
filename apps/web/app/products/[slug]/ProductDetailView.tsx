@@ -166,8 +166,8 @@ export function ProductDetailView({ product }: Props) {
   const features = getProductFeatures(isSnack);
   const tasteProfile = getProductProfile(product.slug, isSnack);
   const detailedIngredients = getDetailedIngredients(product.slug);
-  const activeIngredients = activeVariant?.ingredients ?? [];
-  const fact = activeVariant?.nutrition_fact;
+  const activeIngredients = product.ingredients ?? [];
+  const fact = product.nutrition_fact;
 
   return (
     <>

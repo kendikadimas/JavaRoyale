@@ -2,14 +2,15 @@
 
 import { useState } from 'react';
 import { CaretDown, Check } from '@phosphor-icons/react';
-import type { ProductVariant } from '@/lib/api';
+import type { Product } from '@/lib/api';
 
 interface Props {
-  variants: ProductVariant[];
+  product: Product;
 }
 
-export function ProductInteractive({ variants }: Props) {
+export function ProductInteractive({ product }: Props) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { variants, ingredients, nutrition_fact: fact } = product;
 
   const toggle = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -21,7 +22,6 @@ export function ProductInteractive({ variants }: Props) {
     <div className="w-full mt-8 border-t border-earth-200">
       {variants.map((variant, index) => {
         const isOpen = openIndex === index;
-        const fact = variant.nutrition_fact;
 
         return (
           <div key={variant.id} className="border-b border-earth-200">
@@ -52,11 +52,11 @@ export function ProductInteractive({ variants }: Props) {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2 text-sm text-gray-600">
                 {/* Left: Ingredients & Compliance */}
                 <div className="space-y-4">
-                  {variant.ingredients && variant.ingredients.length > 0 && (
+                  {ingredients && ingredients.length > 0 && (
                     <div>
                       <span className="font-bold text-earth-800 uppercase tracking-widest text-[11px] block mb-2">Ingredients List:</span>
                       <ul className="grid grid-cols-2 gap-2">
-                        {variant.ingredients.map((ing, i) => (
+                        {ingredients.map((ing, i) => (
                           <li key={i} className="flex items-center gap-2 text-xs text-gray-600">
                             <Check size={12} weight="bold" className="text-brand-green" />
                             <span>{ing}</span>
