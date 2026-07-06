@@ -142,12 +142,11 @@
                         @if($isEdit && $variantObj && $variantObj->images->count())
                         <div class="grid grid-cols-3 gap-2 mb-2">
                             @foreach($variantObj->images as $img)
-                            <div class="relative">
-                                <img src="{{ Storage::url($img->image_path) }}" alt="{{ $img->alt_text }}" class="w-full h-20 object-cover rounded-lg">
-                                <label class="absolute top-1 right-1 cursor-pointer">
-                                    <input type="checkbox" name="variants[{{ $vi }}][delete_images][]" value="{{ $img->id }}" class="sr-only peer">
-                                    <span class="bg-white/80 peer-checked:bg-red-500 peer-checked:text-white text-gray-600 text-xs px-1.5 py-0.5 rounded shadow">Hapus</span>
-                                </label>
+                            <div class="relative group image-block">
+                                <img src="{{ Storage::url($img->image_path) }}" alt="{{ $img->alt_text }}" class="w-full h-20 object-cover rounded-lg group-hover:opacity-80 transition">
+                                <button type="button" onclick="removeImage(this, {{ $img->id }}, 'variants[{{ $vi }}][delete_images][]')" class="absolute top-1 right-1 bg-white/90 hover:bg-red-500 hover:text-white text-gray-700 font-medium text-xs px-2 py-1 rounded shadow-sm border border-gray-200 transition-colors">
+                                    Hapus
+                                </button>
                             </div>
                             @endforeach
                         </div>
@@ -190,12 +189,11 @@
             @if($isEdit && $product->images->count())
             <div class="grid grid-cols-2 gap-2 mb-4">
                 @foreach($product->images as $img)
-                <div class="relative">
-                    <img src="{{ Storage::url($img->image_path) }}" alt="{{ $img->alt_text }}" class="w-full h-24 object-cover rounded-lg">
-                    <label class="absolute top-1 right-1 cursor-pointer">
-                        <input type="checkbox" name="delete_images[]" value="{{ $img->id }}" class="sr-only peer">
-                        <span class="bg-white/80 peer-checked:bg-red-500 peer-checked:text-white text-gray-600 text-xs px-1.5 py-0.5 rounded shadow">Hapus</span>
-                    </label>
+                <div class="relative group image-block">
+                    <img src="{{ Storage::url($img->image_path) }}" alt="{{ $img->alt_text }}" class="w-full h-24 object-cover rounded-lg group-hover:opacity-80 transition">
+                    <button type="button" onclick="removeImage(this, {{ $img->id }}, 'delete_images[]')" class="absolute top-1 right-1 bg-white/90 hover:bg-red-500 hover:text-white text-gray-700 font-medium text-xs px-2 py-1 rounded shadow-sm border border-gray-200 transition-colors">
+                        Hapus
+                    </button>
                 </div>
                 @endforeach
             </div>
@@ -213,7 +211,16 @@
             <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-medium py-2.5 rounded-lg text-sm transition">
                 {{ $isEdit ? 'Simpan Perubahan' : 'Buat Produk' }}
             </button>
-            <a href="{{ route('admin.products.index') }}" class="block text-center text-sm text-gray-400 hover:text-gray-600 mt-2">Batal</a>
+            <a href="{{ route('admin.products.index') }}" class="block text-center text-sm text-gray-400 hover:text-gray-600 mt-3">Batal</a>
+            
+            @if($isEdit)
+            <div class="mt-5 pt-4 border-t border-gray-100">
+                <button type="button" onclick="if(confirm('Apakah Anda yakin ingin menghapus produk ini secara permanen?')) document.getElementById('form-delete-product').submit();" class="w-full flex items-center justify-center gap-2 bg-red-50 hover:bg-red-100 text-red-600 font-medium py-2.5 rounded-lg text-sm transition">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                    Hapus Produk Ini
+                </button>
+            </div>
+            @endif
         </div>
     </div>
 </div>
@@ -298,13 +305,31 @@ function addVariant() {
     document.getElementById('variants-container').insertAdjacentHTML('beforeend', html);
 }
 
-function removeVariant(btn) {
-    btn.closest('.variant-block').remove();
-    // Tampilkan placeholder jika kosong
-    const container = document.getElementById('variants-container');
-    if (container.querySelectorAll('.variant-block').length === 0) {
-        container.innerHTML = '<p class="text-xs text-gray-400 text-center py-4 border border-dashed border-gray-200 rounded-lg">Belum ada varian. Klik "+ Tambah Varian" jika dibutuhkan.</p>';
+    function removeVariant(btn) {
+        if (!confirm('Hapus varian ini?')) return;
+        btn.closest('.variant-block').remove();
+        
+        // Tampilkan placeholder jika kosong
+        const container = document.getElementById('variants-container');
+        if (container.querySelectorAll('.variant-block').length === 0) {
+            container.innerHTML = '<p class="text-xs text-gray-400 text-center py-4 border border-dashed border-gray-200 rounded-lg">Belum ada varian. Klik "+ Tambah Varian" jika dibutuhkan.</p>';
+        }
     }
-}
+
+    function removeImage(btn, imgId, inputName) {
+        if (!confirm('Hapus gambar ini?')) return;
+        
+        // Buat input tersembunyi agar ID gambar dikirim ke server untuk dihapus
+        const hiddenInput = document.createElement('input');
+        hiddenInput.type = 'hidden';
+        hiddenInput.name = inputName;
+        hiddenInput.value = imgId;
+        
+        // Tambahkan ke form utama
+        btn.closest('form').appendChild(hiddenInput);
+        
+        // Hapus blok gambar dari tampilan
+        btn.closest('.image-block').remove();
+    }
 </script>
 @endpush

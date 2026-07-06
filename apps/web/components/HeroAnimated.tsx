@@ -43,14 +43,14 @@ export function HeroAnimated() {
           <div className="lg:col-span-6 flex flex-col items-start text-left relative z-20 mt-8 lg:mt-0">             
 
             <h1 className="font-display font-black text-[17vw] sm:text-[12vw] md:text-6xl lg:text-7xl xl:text-[5rem] text-white uppercase leading-[0.85] tracking-tighter mb-6 drop-shadow-2xl">
-              <div className="overflow-hidden"><div className="hero-title-line">THE</div></div>
-              <div className="overflow-hidden"><div className="hero-title-line text-brand-yellow">ROYAL</div></div>
-              <div className="overflow-hidden"><div className="hero-title-line text-brand-yellow">HERBAL</div></div>
-              <div className="overflow-hidden"><div className="hero-title-line">DRINK</div></div>
+              <div className="overflow-hidden"><div className="hero-title-line">The</div></div>
+              <div className="overflow-hidden"><div className="hero-title-line text-brand-yellow">Java</div></div>
+              <div className="overflow-hidden"><div className="hero-title-line text-brand-yellow">Origins</div></div>
+              <div className="overflow-hidden"><div className="hero-title-line">Drink</div></div>
             </h1>
             
             <p className="hero-desc max-w-md text-gray-200 text-sm sm:text-base md:text-lg font-semibold tracking-wider leading-relaxed mb-8 opacity-90 drop-shadow-sm uppercase">
-              JAVA ORIGINS CELEBRATES INDONESIA&apos;S ORIGINAL FUNCTIONAL BEVERAGE, JAMU. TASTE TRADITION, CRAFTED FOR TODAY&apos;S LIFESTYLE.
+             We proudly curate and deliver premium Indonesian brands and exceptional SME products to global markets, driven by authentic heritage, quality excellence, and trusted partnerships.
             </p>
             
             <div className="flex flex-row items-center gap-3 w-full sm:w-auto">

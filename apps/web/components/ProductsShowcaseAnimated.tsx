@@ -59,7 +59,7 @@ export function ProductsShowcaseAnimated({ products }: { products: Product[] }) 
       <div className="px-6 lg:px-12 z-20 mb-4 md:mb-6">
         <h2 className="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-brand-black leading-tight">
           Explore Java Origins <br />
-          <span className="font-normal text-gray-500">wellness in every form</span>
+          {/* <span className="font-normal text-gray-500">wellness in every form</span> */}
         </h2>
       </div>
 
@@ -75,57 +75,51 @@ export function ProductsShowcaseAnimated({ products }: { products: Product[] }) 
             return (
               <div 
                 key={product.id} 
-                className={`w-[85vw] md:w-[70vw] lg:w-[60vw] xl:w-[50vw] h-[52vh] md:h-[55vh] ${theme.bg} rounded-[2rem] md:rounded-[3rem] p-5 md:p-10 relative flex flex-col shrink-0 overflow-hidden shadow-sm`}
+                className={`w-[85vw] md:w-[70vw] lg:w-[60vw] xl:w-[50vw] h-[65vh] md:h-[65vh] ${theme.bg} rounded-[2rem] md:rounded-[3rem] p-6 md:p-10 relative flex flex-col shrink-0 overflow-hidden shadow-sm`}
               >
-                {/* Header (Top Left) */}
-                <div className="relative z-30 max-w-[90%] md:max-w-[80%]">
+                {/* Header (Top Left Mobile / Top Right Desktop) */}
+                <div className="relative z-30 max-w-[100%] md:max-w-[70%] md:self-end md:text-right">
                   <h3 className={`font-display font-black text-3xl md:text-5xl lg:text-6xl tracking-tighter ${theme.text}`}>
                     {displayTitle}
                   </h3>
                 </div>
 
-                {/* Bottom Section (Description + Button on Right) */}
-                <div className="absolute bottom-5 right-5 md:bottom-10 md:right-10 z-20 flex flex-col items-end text-right max-w-[65%] md:max-w-[50%]">
-                  <div className="relative">
-                    <p className={`font-display font-medium text-[10px] md:text-base leading-tight md:leading-snug ${theme.text} drop-shadow-sm mb-2 md:mb-4 ${theme.bg}/70 md:bg-transparent p-2 md:p-0 rounded-lg backdrop-blur-md md:backdrop-blur-none line-clamp-3 md:line-clamp-4`}>
+                {/* Bottom Section Desktop / Top Section Mobile (Description + Button) */}
+                <div className="relative z-20 flex flex-col items-start md:items-end mt-4 md:mt-auto md:self-end max-w-[100%] md:max-w-[40%]">
+                  <div className="relative w-full">
+                    <p className={`font-display font-medium text-xs md:text-sm text-justify leading-snug md:leading-snug ${theme.text} drop-shadow-sm mb-3 md:mb-5 opacity-90 line-clamp-4 md:line-clamp-4`}>
                       {product.description 
                         ? stripHtml(product.description) 
                         : 'The perfect balance of tradition and refreshing taste.'}
                     </p>
                     <Link 
                       href={`/products/${product.slug}`}
-                      className={`text-[9px] md:text-xs font-bold ${theme.text} hover:underline inline-block mb-3 md:mb-5 opacity-70 hover:opacity-100 transition-opacity`}
+                      className={`text-xs font-bold ${theme.text} hover:underline inline-flex items-center gap-1 opacity-100 transition-opacity`}
                     >
-                      Read more →
+                      Read more <ArrowRight size={14} weight="bold" className="md:hidden" /> <span className="hidden md:inline">→</span>
                     </Link>
                   </div>
-                  <Link 
-                    href={`/products/${product.slug}`}
-                    className={`w-10 h-10 md:w-14 md:h-14 flex items-center justify-center rounded-full transition-all hover:scale-110 shadow-lg ${theme.btn}`}
-                  >
-                    <ArrowRight size={18} className="md:w-5 md:h-5" weight="bold" />
-                  </Link>
                 </div>
 
-                {/* Image (Bottom Left, Absolute) */}
-                <div className={`absolute -bottom-6 -left-10 md:-left-4 h-[55%] md:h-[85%] z-10 pointer-events-none ${
+                {/* Image (Bottom Center Mobile / Full Left Desktop) */}
+                <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 md:translate-x-0 md:top-0 md:bottom-auto md:left-0 h-[45%] md:h-full z-10 pointer-events-none flex justify-center md:items-center ${
                   product.slug === 'java-drink-powder-mini'
-                    ? 'w-[72%] md:w-[58%]'
-                    : 'w-[55%] md:w-[55%]'
+                    ? 'w-[90%] md:w-[50%]'
+                    : 'w-[90%] md:w-[50%]'
                 }`}>
                   {product.images && product.images.length > 0 ? (
                     <img
                        src={imageUrl(product.images[0].image_path)}
                        alt={product.images[0].alt_text ?? product.name}
-                       className={`w-full h-full object-contain object-left-bottom md:object-bottom origin-bottom transition-transform duration-500 ${
-                         product.slug === 'java-drink-powder-mini'
-                           ? 'scale-[2.4] translate-x-[22px] translate-y-[8%] md:scale-[1.43] md:translate-x-0 md:translate-y-[10%]'
-                           : 'scale-[1.1] translate-x-[12px] translate-y-[10%] md:scale-[1.05] md:-translate-x-[8px]'
+                       className={`w-full h-full object-contain object-bottom md:object-left origin-bottom md:origin-left transition-transform duration-500 ${
+                         product.slug === 'java-drink-powder'
+                           ? 'scale-[1.2] translate-y-[5%] md:scale-[1.1] md:translate-x-6 md:translate-y-0'
+                           : 'scale-[1.2] translate-y-[5%] md:scale-[1.1] md:-translate-x-4 md:translate-y-0'
                        }`}
                      />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
-                      <div className="w-32 h-64 md:w-40 md:h-80 bg-black/10 rounded-2xl animate-pulse" />
+                      <div className="w-24 h-48 md:w-40 md:h-80 bg-black/10 rounded-2xl animate-pulse" />
                     </div>
                   )}
                 </div>

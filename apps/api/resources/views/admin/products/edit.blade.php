@@ -6,4 +6,10 @@
     @csrf @method('PUT')
     @include('admin.products._form')
 </form>
+
+@if(isset($product) && $product->exists)
+<form id="form-delete-product" method="POST" action="{{ route('admin.products.destroy', $product) }}" class="hidden">
+    @csrf @method('DELETE')
+</form>
+@endif
 @endsection

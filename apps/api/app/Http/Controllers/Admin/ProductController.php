@@ -37,7 +37,7 @@ class ProductController extends Controller
             'is_active'       => 'boolean',
             // product-level images
             'images'          => 'nullable|array',
-            'images.*'        => 'nullable|image|max:2048',
+            'images.*'        => 'nullable|image|max:10240',
             // nutrition facts (di produk)
             'nutrition.energy_kcal' => 'nullable|numeric',
             'nutrition.protein_g'   => 'nullable|numeric',
@@ -51,7 +51,7 @@ class ProductController extends Controller
             'variants.*.net_weight'          => 'nullable|string|max:50',
             'variants.*.compliance_notes'    => 'nullable|string',
             'variants.*.images'              => 'nullable|array',
-            'variants.*.images.*'            => 'nullable|image|max:2048',
+            'variants.*.images.*'            => 'nullable|image|max:10240',
         ]);
 
         $data['slug']        = $data['slug'] ?: Str::slug($data['name']);
@@ -128,7 +128,7 @@ class ProductController extends Controller
             'ingredients.*'   => 'nullable|string|max:255',
             'is_active'       => 'boolean',
             'images'          => 'nullable|array',
-            'images.*'        => 'nullable|image|max:2048',
+            'images.*'        => 'nullable|image|max:10240',
             'delete_images'   => 'nullable|array',
             'delete_images.*' => 'nullable|integer',
             // nutrition facts (di produk)
@@ -145,7 +145,7 @@ class ProductController extends Controller
             'variants.*.net_weight'          => 'nullable|string|max:50',
             'variants.*.compliance_notes'    => 'nullable|string',
             'variants.*.images'              => 'nullable|array',
-            'variants.*.images.*'            => 'nullable|image|max:2048',
+            'variants.*.images.*'            => 'nullable|image|max:10240',
             'variants.*.delete_images'       => 'nullable|array',
             'variants.*.delete_images.*'     => 'nullable|integer',
         ]);

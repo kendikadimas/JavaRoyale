@@ -43,7 +43,7 @@ export default async function HomePage() {
   return (
     <>
       <HeroAnimated />
-      <Marquee />
+      {/* <Marquee /> */}
 
       <ProductsShowcaseAnimated products={featured} />
 
@@ -57,7 +57,7 @@ export default async function HomePage() {
       <section className="bg-white py-20 lg:py-28">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="font-display font-bold text-3xl md:text-4xl text-brand-black uppercase tracking-tight mb-4">
+            <h2 className="font-display font-bold text-3xl md:text-4xl text-brand-black tracking-tight mb-4">
               Frequently Asked Question
             </h2>
            
@@ -75,38 +75,26 @@ export default async function HomePage() {
 
         <div className="max-w-7xl mx-auto bg-gradient-to-br from-brand-yellow via-brand-yellow to-yellow-500 rounded-[2.5rem] md:rounded-[3.5rem] p-4 flex flex-col lg:flex-row shadow-2xl relative z-10">
           
-          {/* Left Side: Product Image Display */}
-          <div className="w-full lg:w-1/2 relative h-[350px] md:h-[500px] lg:h-auto rounded-[2rem] md:rounded-[2.8rem] overflow-hidden bg-earth-900 flex items-center justify-center p-8 md:p-12 shadow-inner">
-            {/* Subtle glow behind the bottle */}
-            <div className="absolute w-[80%] h-[80%] rounded-full bg-brand-yellow/10 blur-[80px]" />
-            <div className="relative w-full h-full min-h-[300px]">
-              <Image
-                src="/new/botoldrink.png"
-                alt="Java Origins Premium Herbal Drink"
-                fill
-                className="object-contain hover:scale-105 transition-transform duration-700"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-            </div>
-          </div>
-
-          {/* Right Side: Partnership Content */}
-          <div className="w-full lg:w-1/2 p-8 md:p-12 lg:p-16 flex flex-col justify-center">
-            <div className="flex-grow flex flex-col justify-center">
+          {/* Partnership Content (Full Width) */}
+          <div className="w-full p-8 md:p-12 lg:p-16 flex flex-col items-center justify-center text-center">
+            <div className="flex-grow flex flex-col items-center justify-center">
               <span className="inline-block px-3 py-1.5 rounded-full border border-earth-900/20 bg-earth-900/10 text-earth-900 text-xs font-black tracking-widest uppercase mb-6 w-max">
                 Partnership
               </span>
               <h2 className="font-display font-black text-4xl md:text-5xl lg:text-[3.8rem] text-earth-900 uppercase tracking-tighter leading-[1] mb-6">
-                Interested in selling Java Origins?
+                Partner with Java Origins 
               </h2>
-              <p className="text-earth-900/80 text-lg md:text-xl font-medium leading-relaxed mb-10 max-w-xl">
-                Let&apos;s bring Java Origins to your community! With growing global demand for authentic, healthy herbal beverages, it&apos;s the perfect premium addition to your store or menu. Request a sample today!
+              <p className="text-earth-900/90 text-lg md:text-xl font-bold leading-relaxed mb-10 max-w-xl mx-auto text-justify">
+                We welcome retailers, distributors, and resellers to bring Java Origins into their market. As demand grows for authentic heritage products, we offer a curated range designed for retail and hospitality.
+                Our collection includes herbal drinks, MSME food & beverage products, herbal body care, and fashion apparel, all focused on quality, authenticity, and cultural value.
+                We are open to reseller and distributor partnerships and look forward to building strong, long-term collaboration.
+                Get in touch to request samples or discuss partnership opportunities.
               </p>
             </div>
             
             <Link
               href="/contact"
-              className="w-full block text-center py-5 md:py-6 rounded-2xl md:rounded-[1.5rem] bg-earth-900 text-brand-yellow font-bold text-xl hover:bg-white hover:text-earth-900 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className="inline-block px-12 text-center py-5 md:py-6 rounded-2xl md:rounded-[1.5rem] bg-earth-900 text-brand-yellow font-bold text-xl hover:bg-white hover:text-earth-900 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               Contact Us
             </Link>
