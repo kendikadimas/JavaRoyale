@@ -75,43 +75,46 @@ export function ProductsShowcaseAnimated({ products }: { products: Product[] }) 
             return (
               <div 
                 key={product.id} 
-                className={`w-[85vw] md:w-[70vw] lg:w-[60vw] xl:w-[50vw] h-[65vh] md:h-[65vh] ${theme.bg} rounded-[2rem] md:rounded-[3rem] p-6 md:p-10 relative flex flex-col shrink-0 overflow-hidden shadow-sm`}
+                className={`w-[85vw] md:w-[70vw] lg:w-[60vw] xl:w-[50vw] h-[65vh] md:h-[65vh] ${theme.bg} rounded-[2rem] md:rounded-[3rem] p-6 md:p-8 flex flex-row shrink-0 overflow-hidden shadow-sm gap-4 md:gap-6`}
               >
-                {/* Image — absolute, contained within card, no overflow */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 md:translate-x-0 md:top-0 md:left-0 h-[55%] md:h-full w-[80%] md:w-[52%] z-10 pointer-events-none">
+                {/* Left — Image Container */}
+                <div className="w-[45%] md:w-[48%] h-full rounded-xl md:rounded-2xl overflow-hidden flex-shrink-0 bg-black/5">
                   {product.images && product.images.length > 0 ? (
                     <img
-                       src={imageUrl(product.images[0].image_path)}
-                       alt={product.images[0].alt_text ?? product.name}
-                       className="w-full h-full object-contain object-bottom md:object-center"
-                     />
+                      src={imageUrl(product.images[0].image_path)}
+                      alt={product.images[0].alt_text ?? product.name}
+                      className="w-full h-full object-cover object-center"
+                    />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center">
-                      <div className="w-24 h-48 md:w-40 md:h-80 bg-black/10 rounded-2xl animate-pulse" />
-                    </div>
+                    <div className="w-full h-full bg-black/10 animate-pulse" />
                   )}
                 </div>
 
-                {/* Header (Top Left Mobile / Top Right Desktop) */}
-                <div className="relative z-30 w-full md:max-w-[60%] md:self-end md:text-right">
-                  <h3 className={`font-display font-black text-xl md:text-2xl lg:text-3xl tracking-tighter leading-tight break-words ${theme.text}`}>
-                    {displayTitle}
-                  </h3>
-                </div>
+                {/* Right — Title + Description + Button */}
+                <div className="flex-1 flex flex-col justify-between py-1 md:py-2 overflow-hidden">
+                  {/* Title — each word on its own line, right-aligned */}
+                  <div className="text-right">
+                    <h3 className={`font-display font-black text-3xl md:text-4xl lg:text-5xl tracking-tighter leading-[0.95] ${theme.text}`}>
+                      {displayTitle.split(' ').map((word, wi) => (
+                        <span key={wi} className="block">{word}</span>
+                      ))}
+                    </h3>
+                  </div>
 
-                {/* Bottom Section — Description + Button */}
-                <div className="relative z-30 flex flex-col items-start md:items-end mt-4 md:mt-auto md:self-end w-full md:max-w-[45%]">
-                  <p className={`font-display font-medium text-xs md:text-sm text-justify leading-snug ${theme.text} mb-3 md:mb-5 opacity-90 line-clamp-3 md:line-clamp-4`}>
-                    {product.description 
-                      ? stripHtml(product.description) 
-                      : 'The perfect balance of tradition and refreshing taste.'}
-                  </p>
-                  <Link 
-                    href={`/products/${product.slug}`}
-                    className={`text-xs font-bold ${theme.text} hover:underline inline-flex items-center gap-1 transition-opacity`}
-                  >
-                    Read more <ArrowRight size={14} weight="bold" className="md:hidden" /> <span className="hidden md:inline">→</span>
-                  </Link>
+                  {/* Description + Button */}
+                  <div className="flex flex-col items-end gap-3">
+                    <p className={`font-display font-medium text-xs md:text-sm text-right leading-snug ${theme.text} opacity-80 line-clamp-3 md:line-clamp-4`}>
+                      {product.description 
+                        ? stripHtml(product.description) 
+                        : 'The perfect balance of tradition and refreshing taste.'}
+                    </p>
+                    <Link 
+                      href={`/products/${product.slug}`}
+                      className={`text-xs font-bold ${theme.text} hover:underline inline-flex items-center gap-1`}
+                    >
+                      Read more <ArrowRight size={14} weight="bold" />
+                    </Link>
+                  </div>
                 </div>
               </div>
             );
