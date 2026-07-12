@@ -97,8 +97,8 @@ export function ProductsShowcaseAnimated({ products }: { products: Product[] }) 
                     {(() => {
                       const words = displayTitle.split(' ');
                       const titleSize = words.length <= 2
-                        ? 'text-6xl md:text-7xl lg:text-8xl'
-                        : 'text-4xl md:text-5xl lg:text-[3.25rem]';
+                        ? 'text-5xl md:text-6xl lg:text-7xl'
+                        : 'text-3xl md:text-4xl lg:text-[2.75rem]';
                       return (
                         <h3 className={`font-display font-black ${titleSize} tracking-tighter leading-[1.05] ${theme.text}`}>
                           {words.map((word, wi) => (
