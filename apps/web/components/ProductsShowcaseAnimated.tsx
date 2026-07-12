@@ -94,20 +94,29 @@ export function ProductsShowcaseAnimated({ products }: { products: Product[] }) 
                 <div className="flex-1 flex flex-col justify-between py-1 md:py-2 overflow-hidden">
                   {/* Title — each word on its own line, right-aligned */}
                   <div className="text-right">
-                    <h3 className={`font-display font-black text-3xl md:text-4xl lg:text-5xl tracking-tighter leading-[0.95] ${theme.text}`}>
+                    <h3 className={`font-display font-black text-5xl md:text-6xl lg:text-7xl tracking-tighter leading-[1.05] ${theme.text}`}>
                       {displayTitle.split(' ').map((word, wi) => (
                         <span key={wi} className="block">{word}</span>
                       ))}
                     </h3>
                   </div>
 
-                  {/* Description + Button */}
+                {/* Description or Advantages */}
                   <div className="flex flex-col items-end gap-3">
-                    <p className={`font-display font-medium text-xs md:text-sm text-right leading-snug ${theme.text} opacity-80 line-clamp-3 md:line-clamp-4`}>
-                      {product.description 
-                        ? stripHtml(product.description) 
-                        : 'The perfect balance of tradition and refreshing taste.'}
-                    </p>
+                    {product.description ? (
+                      <p className={`font-display font-medium text-sm md:text-base text-right leading-relaxed ${theme.text} opacity-80 line-clamp-3 md:line-clamp-4`}>
+                        {stripHtml(product.description)}
+                      </p>
+                    ) : product.advantages && product.advantages.length > 0 ? (
+                      <ul className="flex flex-col items-end gap-1">
+                        {product.advantages.slice(0, 4).map((adv, ai) => (
+                          <li key={ai} className={`font-display font-medium text-sm md:text-base text-right leading-relaxed ${theme.text} opacity-80 flex items-center gap-1.5 justify-end`}>
+                            <span>{adv}</span>
+                            <span className="w-1.5 h-1.5 rounded-full bg-current opacity-60 flex-shrink-0" />
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
                     <Link 
                       href={`/products/${product.slug}`}
                       className={`text-xs font-bold ${theme.text} hover:underline inline-flex items-center gap-1`}
