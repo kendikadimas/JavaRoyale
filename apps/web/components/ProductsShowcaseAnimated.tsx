@@ -94,11 +94,19 @@ export function ProductsShowcaseAnimated({ products }: { products: Product[] }) 
                 <div className="flex-1 flex flex-col justify-between py-1 md:py-2 overflow-hidden">
                   {/* Title — each word on its own line, right-aligned */}
                   <div className="text-right">
-                    <h3 className={`font-display font-black text-4xl md:text-5xl lg:text-[3.25rem] tracking-tighter leading-[1.05] ${theme.text}`}>
-                      {displayTitle.split(' ').map((word, wi) => (
-                        <span key={wi} className="block">{word}</span>
-                      ))}
-                    </h3>
+                    {(() => {
+                      const words = displayTitle.split(' ');
+                      const titleSize = words.length <= 2
+                        ? 'text-6xl md:text-7xl lg:text-8xl'
+                        : 'text-4xl md:text-5xl lg:text-[3.25rem]';
+                      return (
+                        <h3 className={`font-display font-black ${titleSize} tracking-tighter leading-[1.05] ${theme.text}`}>
+                          {words.map((word, wi) => (
+                            <span key={wi} className="block">{word}</span>
+                          ))}
+                        </h3>
+                      );
+                    })()}
                   </div>
 
                 {/* Description or Advantages */}
