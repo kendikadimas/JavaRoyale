@@ -83,7 +83,7 @@ export function ProductsShowcaseAnimated({ products }: { products: Product[] }) 
                     <img
                       src={imageUrl(product.images[0].image_path)}
                       alt={product.images[0].alt_text ?? product.name}
-                      className="w-full h-full object-cover object-center"
+                      className="w-full h-full object-contain object-center"
                     />
                   ) : (
                     <div className="w-full h-full bg-black/10 animate-pulse" />
@@ -94,7 +94,7 @@ export function ProductsShowcaseAnimated({ products }: { products: Product[] }) 
                 <div className="flex-1 flex flex-col justify-between py-1 md:py-2 overflow-hidden">
                   {/* Title — each word on its own line, right-aligned */}
                   <div className="text-right">
-                    <h3 className={`font-display font-black text-5xl md:text-6xl lg:text-7xl tracking-tighter leading-[1.05] ${theme.text}`}>
+                    <h3 className={`font-display font-black text-4xl md:text-5xl lg:text-[3.25rem] tracking-tighter leading-[1.05] ${theme.text}`}>
                       {displayTitle.split(' ').map((word, wi) => (
                         <span key={wi} className="block">{word}</span>
                       ))}
@@ -119,9 +119,9 @@ export function ProductsShowcaseAnimated({ products }: { products: Product[] }) 
                     ) : null}
                     <Link 
                       href={`/products/${product.slug}`}
-                      className={`text-xs font-bold ${theme.text} hover:underline inline-flex items-center gap-1`}
+                      className={`mt-1 px-5 py-2 rounded-full text-xs font-bold border-2 border-current ${theme.text} hover:opacity-70 transition-opacity`}
                     >
-                      Read more <ArrowRight size={14} weight="bold" />
+                      Read more
                     </Link>
                   </div>
                 </div>
