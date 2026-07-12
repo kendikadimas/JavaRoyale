@@ -75,51 +75,43 @@ export function ProductsShowcaseAnimated({ products }: { products: Product[] }) 
             return (
               <div 
                 key={product.id} 
-                className={`w-[85vw] md:w-[70vw] lg:w-[60vw] xl:w-[50vw] h-[65vh] md:h-[65vh] relative flex flex-col shrink-0`}
+                className={`w-[85vw] md:w-[70vw] lg:w-[60vw] xl:w-[50vw] h-[65vh] md:h-[65vh] ${theme.bg} rounded-[2rem] md:rounded-[3rem] p-6 md:p-10 relative flex flex-col shrink-0 overflow-hidden shadow-sm`}
               >
-                {/* Card background with rounded, separate from overflow */}
-                <div className={`absolute inset-0 ${theme.bg} rounded-[2rem] md:rounded-[3rem] shadow-sm`} />
-
-                {/* Content wrapper — text only, does not clip image */}
-                <div className="relative z-20 flex flex-col h-full p-6 md:p-10 pointer-events-none">
-                  {/* Header (Top Left Mobile / Top Right Desktop) */}
-                  <div className="relative z-30 max-w-[100%] md:max-w-[70%] md:self-end md:text-right pointer-events-auto">
-                    <h3 className={`font-display font-black text-2xl md:text-3xl lg:text-4xl tracking-tighter leading-tight ${theme.text}`}>
-                      {displayTitle}
-                    </h3>
-                  </div>
-
-                  {/* Bottom Section Desktop / Top Section Mobile (Description + Button) */}
-                  <div className="relative z-20 flex flex-col items-start md:items-end mt-4 md:mt-auto md:self-end max-w-[100%] md:max-w-[40%] pointer-events-auto">
-                    <div className="relative w-full">
-                      <p className={`font-display font-medium text-xs md:text-sm text-justify leading-snug md:leading-snug ${theme.text} drop-shadow-sm mb-3 md:mb-5 opacity-90 line-clamp-4 md:line-clamp-4`}>
-                        {product.description 
-                          ? stripHtml(product.description) 
-                          : 'The perfect balance of tradition and refreshing taste.'}
-                      </p>
-                      <Link 
-                        href={`/products/${product.slug}`}
-                        className={`text-xs font-bold ${theme.text} hover:underline inline-flex items-center gap-1 opacity-100 transition-opacity`}
-                      >
-                        Read more <ArrowRight size={14} weight="bold" className="md:hidden" /> <span className="hidden md:inline">→</span>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Image — outside content wrapper, can overflow card bounds */}
-                <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 md:translate-x-0 md:top-0 md:bottom-auto md:left-0 h-[50%] md:h-[110%] z-10 pointer-events-none flex justify-center md:items-end w-[90%] md:w-[55%]`}>
+                {/* Image — absolute, contained within card, no overflow */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 md:translate-x-0 md:top-0 md:left-0 h-[55%] md:h-full w-[80%] md:w-[52%] z-10 pointer-events-none">
                   {product.images && product.images.length > 0 ? (
                     <img
                        src={imageUrl(product.images[0].image_path)}
                        alt={product.images[0].alt_text ?? product.name}
-                       className="w-full h-full object-contain object-bottom md:object-left"
+                       className="w-full h-full object-contain object-bottom md:object-center"
                      />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
                       <div className="w-24 h-48 md:w-40 md:h-80 bg-black/10 rounded-2xl animate-pulse" />
                     </div>
                   )}
+                </div>
+
+                {/* Header (Top Left Mobile / Top Right Desktop) */}
+                <div className="relative z-30 w-full md:max-w-[60%] md:self-end md:text-right">
+                  <h3 className={`font-display font-black text-xl md:text-2xl lg:text-3xl tracking-tighter leading-tight break-words ${theme.text}`}>
+                    {displayTitle}
+                  </h3>
+                </div>
+
+                {/* Bottom Section — Description + Button */}
+                <div className="relative z-30 flex flex-col items-start md:items-end mt-4 md:mt-auto md:self-end w-full md:max-w-[45%]">
+                  <p className={`font-display font-medium text-xs md:text-sm text-justify leading-snug ${theme.text} mb-3 md:mb-5 opacity-90 line-clamp-3 md:line-clamp-4`}>
+                    {product.description 
+                      ? stripHtml(product.description) 
+                      : 'The perfect balance of tradition and refreshing taste.'}
+                  </p>
+                  <Link 
+                    href={`/products/${product.slug}`}
+                    className={`text-xs font-bold ${theme.text} hover:underline inline-flex items-center gap-1 transition-opacity`}
+                  >
+                    Read more <ArrowRight size={14} weight="bold" className="md:hidden" /> <span className="hidden md:inline">→</span>
+                  </Link>
                 </div>
               </div>
             );
