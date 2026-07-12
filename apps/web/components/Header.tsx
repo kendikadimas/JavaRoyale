@@ -31,11 +31,11 @@ export function Header() {
 
   const headerBgClass = isHomepage
     ? (isScrolled 
-        ? 'bg-earth-900/95 backdrop-blur-md border-b border-earth-800 shadow-lg py-3' 
+        ? 'bg-[#1E1608]/95 backdrop-blur-md border-b border-earth-800 shadow-lg py-3' 
         : 'bg-transparent border-b border-transparent py-6')
     : (isScrolled
-        ? 'bg-earth-900/95 backdrop-blur-md border-b border-earth-800 shadow-lg py-3'
-        : 'bg-earth-900/95 backdrop-blur-md border-b border-earth-800 shadow-lg py-4');
+        ? 'bg-[#1E1608]/95 backdrop-blur-md border-b border-earth-800 shadow-lg py-3'
+        : 'bg-[#1E1608]/95 backdrop-blur-md border-b border-earth-800 shadow-lg py-4');
 
   return (
     <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${headerBgClass}`}>

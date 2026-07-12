@@ -7,7 +7,7 @@ const ingredients = [
     id: 'ginger',
     name: 'Ginger',
     percentage: '20-30%',
-    image: '/new/gingerr.jpg',
+    image: '/new/ginger_compressed.webp',
   },
   {
     id: 'tumeric',
@@ -19,25 +19,25 @@ const ingredients = [
     id: 'lemongrass',
     name: 'Lemongrass',
     percentage: '8-17%',
-    image: '/new/lemongrass.jpg',
+    image: '/new/lemongrass_compressed.webp',
   },
   {
     id: 'lime',
     name: 'Lime',
     percentage: '8%',
-    image: '/new/limee.jpg',
+    image: '/new/lime_compressed.webp',
   },
   {
     id: 'palm-sugar',
     name: 'Palm Sugar',
     percentage: '20%',
-    image: '/new/palmsugar.jpg',
+    image: '/new/palmsugar_compressed.webp',
   },
   {
     id: 'honey',
     name: 'Honey',
     percentage: '2%',
-    image: '/new/honeyyy.jpg',
+    image: '/new/honey_compressed.webp',
   },
 ];
 

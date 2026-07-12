@@ -68,23 +68,23 @@ export default async function HomePage() {
       </section>
 
       {/* CTA SECTION - Card Layout */}
-      <section className="bg-earth-900 py-20 lg:py-32 px-6 lg:px-8 relative overflow-hidden">
+      <section className="bg-earth-900 py-12 md:py-16 px-6 lg:px-8 relative overflow-hidden">
         {/* Subtle background glows to tie in with the rest of the dark sections */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-brand-yellow/5 blur-[120px] rounded-full pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand-yellow/5 blur-[120px] rounded-full pointer-events-none" />
 
-        <div className="max-w-7xl mx-auto bg-gradient-to-br from-brand-yellow via-brand-yellow to-yellow-500 rounded-[2.5rem] md:rounded-[3.5rem] p-4 flex flex-col lg:flex-row shadow-2xl relative z-10">
+        <div className="max-w-5xl mx-auto bg-gradient-to-br from-brand-yellow via-brand-yellow to-yellow-500 rounded-[2rem] md:rounded-[2.5rem] p-3 flex flex-col lg:flex-row shadow-2xl relative z-10">
           
           {/* Partnership Content (Full Width) */}
-          <div className="w-full p-8 md:p-12 lg:p-16 flex flex-col items-center justify-center text-center">
+          <div className="w-full p-6 md:p-8 lg:p-10 flex flex-col items-center justify-center text-center">
             <div className="flex-grow flex flex-col items-center justify-center">
-              <span className="inline-block px-3 py-1.5 rounded-full border border-earth-900/20 bg-earth-900/10 text-earth-900 text-xs font-black tracking-widest uppercase mb-6 w-max">
+              <span className="inline-block px-3 py-1 rounded-full border border-earth-900/20 bg-earth-900/10 text-earth-900 text-xs font-black tracking-widest uppercase mb-4 w-max">
                 Partnership
               </span>
-              <h2 className="font-display font-black text-4xl md:text-5xl lg:text-[3.8rem] text-earth-900 uppercase tracking-tighter leading-[1] mb-6">
+              <h2 className="font-display font-black text-4xl md:text-5xl lg:text-[3.5rem] text-earth-900 uppercase tracking-tighter leading-[1] mb-4">
                 Partner with Java Origins 
               </h2>
-              <p className="text-earth-900/90 text-lg md:text-xl font-bold leading-relaxed mb-10 max-w-xl mx-auto text-justify">
+              <p className="text-earth-900 text-lg md:text-xl font-extrabold leading-relaxed mb-6 max-w-4xl mx-auto text-center">
                 We welcome retailers, distributors, and resellers to bring Java Origins into their market. As demand grows for authentic heritage products, we offer a curated range designed for retail and hospitality.
                 Our collection includes herbal drinks, MSME food & beverage products, herbal body care, and fashion apparel, all focused on quality, authenticity, and cultural value.
                 We are open to reseller and distributor partnerships and look forward to building strong, long-term collaboration.
@@ -94,7 +94,7 @@ export default async function HomePage() {
             
             <Link
               href="/contact"
-              className="inline-block px-12 text-center py-5 md:py-6 rounded-2xl md:rounded-[1.5rem] bg-earth-900 text-brand-yellow font-bold text-xl hover:bg-white hover:text-earth-900 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className="inline-block px-10 text-center py-4 md:py-5 rounded-xl md:rounded-[1.2rem] bg-earth-900 text-brand-yellow font-bold text-lg hover:bg-white hover:text-earth-900 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               Contact Us
             </Link>
